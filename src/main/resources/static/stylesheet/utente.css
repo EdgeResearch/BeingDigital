@@ -1,0 +1,331 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat";
+}
+
+:root {
+    --bg-color: #121b37;
+    --text-color: #f2f2f2;
+    --main-color: #30478c;
+    --second-color: #273a73;
+    --notify-color: #5b6ed9;
+    --white-color: white;
+    --aggiuntivo1: #33df3c;
+    --aggiuntivo2: #ffa900;
+    --aggiuntivo3: red;
+    --aggiuntivo4: #b700ff;
+}
+
+.utente {
+    display: grid;
+    grid-template-columns: repeat(2, 30rem);
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url(/img/backgroundLogo.png);
+    background-size: contain;
+    overflow-x: hidden;
+}
+
+
+.contsnack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+
+#snackbar {
+    visibility: hidden;
+    width: 400px;
+    margin-left: -125px;
+    background-color: #33383b;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    font-size: 14px;
+    z-index: 1;
+    left: 47%;
+    bottom: 30px;
+}
+
+
+#snackbar.show {
+    visibility: visible;
+}
+
+
+.daticard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    width: 400px;
+    height: 530px;
+    background-color: var(--white-color);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+.daticard span {
+    position: absolute;
+    top: -18px;
+    left: -10px;
+    width: 150px;
+    height: 150px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.daticard span::before {
+    content: 'Dati personali';
+    position: absolute;
+    width: 150%;
+    height: 40px;
+    background-color: var(--aggiuntivo1);
+    transform: rotate(-45deg) translateY(-20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: var(--text-color);
+    font-weight: 600;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+.plus {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.progcard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    width: 500px;
+    height: 250px;
+    background-color: var(--white-color);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+.progcard span {
+    position: absolute;
+    top: -18px;
+    left: -10px;
+    width: 150px;
+    height: 150px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.progcard span::before {
+    content: 'Progressi';
+    position: absolute;
+    width: 150%;
+    height: 40px;
+    background-color: var(--aggiuntivo2);
+    transform: rotate(-45deg) translateY(-20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: var(--text-color);
+    font-weight: 600;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+.lesscard {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    width: 500px;
+    height: 250px;
+    background-color: var(--white-color);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+.lesscard span {
+    position: absolute;
+    top: -18px;
+    left: -10px;
+    width: 150px;
+    height: 150px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.lesscard span::before {
+    content: 'Risultati';
+    position: absolute;
+    width: 150%;
+    height: 40px;
+    background-color: var(--aggiuntivo4);
+    transform: rotate(-45deg) translateY(-20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: var(--text-color);
+    font-weight: 600;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+.textUtente {
+    margin-top: 55px;
+    width: 70%;
+}
+
+.line {
+    margin-bottom: 30px;
+}
+
+.line h3 {
+    color: var(--main-color);
+    font-size: 22px;
+}
+
+.line p {
+    margin-left: 20px;
+    margin-top: 5px;
+    color: #121b37;
+    font-size: 18px;
+}
+
+.btnUtente {
+    width: 150px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px 0;
+    padding: 12px 0;
+    color: var(--white-color);
+    background-color: var(--notify-color);
+    border: 3px solid var(--notify-color);
+    position: relative;
+    transition: 0.5s;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.btnUtente:hover {
+    background-color: var(--white-color);
+    color: var(--notify-color);
+}
+
+.textProg {
+    width: 80%;
+    text-align: justify;
+    margin-top: 35px;
+}
+
+.areabtn1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.eliminaAcc {
+    color: var(--aggiuntivo3);
+    width: 30px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    top: 20px;
+    right: 20px;
+    position: absolute;
+    cursor: pointer;
+    transition: 0.5s;
+    text-decoration: none;
+}
+
+.eliminaAcc:hover {
+    font-size: 1.3em;
+}
+
+@media (max-width: 990px) {
+
+    .utente {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+
+    }
+
+    .daticard {
+        margin-bottom: 35px;
+        width: 500px;
+        height: 450px;
+
+    }
+
+    .areabtn1 {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .btnUtente {
+        margin: 10px 5px;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .utente {
+        display: flex;
+        flex-direction: column;
+        padding: 25px;
+
+    }
+
+    .daticard {
+        margin-bottom: 35px;
+        width: 300px;
+        height: 500px;
+
+    }
+
+    .areabtn1 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .areabtn {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .btnUtente {
+        margin: 10px 5px;
+    }
+
+    .progcard {
+        width: 300px;
+        height: 500px;
+    }
+
+    .lesscard {
+        width: 300px;
+        height: 300px;
+    }
+
+}

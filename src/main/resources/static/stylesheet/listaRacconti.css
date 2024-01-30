@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat";
+}
+
+:root {
+    --bg-color: #121b37;
+    --text-color: #f2f2f2;
+    --main-color: #30478c;
+    --second-color: #273a73;
+    --notify-color: #5b6ed9;
+    --white-color: white;
+    --aggiuntivo1: #33df3c;
+    --aggiuntivo2: #ffa900;
+    --aggiuntivo3: red;
+    --aggiuntivo4: #b700ff;
+}
+
+
+.pageRacconti {
+    min-height: 100vh;
+    background-color: var(--second-color);
+}
+
+.principale {
+    text-align: center;
+    padding: 30px 0;
+}
+
+.principale h1 {
+    text-transform: uppercase;
+    font-size: 35px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    color: var(--white-color);
+}
+
+.principale p {
+    font-size: 20px;
+    color: var(--white-color);
+    font-weight: 500;
+    padding: 0 20px;
+    margin-top: 25px;
+}
+
+.racconto {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.cardracconto {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    background-color: var(--second-color);
+    overflow: hidden;
+    margin: 30px 0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+.racconto input, .toggleracconto {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+    outline: none;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.racconto input {
+    opacity: 0;
+}
+
+.toggleracconto {
+    pointer-events: none;
+    border-radius: 50%;
+    background-color: var(--white-color);
+    transition: 0.5s;
+    text-align: center;
+    justify-content: center;
+    line-height: 50px;
+    font-size: 36px;
+    box-shadow: 0 0 0 0px var(--notify-color);
+    color: var(--bg-color);
+}
+
+.racconto input:checked ~ .toggleracconto {
+    box-shadow: 0 0 0 500px var(--notify-color);
+    transform: rotate(225deg);
+}
+
+.imageracconto img {
+    width: 100%;
+}
+
+.textRacconto {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 11;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    color: var(--white-color);
+    pointer-events: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.racconto a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.racconto input:checked ~ .textRacconto {
+    opacity: 1;
+}
+
+@media (max-width: 1200px) {
+    .racconto {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        align-items: center;
+        min-height: 100vh;
+        /* background-color: var(--text-color); */
+    }
+}
+
+@media (max-width: 712px) {
+    .racconto {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: var(--second-color);
+    }
+}

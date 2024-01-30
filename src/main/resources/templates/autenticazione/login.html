@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/stylesheet/login.css}" type="text/css"/> <!-- style -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'> <!-- font -->
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
+          rel="stylesheet">
+    <link href="/img/Logo.png" rel="shortcut icon"/>
+</head>
+<body>
+
+<div class="cont">
+    <div class="login-cont">
+        <div class="box sigin">
+            <h2>Hai già un account?</h2>
+            <button class="siginBtn">Accedi</button>
+        </div>
+        <div class="box sigup">
+            <h2>Non hai un account?</h2>
+            <button class="sigupBtn">Registrati</button>
+        </div>
+
+        <div class="formBox">
+            <a class="homeBtn" href="/" id="home"><img src="/img/home.png"></a>
+            <div class="form siginform">
+                <form method="post" th:action="@{/login}" th:object="${loginForm}">
+                    <h2 class="Log">Login</h2>
+                    <input id="LogEmail" placeholder="Email" th:field="*{email}" type="email">
+                    <input id="passwordLog" placeholder="Password" th:field="*{password}" type="password">
+                    <input id="risorsa" name="risorsa" style="display: none" th:value="${param.risorsa}" type="text">
+                    <div class="occhio" onclick="showHide(true)"><img
+                            alt="" id="occhioLog"
+                            src="/img/view.png"></div>
+                    <input class="LogBtn" onclick="return validate(this)" type="submit" value="ACCEDI">
+                </form>
+            </div>
+
+            <div class="form sigupform">
+                <form action="/registrazione" method="post">
+                    <h2 class="Reg">Registrazione</h2>
+                    <input id="RegEmail" name="email" placeholder="Email" required type="email">
+                    <input id="passwordReg" name="password" placeholder="Password" required type="password">
+                    <div class="occhio2" onclick="showHide(false)"><img
+                            alt="" id="occhioReg"
+                            src="/img/view.png"></div>
+                    <input id="RegNome" name="nome" placeholder="Nome" required type="text">
+                    <input id="RegCognome" name="cognome" placeholder="Cognome" required>
+                    <input class="RegBtn" onclick="return validateAll(this)" type="submit" value="REGISTRATI">
+                    <!-- Aggiungere la lettura della privacy -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="contsnack">
+    <div id="snackbar"></div>
+</div>
+
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script th:src="@{/js/login.js}"></script>
+<script th:if="${error != null} ">
+    toast("Email o password errata. Riprovare.")
+
+</script>
+
+<script th:if="${param.registrazione != null} ">
+    toast("Registrazione avvenuta con successo! <br> Effettua il login.")
+
+</script>
+
+</html>

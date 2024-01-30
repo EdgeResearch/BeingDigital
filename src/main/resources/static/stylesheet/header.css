@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat";
+}
+
+:root {
+    --bg-color: #121b37;
+    --text-color: #f2f2f2;
+    --main-color: #30478c;
+    --second-color: #273a73;
+    --notify-color: #5b6ed9;
+    --white-color: white;
+    --aggiuntivo1: #33df3c;
+    --aggiuntivo2: #ffa900;
+    --aggiuntivo3: red;
+}
+
+.all-headerbody {
+    box-sizing: border-box;
+}
+
+header {
+    background: var(--bg-color);
+    width: 100%;
+    min-height: 90px;
+    display: flex;
+    top: 0;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.6s;
+    padding: 0 10px;
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 100000;
+
+}
+
+header .logo {
+    position: absolute;
+    width: 230px;
+    top: 5px;
+    left: 5x;
+    margin-top: 0;
+}
+
+header ul {
+    position: relative;
+    transition: 0.5s;
+}
+
+header ul li {
+    position: relative;
+    list-style: none;
+    float: left;
+}
+
+header ul li:hover {
+    background: var(--notify-color)
+}
+
+header ul li b {
+    margin-left: 5px;
+}
+
+header ul li a {
+    color: var(--white-color);
+    font-size: 1.1em;
+    padding: 20px 25px;
+    display: flex;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+    justify-content: space-between;
+}
+
+header ul li ul {
+    position: absolute;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    justify-content: space-between;
+    background-color: var(--bg-color);
+    display: none;
+}
+
+header ul li:hover ul {
+    display: block;
+}
+
+header ul li ul li {
+    position: relative;
+    width: 100%;
+}
+
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    margin-left: 95%;
+}
+
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    background-color: var(--text-color);
+}
+
+@media (max-width: 971px) {
+    header {
+        padding: 10px 20px;
+    }
+
+    header .logo {
+        width: 220px;
+        top: 5px
+    }
+
+    header nav {
+        position: absolute;
+        width: 100%;
+        top: 75px;
+        left: 0;
+        background-color: var(--bg-color);
+        display: none;
+        box-shadow: 0px 7px 0px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    header nav ul {
+        width: 100%;
+    }
+
+    header nav ul li {
+        width: 100%;
+    }
+
+    header nav ul li ul {
+        width: 100%;
+        position: relative;
+        left: 0;
+    }
+
+    header nav ul li:hover ul li {
+        background-color: var(--bg-color);
+        opacity: 0.8;
+    }
+
+    header nav ul li ul li:hover {
+        background-color: var(--notify-color);
+        opacity: 1;
+    }
+
+    header nav.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+@media (max-width: 410px) {
+    header .logo {
+        width: 180px;
+        top: 5px
+    }
+}

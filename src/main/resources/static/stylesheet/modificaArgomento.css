@@ -1,0 +1,272 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat";
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #121b37;
+    --text-color: #f2f2f2;
+    --main-color: #30478c;
+    --second-color: #273a73;
+    --notify-color: #5b6ed9;
+    --white-color: white;
+    --aggiuntivo1: #33df3c;
+    --aggiuntivo2: #ffa900;
+    --aggiuntivo3: red;
+    --aggiuntivo4: #b700ff;
+}
+
+.input {
+    width: 80%;
+    margin-bottom: 15px;
+    padding: 10px;
+    outline: none;
+    font-size: 0.8em;
+    border: 1px solid #121b37;
+    letter-spacing: 0.1em;
+}
+
+
+.modifica h2 {
+    color: white;
+    text-transform: uppercase;
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+
+.modifica form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* height: 190px; */
+    justify-content: center;
+    align-items: center;
+}
+
+.modifica form label {
+    text-align: left;
+    width: 80%;
+    font-size: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--notify-color);
+}
+
+.modifica input[type="submit"] {
+    border: 3px solid var(--notify-color);
+    color: var(--white-color);
+    cursor: pointer;
+    background: var(--notify-color);
+    padding: 20px;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 30px;
+    transition: all 150ms linear;
+}
+
+.modifica input[type="submit"]:hover {
+    background-color: var(--white-color);
+    color: var(--notify-color);
+}
+
+.modifica {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url(/img/backgroundLogo.png);
+    background-size: contain;
+    padding: 20px 0 50px;
+}
+
+.daticard {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    width: 83%;
+    height: 770px;
+    background-color: var(--white-color);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+.daticard .etichetta {
+    position: absolute;
+    top: -18px;
+    left: -10px;
+    width: 150px;
+    height: 150px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.daticard .etichetta::before {
+    position: absolute;
+    width: 150%;
+    height: 40px;
+    background-color: var(--notify-color);
+    transform: rotate(-45deg) translateY(-20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: var(--text-color);
+    font-weight: 600;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+/*the container must be positioned relative:*/
+.custom-select {
+    position: relative;
+    width: 100%;
+}
+
+.custom-select select {
+    display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+    background-color: var(--notify-color);
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div, .select-selected {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    text-transform: uppercase;
+    user-select: none;
+    width: 101%;
+}
+
+/*style items (options):*/
+.select-items {
+    position: absolute;
+    background-color: var(--notify-color);
+    top: 100%;
+    width: 101%;
+    max-height: 110px;
+    left: 0;
+    overflow-y: auto;
+    right: 0;
+    overflow-x: hidden;
+    z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.lala {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.label {
+    margin-right: 51px;
+}
+
+.select-items::-webkit-scrollbar-track {
+    background: white;
+    border: 1px solid;
+
+}
+
+
+.select-items::-webkit-scrollbar {
+    width: 10px;
+}
+
+.select-items::-webkit-scrollbar-thumb {
+    background: var(--second-color);
+}
+
+textarea::-webkit-scrollbar-track {
+    background: white;
+    border: 1px solid;
+
+}
+
+
+textarea::-webkit-scrollbar {
+    width: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background: var(--second-color);
+}
+
+@media (max-width: 1046px) {
+
+    .daticard {
+        /* width: 514px; */
+        height: 770px;
+    }
+}
+
+.contsnack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+
+#snackbar {
+    visibility: hidden;
+    width: 400px;
+    margin-left: -125px;
+    background-color: #33383b;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    font-size: 14px;
+    z-index: 1;
+    left: 47%;
+    bottom: 30px;
+}
+
+
+#snackbar.show {
+    visibility: visible;
+}
+
+

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Argomento</title>
+    <link rel="stylesheet" th:href="@{/stylesheet/modificaArgomento.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/stylesheet/drag_drop.css}" type="text/css"/>
+    <link href="/img/Logo.png" rel="shortcut icon"/>
+</head>
+<body>
+<style>
+    .ck.ck-editor {
+        position: relative;
+        width: 80%;
+    }
+
+    .ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+        border-color: var(--ck-color-base-border);
+        max-height: 120px;
+        margin-bottom: 20px;
+    }
+
+    .ck-focused {
+        overflow: hidden;
+        max-height: 120px;
+        margin-bottom: 20px;
+    }
+</style>
+<th:block th:include="fragments/header"></th:block>
+<div class="modifica" id="modArg">
+    <h2>Argomento</h2>
+
+    <div class="daticard">
+        <span class="etichetta"></span>
+        <form enctype="multipart/form-data" method="post"
+              th:action="${param.id==null ? '/admin/inserimentoArgomento':'/admin/modificaArgomento'}"
+              th:object="${argomentoForm}">
+            <label for="titolo">Titolo:</label>
+            <input class="input" id="id" name="id" style="display: none" th:value="${param.id}" type="text">
+            <input class="input" id="titolo" name="titolo" required th:field="*{titolo}" type="text">
+            <label class="plus" for="corpo">Corpo:</label>
+
+            <textarea class="input" cols="50" id="corpo" name="corpo" required rows="4"
+                      style="resize: none" th:field="*{corpo}"> </textarea>
+            <div class="lala">
+                <label class="label" for="meta">Meta-info:</label>
+                <div class="custom-select strunz">
+                    <select id="meta" name="metaInfoId" required th:field="*{metaInfoId}">
+                        <option value="-1">Inserire</option>
+                        <th:block th:each="meta: ${metaInfo}">
+                            <option th:text="${meta.keyword}" th:value="${meta.id}"></option>
+                        </th:block>
+
+
+                    </select>
+                </div>
+            </div>
+            <div class="lala" th:if="${param.id==null}">
+                <label class="label" for="tipo">Tipologia:</label>
+                <div class="custom-select">
+                    <select id="tipo" name="tipo" required>
+                        <option value="-1">Inserire</option>
+                        <option value="racconto">Racconto</option>
+                        <option value="lezione">Lezione</option>
+                    </select>
+                </div>
+            </div>
+            <div class="drop-zone">
+                <span class="drop-zone__prompt" th:if="${param.id==null}"
+                >Inserisci un'immagine</span>
+                <input accept="image/jpeg" class="drop-zone__input" id="copertina" name="copertina"
+                       onchange="img()" th:if="${param.id!=null}"
+                       type="file">
+                <input accept="image/jpeg" class="drop-zone__input" id="copertina" name="copertina"
+                       onchange="img()" required
+                       th:if="${param.id==null} " type="file">
+                <div class="drop-zone__thumb" th:if="${param.id!=null}"
+                     th:style="'background-image: url('+@{/copertina(idArgomento=${param.id})}+')'"></div>
+            </div>
+            <input onclick="return validateArgomento(this)" type="submit" value="COMPLETATO">
+        </form>
+    </div>
+</div>
+
+
+<div class="contsnack">
+    <div id="snackbar"></div>
+</div>
+
+</body>
+<th:block th:include="fragments/footer"></th:block>
+<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+<script src="/js/imageUploadAdapter.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#corpo'), {
+            extraPlugins: [MyCustomUploadAdapterPlugin]
+        })
+        .then(editor => {
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+<script th:src="@{/js/drag_drop.js}"></script>
+<script th:src="@{/js/select.js}"></script>
+<script th:src="@{/js/modifica.js}"></script>
+</html>

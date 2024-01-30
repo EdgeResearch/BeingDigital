@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Risorse</title>
+    <link rel="stylesheet" th:href="@{/stylesheet/risorse.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/stylesheet/cancellazione.css}" type="text/css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link href="/img/Logo.png" rel="shortcut icon"/>
+</head>
+<body>
+<th:block th:include="fragments/header"></th:block>
+<div class="risorse" id="list">
+
+    <h1 class="livello">Le nostre risorse</h1>
+    <div class="filtri">
+        <a onclick="Tutti()">Tutti</a>
+        <a onclick="Meta()">Meta-info</a>
+        <a onclick="Lezioni()">Lezioni</a>
+        <a onclick="Racconti()">Racconti</a>
+        <a onclick="Giochi()">Giochi</a>
+        <a onclick="Domande()">Domande</a>
+    </div>
+    <div class="box" id="boxMeta">
+        <h2>Meta-info</h2>
+        <div style="overflow-x:auto;">
+            <table>
+                <tr class="notspecial">
+                    <th>Keyword</th>
+                    <th>Livello</th>
+                    <th>Modifica</th>
+                    <th>Elimina</th>
+                </tr>
+                <th:block th:each="meta: ${metainfo}">
+                    <tr class="special">
+                        <td th:text="${meta.keyword}"></td>
+                        <td th:text="${meta.livello}"></td>
+                        <td><a th:href="@{/admin/modificaMetaInfo(id=${meta.id})}"><i class="fa-solid fa-pen"> </i></a>
+                        </td>
+                        <td><i class="fa-solid fa-trash" onclick="showConfermaMeta(this)" th:id="${meta.id}"></i></td>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+        <div class="risorsebtn">
+            <a href="/admin/inserimentoMetaInfo">Aggiungi</a>
+        </div>
+    </div>
+
+
+    <div class="box" id="boxLezioni">
+        <h2>Lezioni</h2>
+        <div style="overflow-x:auto;">
+            <table>
+                <tr class="notspecial">
+                    <th>Titolo</th>
+                    <th>Meta-info</th>
+                    <th>Modifica</th>
+                    <th>Elimina</th>
+                </tr>
+                <th:block th:each="lezione: ${lezioni}">
+                    <tr class="special">
+                        <td><a th:href="@{/argomento(id=${lezione.id})}" th:text="${lezione.titolo}"></a></td>
+                        <td th:text="${lezione.metaInfo.keyword}"></td>
+                        <td><a th:href="@{/admin/modificaArgomento(id=${lezione.id})}"><i class="fa-solid fa-pen"> </i></a>
+                        </td>
+                        <td><i class="fa-solid fa-trash" onclick="showConfermaArg(this)" th:id="${lezione.id}"></i></td>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+        <div class="risorsebtn">
+            <a href="/admin/inserimentoArgomento">Aggiungi</a>
+        </div>
+    </div>
+
+
+    <div class="box" id="boxRacconti">
+        <h2>Racconti</h2>
+        <div style="overflow-x:auto;">
+            <table>
+                <tr class="notspecial">
+                    <th>Titolo</th>
+                    <th>Meta-info</th>
+                    <th>Modifica</th>
+                    <th>Elimina</th>
+                </tr>
+
+                <th:block th:each="racconto: ${racconti}">
+                    <tr class="special">
+                        <td><a th:href="@{/argomento(id=${racconto.id})}" th:text="${racconto.titolo}"></a></td>
+                        <td th:text="${racconto.metaInfo.keyword}"></td>
+                        <td><a th:href="@{/admin/modificaArgomento(id=${racconto.id})}"><i class="fa-solid fa-pen"> </i></a>
+                        </td>
+                        <td><i class="fa-solid fa-trash" onclick="showConfermaArg(this)" th:id="${racconto.id}"></i>
+                        </td>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+        <div class="risorsebtn">
+            <a href="/admin/inserimentoArgomento">Aggiungi</a>
+        </div>
+    </div>
+
+
+    <div class="box" id="boxGiochi">
+        <h2>Giochi</h2>
+        <div style="overflow-x:auto;">
+            <table>
+                <tr class="notspecial">
+                    <th>Titolo</th>
+                    <th>Meta-info</th>
+                    <th>Modifica</th>
+                    <th>Elimina</th>
+                </tr>
+                <th:block th:each="gioco: ${giochi}">
+                    <tr class="special">
+                        <td th:text="${gioco.nome}"></td>
+                        <td th:text="${gioco.metaInfo.keyword}"></td>
+                        <td><a th:href="@{/admin/modificaGioco(id=${gioco.id})}"><i class="fa-solid fa-pen"> </i></a>
+                        </td>
+                        <td><i class="fa-solid fa-trash" onclick="showConfermaGioco(this)" th:id="${gioco.id}"></i></td>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+        <div class="risorsebtn">
+            <a href="/admin/inserimentoGioco">Aggiungi</a>
+        </div>
+    </div>
+
+    <div class="box" id="boxDomande">
+        <h2>Domande</h2>
+        <div style="overflow-x:auto;">
+            <table>
+                <tr class="notspecial">
+                    <th>Testo</th>
+                    <th>Meta-info</th>
+                    <th>Modifica</th>
+                    <th>Elimina</th>
+                </tr>
+                <th:block th:each="domanda: ${domande}">
+                    <tr class="special">
+                        <td th:text="${domanda.testo}"></td>
+                        <td th:text="${domanda.metaInfo.keyword}"></td>
+                        <td><a th:href="@{/admin/modificaDomanda(id=${domanda.id})}"><i
+                                class="fa-solid fa-pen"> </i></a>
+                        </td>
+                        <td><i class="fa-solid fa-trash" onclick="showConfermaDom(this)" th:id="${domanda.id}"></i></td>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+        <div class="risorsebtn">
+            <a href="/admin/inserimentoDomanda">Aggiungi</a>
+        </div>
+    </div>
+
+</div>
+
+
+<form action="/admin/cancellazioneRisorsa" method="post">
+    <input id="id_arg" name="id" style="display:none">
+    <input id="arg" name="risorsa" style="display:none">
+    <div class="all-canc" id="argomentoRimosso">
+        <div class="cancella">
+            <div class="textcancella">
+                <h1>ATTENZIONE</h1>
+                <p> Sicuro di voler procedere alla rimozione di questo argomento?</p>
+                <div class="btn-canc">
+                    <button class="elimina" type="submit">SI</button>
+                    <a class="elimina" onclick="hideConfermaArg()">NO</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form action="/admin/cancellazioneRisorsa" method="post">
+    <input id="id_dom" name="id" style="display:none">
+    <input id="dom" name="risorsa" style="display:none">
+    <div class="all-canc" id="domandaRimossa">
+        <div class="cancella">
+            <div class="textcancella">
+                <h1>ATTENZIONE</h1>
+                <p> Sicuro di voler procedere alla rimozione di questa domanda?</p>
+                <div class="btn-canc">
+                    <button class="elimina" type="submit">SI</button>
+                    <a class="elimina" onclick="hideConfermaDom()">NO</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form action="/admin/cancellazioneRisorsa" method="post">
+    <input id="id_meta" name="id" style="display:none">
+    <input id="meta" name="risorsa" style="display:none">
+    <div class="all-canc" id="mammeta">
+        <div class="cancella">
+            <div class="textcancella">
+                <h1>ATTENZIONE</h1>
+                <p> Sicuro di voler procedere alla rimozione di questa meta-info? <br>Verranno cancellate tutte le
+                    risorse a essa associate</p>
+                <div class="btn-canc">
+                    <button class="elimina" type="submit">SI</button>
+                    <a class="elimina" onclick="hideConfermaMeta()">NO</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form action="/admin/cancellazioneRisorsa" method="post">
+    <input id="id_gioco" name="id" style="display:none">
+    <input id="gioco" name="risorsa" style="display:none">
+    <div class="all-canc" id="giocoRimosso">
+        <div class="cancella">
+            <div class="textcancella">
+                <h1>ATTENZIONE</h1>
+                <p> Sicuro di voler procedere alla rimozione di questo gioco?</p>
+                <div class="btn-canc">
+                    <button class="elimina" type="submit">SI</button>
+                    <a class="elimina" onclick="hideConfermaGioco()">NO</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<th:block th:include="fragments/footer"></th:block>
+<script th:src="@{/js/risorse.js}"></script>
+</body>
+</html>

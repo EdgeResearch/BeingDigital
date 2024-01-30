@@ -1,0 +1,228 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat";
+}
+
+:root {
+    --bg-color: #121b37;
+    --text-color: #f2f2f2;
+    --main-color: #30478c;
+    --second-color: #273a73;
+    --notify-color: #5b6ed9;
+    --white-color: white;
+    --aggiuntivo1: #33df3c;
+    --aggiuntivo2: #ffa900;
+    --aggiuntivo3: red;
+    --aggiuntivo4: #b700ff;
+}
+
+
+.risorse {
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 130px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url(/img/backgroundLogo.png);
+    background-size: contain;
+}
+
+.risorse .box {
+    width: 80%;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    margin-bottom: 120px;
+}
+
+.none {
+    display: none;
+}
+
+.risorse .box h2 {
+    text-align: center;
+    color: var(--white-color);
+    background-color: var(--second-color);
+    padding: 20px 0;
+    font-size: 20px;
+    font-weight: 700;
+    width: 100%;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+
+.livello {
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--white-color);
+    padding: 0 5px;
+}
+
+.risorse table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.notspecial {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    font-size: 18px;
+    border: none;
+    color: white;
+    background: var(--second-color);
+}
+
+.notspecial th {
+    padding: 15px 0;
+    box-shadow: inset 0px -24px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+.special {
+    background-color: white;
+    padding: 10px 0;
+    box-shadow: inset 0px -24px 15px 0px rgba(0, 0, 0, 0.1);
+    color: var(--bg-color);
+}
+
+.special:hover {
+    z-index: 100;
+    background-color: var(--notify-color);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+.special td {
+    padding: 10px 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: inset 0px -24px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+.risorse p {
+    margin-bottom: 180px;
+    font-size: 20px;
+    color: var(--white-color);
+    font-weight: 500;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.risorse td a {
+    text-decoration: none;
+    color: var(--bg-color);
+}
+
+.risorse td a:hover {
+    text-decoration: none;
+    transition: 1s;
+    color: var(--white-color);
+}
+
+.risorse i:hover {
+    color: var(--white-color);
+    transition: 1s;
+    cursor: pointer;
+}
+
+.risorsebtn {
+    background-color: var(--second-color);
+    height: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.risorsebtn a {
+    width: 150px;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    padding: 12px 0;
+    color: var(--white-color);
+    border: 0.5px solid var(--white-color);
+    position: relative;
+    transition: 0.5s;
+    cursor: pointer;
+    justify-content: center;
+    display: flex;
+}
+
+
+.risorsebtn a:hover {
+    background-color: white;
+    color: var(--second-color);
+}
+
+.filtri {
+    gap: 25px;
+    margin-bottom: 100px;
+    display: flex;
+    justify-items: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.filtri a {
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    width: 100px;
+    padding: 10px;
+    border: 3px solid var(--notify-color);
+    background-color: var(--notify-color);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.filtri a:hover {
+    background-color: var(--white-color);
+    color: var(--notify-color);
+}
+
+@media (max-width: 936px) {
+    .filtri {
+        gap: 25px;
+        margin-bottom: 100px;
+        display: grid;
+        grid-template-columns:1fr 1fr 1fr;
+        justify-content: center;
+        align-items: center;
+        width: 700px;
+    }
+
+}
+
+@media (max-width: 650px) {
+    .filtri {
+        gap: 25px;
+        margin-bottom: 100px;
+        display: grid;
+        grid-template-columns:1fr 1fr;
+        justify-content: center;
+        align-items: center;
+        width: 700px;
+    }
+
+}
+
+@media (max-width: 550px) {
+    .filtri {
+        gap: 25px;
+        margin-bottom: 100px;
+        display: grid;
+        grid-template-columns:1fr;
+        justify-content: center;
+        align-items: center;
+        width: 700px;
+    }
+
+}

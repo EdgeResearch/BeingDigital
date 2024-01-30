@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat";
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #121b37;
+    --text-color: #f2f2f2;
+    --main-color: #30478c;
+    --second-color: #273a73;
+    --notify-color: #5b6ed9;
+    --white-color: white;
+    --aggiuntivo1: #33df3c;
+    --aggiuntivo2: #ffa900;
+    --aggiuntivo3: red;
+    --aggiuntivo4: #b700ff;
+}
+
+
+.bigcont {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-size: contain;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url(/img/backgroundLogo.png);
+}
+
+.errorcont {
+    margin: 0 20px;
+    height: 590px;
+    padding: 20px 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    background: linear-gradient(#121b37, #5b6ed9);
+}
+
+.errorcont .details {
+    text-transform: uppercase;
+    color: var(--text-color);
+}
+
+.errorcont .details h1 {
+    font-size: 200px;
+    font-weight: 900;
+    letter-spacing: 10px;
+
+}
+
+.errorcont .details h2 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 5px 0 20px;
+}
+
+.btnerr {
+    display: inline-block;
+    width: 150px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.btnhome {
+    width: 150px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 30px 0;
+    padding: 12px 0;
+    color: var(--white-color);
+    border: 0.5px solid var(--white-color);
+    position: relative;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.btnhome:hover {
+    background-color: white;
+    color: var(--second-color);
+}

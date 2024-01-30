@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Admin</title>
+    <link rel="stylesheet" th:href="@{/stylesheet/cancellazione.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/stylesheet/admin.css}" type="text/css"/>
+    <link href="/img/Logo.png" rel="shortcut icon"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+<th:block th:include="fragments/header"></th:block>
+<div class="admin" id="list">
+
+    <h1>Area personale</h1>
+    <p>Ti diamo il benvenuto
+        <th:block th:text="${admin.nome}"></th:block>
+        ! Accedi alle risorse di Being Digital.
+    </p>
+    <div class="banner-btn mamma">
+        <a href="/logout">Logout</a>
+        <a onclick="showConferma2()">Elimina</a>
+        <a href="/auth/modificaProfilo">Modifica</a>
+    </div>
+
+    <div class="box">
+        <h2>Lista utenti</h2>
+        <div style="overflow-x:auto;">
+        <table>
+            <tr class="notspecial">
+                <th>Email</th>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Promuovi</th>
+                <th>Elimina</th>
+            </tr>
+            <th:block th:each="utente: ${listaUtenti}">
+                <tr class="special" >
+                    <td th:text="${utente.email}"></td>
+                    <td th:text="${utente.nome}"></td>
+                    <td th:text="${utente.cognome}"></td>
+                    <td><i class="fa-solid fa-crown" th:id="${utente.id}" onclick="showConferma3(this)"></i></td>
+                    <td><i class="fa-solid fa-trash" th:id="${utente.id}" onclick="showConferma(this)"></i></td>
+                </tr>
+            </th:block>
+
+        </table>
+        </div>
+    </div>
+
+</div>
+
+<div class="percentualicont" id="percentuali">
+    <div class="text">
+        <h1>Livelli</h1>
+        <p>Questi sono i livelli di DARN. <br>Controlla l'andamento degli utenti o modifica le risorse. <br>Voi ampliare i test? Controlla le nostre domande.</p>
+        <div class="banner-btn">
+            <a href="/admin/risorse">Risorse</a>
+        </div>
+    </div>
+
+    <div class="percentuali">
+        <div th:class="${percentualeBase<=50}? 'progress less': 'progress'"
+             th:style="'--i: '+${percentualeBase}+'; --clr:#FF0000FF'">
+            <h3><span th:text="${percentualeBase}"></span>%</h3>
+            <h4>BASE</h4>
+        </div>
+
+        <div th:class="${percentualeIntermedio<=50}? 'progress less': 'progress'"
+             th:style="'--i: '+${percentualeIntermedio}+'; --clr:#3cff46'">
+            <h3><span th:text="${percentualeIntermedio}"></span>%</h3>
+            <h4>INTERMEDIO</h4>
+        </div>
+
+        <div th:class="${percentualeAvanzato<=50}? 'progress less': 'progress'"
+             th:style="'--i: '+${percentualeAvanzato}+'; --clr:#ffa900'">
+            <h3><span th:text="${percentualeAvanzato}"></span>%</h3>
+            <h4>AVANZATO</h4>
+        </div>
+
+        <div th:class="${percentualeMaster<=50}? 'progress less': 'progress'"
+             th:style="'--i: '+${percentualeMaster}+'; --clr:#b700ff'">
+            <h3><span th:text="${percentualeMaster}"></span>%</h3>
+            <h4>MASTER</h4>
+        </div>
+    </div>
+
+
+</div>
+
+
+<form action="/admin/cancellazioneUtente" method="post">
+    <input id="utenteEliminato" name="id" style="display:none">
+    <div id="conf" class="all-canc">
+        <div class="cancella">
+            <div class="textcancella">
+                <h1>ATTENZIONE</h1>
+                <p> Sicuro di voler procedere alla cancellazione di questo account?</p>
+                <div class="btn-canc">
+                    <button class="elimina" type="submit">SI</button>
+                    <a class="elimina" onclick="hideConferma()">NO</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<form action="/auth/cancellazioneAccount" method="post">
+    <div id="acc" class="all-canc">
+        <div class="cancella">
+            <div class="textcancella">
+                <h1>ATTENZIONE</h1>
+                <p> Sicuro di voler procedere alla cancellazione di questo account?</p>
+                <div class="btn-canc">
+                    <button class="elimina" type="submit">SI</button>
+                    <a class="elimina" onclick="hideConferma2()">NO</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form action="/admin/promozioneUtente" method="post">
+    <input id="utentePromosso" name="id" style="display:none">
+    <div id="prom" class="all-canc">
+        <div class="cancella">
+            <div class="textcancella">
+                <h1>ATTENZIONE</h1>
+                <p> Sicuro di voler procedere alla promozione di questo account?</p>
+                <div class="btn-canc">
+                    <button class="elimina" type="submit">SI</button>
+                    <a class="elimina" onclick="hideConferma3()">NO</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<script th:src="@{/js/admin.js}"></script>
+
+</script>
+
+<th:block th:include="fragments/footer"></th:block>
+</body>
+</html>

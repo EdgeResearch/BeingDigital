@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title th:text="${argomento.titolo}"></title>
+    <link rel="stylesheet" th:href="@{/stylesheet/argomento.css}" type="text/css"/>
+    <link href="/img/Logo.png" rel="shortcut icon"/>
+</head>
+<body>
+<th:block th:include="fragments/header"></th:block>
+<style>
+    .image-style-side {
+        float: right;
+        margin-left: var(--ck-image-style-spacing);
+        max-width: 50%;
+        margin: 10px 0 0 0;
+    }
+
+    .image {
+        text-align: center;
+    }
+</style>
+
+<div class="racconto">
+    <section class="bannerRacconto"
+             th:style="'background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url('+@{/copertina(idArgomento=${param.id})}+'); background-size: cover; background-position: center;'">
+        <div class="banner-text">
+            <h1 th:text="${argomento.titolo}"></h1>
+        </div>
+    </section>
+
+
+    <div class="raccontoText">
+        <p>
+            <th:block th:utext="${argomento.corpo}"></th:block>
+        </p>
+    </div>
+
+
+</div>
+<th:block th:include="fragments/footer"></th:block>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meta-info</title>
+    <link rel="stylesheet" th:href="@{/stylesheet/modificaMetaInfo.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/stylesheet/drag_drop.css}" type="text/css"/>
+    <link href="/img/Logo.png" rel="shortcut icon"/>
+</head>
+<th:block th:include="fragments/header"></th:block>
+<body>
+<div class="modifica" id="modArg">
+    <h2>Meta-info</h2>
+    <div class="daticard">
+        <form enctype="multipart/form-data" method="post"
+              th:action="${param.id==null ? '/admin/inserimentoMetaInfo':'/admin/modificaMetaInfo'}"
+              th:object="${metaInfoForm}">
+            <input class="input" id="id" name="id" style="display: none" th:value="${param.id}" type="text">
+            <label for="keyword">Keyword:</label>
+            <input class="input" id="keyword" name="keyword" required th:field="*{keyword}" type="text">
+            <div class="lala">
+                <label class="label" for="livello">Livello:</label>
+                <div class="custom-select">
+                    <select id="livello" name="livello" th:field="*{livello}">
+                        <option value="-1">Inserire</option>
+                        <option value="BASE">base</option>
+                        <option value="INTERMEDIO">intermedio</option>
+                        <option value="AVANZATO">avanzato</option>
+                        <option value="CITTADINANZA_DIGITALE">cittadinanza digitale</option>
+                    </select>
+                </div>
+            </div>
+            <div class="drop-zone">
+                <span class="drop-zone__prompt" th:if="${param.id==null}"
+                >Inserisci un'icona</span>
+                <input accept="image/png" class="drop-zone__input" id="icona" name="icona"
+                       onchange="icon()" th:if="${param.id!=null}"
+                       type="file">
+                <input accept="image/png" class="drop-zone__input" id="icona" name="icona"
+                       onchange="icon()" required
+                       th:if="${param.id==null} " type="file">
+                <div class="drop-zone__thumb" th:if="${param.id!=null}"
+                     th:style="'background-image: url('+@{/icona(idMetaInfo=${param.id})}+')'"></div>
+            </div>
+            <input onclick="return validateMeta(this)" type="submit" value="COMPLETATO">
+        </form>
+    </div>
+</div>
+<div class="contsnack">
+    <div id="snackbar"></div>
+</div>
+
+</body>
+<th:block th:include="fragments/footer"></th:block>
+<script th:src="@{/js/select.js}"></script>
+<script th:src="@{/js/modifica.js}"></script>
+<script th:src="@{/js/drag_drop.js}"></script>
+<script th:if="${keywordEsistente!=null}">
+    toast("La keyword risulta essere già esistente! <br> Inserirne un'altra.");
+</script>
+</html>

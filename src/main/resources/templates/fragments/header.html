@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link rel="stylesheet" th:href="@{/stylesheet/header.css}" type="text/css"/> <!-- style -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'> <!-- font -->
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
+          rel="stylesheet">
+
+
+</head>
+<body class>
+<header class="all-headerbody" id="header">
+    <a href="/"><img alt="" class="logo" src="/img/Logo2.png"></a>
+    <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+
+    <nav id="menu">
+        <ul>
+            <li><a href="#">Cittadinanza digitale <b>+</b></a>
+                <ul>
+                    <li><a href="/raccontiCittadinanza">Racconti</a></li>
+                    <li><a href="/lezioniCittadinanza">Lezioni</a></li>
+                    <li><a href="/giochiCittadinanza">Giochi</a></li>
+                </ul>
+            </li>
+            <th:block th:with="accesso = ${@personaAutenticata.persona.isPresent()}">
+                <li th:if="${accesso
+                && !(@personaAutenticata.persona.get().getClass().getSimpleName().equals('Admin'))}">
+                    <a href="#">Privacy online
+                        <b>+</b></a>
+                    <ul>
+                        <li><a href="/utente/raccontiPrivacy">Racconti</a></li>
+                        <li><a href="/utente/lezioniPrivacy">Lezioni</a></li>
+                        <li><a href="/utente/giochiPrivacy">Giochi</a></li>
+                        <li th:if="${@personaAutenticata.persona.get().livello.name() != 'MASTER'}"><a
+                                href="/utente/test">Test</a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="/login" th:if="${!accesso}">Accesso</a>
+                    <a href="/auth/areaPersonale" th:if="${accesso}">Area personale</a>
+                </li>
+            </th:block>
+        </ul>
+    </nav>
+</header>
+
+
+<script th:src="@{/js/header.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat";
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #121b37;
+    --text-color: #f2f2f2;
+    --main-color: #30478c;
+    --second-color: #273a73;
+    --notify-color: #5b6ed9;
+    --white-color: white;
+    --aggiuntivo1: #33df3c;
+    --aggiuntivo2: #ffa900;
+    --aggiuntivo3: red;
+    --aggiuntivo4: #b700ff;
+}
+
+
+.risposta {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+
+.test {
+    margin: 0;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url(/img/backgroundLogo.png);
+    background-size: contain;
+    padding: 100px 0;
+}
+
+/* Global Stylings */
+.test label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.test input [type="checkbox"] {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+}
+
+.width-50 {
+    width: 50%;
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Progressbar */
+.progressbar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    counter-reset: step;
+    margin: 2rem 0 2rem;
+}
+
+.progressbar::before,
+.progress {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 100%;
+    background-color: #dcdcdc;
+    z-index: -1;
+}
+
+.progress {
+    background-color: var(--second-color);
+    width: 0%;
+    transition: 0.3s;
+}
+
+.progress-step {
+    width: 2.1875rem;
+    height: 2.1875rem;
+    background-color: #dcdcdc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress-step::before {
+    counter-increment: step;
+    content: counter(step);
+}
+
+.progress-step::after {
+    content: attr(data-title);
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.progress-step-active {
+    background-color: var(--notify-color);
+    color: #f3f3f3;
+}
+
+/* Form */
+.form {
+    width: 80%;
+    min-width: 550px;
+    z-index: 0;
+    margin: 0 auto;
+    background-color: var(--white-color);
+    border-radius: 0.35rem;
+    padding: 1.5rem;
+    min-height: 500px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+.form-step {
+    display: none;
+    transform-origin: top;
+    animation: animate 0.5s;
+    min-height: 100px
+}
+
+.form-step-active {
+    display: block;
+    margin-left: auto;
+    width: 100%;
+    overflow-y: auto;
+    max-height: 400px;
+    flex-direction: column;
+}
+
+.form-step-active::-webkit-scrollbar-track {
+    background: white;
+    border: 1px solid;
+
+}
+
+
+.form-step-active::-webkit-scrollbar {
+    width: 10px;
+}
+
+.form-step-active::-webkit-scrollbar-thumb {
+    background: var(--second-color);
+}
+
+.input-group {
+    margin-bottom: 20px;
+    padding: 0 25px;
+    width: 80%;
+}
+
+@keyframes animate {
+    from {
+        transform: scale(1, 0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+}
+
+/* Button */
+.btns-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    margin: 40px 0;
+}
+
+.plus {
+    margin-top: 55px;
+}
+
+.btn {
+    padding: 0.75rem;
+    display: block;
+    text-decoration: none;
+    background-color: var(--notify-color);
+    border: 3px solid var(--notify-color);
+    color: var(--white-color);
+    text-align: center;
+    /* justify-items: center; */
+    cursor: pointer;
+    transition: 0.5s;
+    width: 150px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: auto;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: var(--white-color);
+    color: var(--notify-color);
+}
+
+
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.domanda {
+    font-size: 20px;
+    text-align: left;
+    width: 100%;
+    color: var(--bg-color);
+    font-weight: 400;
+    margin-top: 60px;
+}
+
+.primo {
+    font-size: 20px;
+    text-align: center;
+    /* width: 99%; */
+    color: var(--bg-color);
+    font-weight: 400;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: var(--second-color);
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+@media (max-width: 500px) {
+    .btns-group {
+        display: flex;
+        flex-direction: column;
+    }
+}

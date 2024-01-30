@@ -1,0 +1,204 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat";
+}
+
+:root {
+    --bg-color: #121b37;
+    --text-color: #f2f2f2;
+    --main-color: #30478c;
+    --second-color: #273a73;
+    --notify-color: #5b6ed9;
+    --white-color: white;
+    --aggiuntivo1: #33df3c;
+    --aggiuntivo2: #ffa900;
+    --aggiuntivo3: red;
+    --aggiuntivo4: #b700ff;
+}
+
+.lezioni {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 130vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url(/img/backgroundLogo.png);
+    background-size: contain;
+}
+
+.lezioni .left {
+    position: absolute;
+    width: 50px;
+    left: 10px;
+    top: 10px;
+}
+
+.lezioni .right {
+    position: absolute;
+    width: 50px;
+    right: 10px;
+    top: 10px;
+}
+
+.lezioni .box {
+    width: 80%;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    margin-bottom: 120px;
+    overflow: hidden;
+}
+
+
+.lezioni .box h2 {
+    text-align: center;
+    color: var(--white-color);
+    background-color: var(--second-color);
+    padding: 20px 0;
+    font-size: 20px;
+    font-weight: 700;
+    width: 100%;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+
+.lezioni .box ul {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.lezioni .box ul::-webkit-scrollbar-track {
+    background: white;
+    border: 1px solid;
+
+}
+
+
+.lezioni .box ul::-webkit-scrollbar {
+    width: 10px;
+}
+
+.lezioni .box ul::-webkit-scrollbar-thumb {
+    background: var(--second-color);
+}
+
+.lezioni .box ul li {
+    list-style: none;
+    padding: 10px 0;
+    width: 100%;
+    color: var(--bg-color);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s;
+    background-color: var(--white-color);
+    font-size: 18px;
+    /* overflow: hidden; */
+    padding-bottom: 17px;
+    z-index: -2;
+}
+
+
+.lezioni .box ul li a {
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 5px;
+    font-weight: 500;
+    position: absolute;
+    /* padding-bottom: 13px; */
+    color: var(--bg-color);
+}
+
+.lezioni .box ul li a:hover {
+    color: var(--notify-color);
+    font-weight: 700;
+}
+
+.livello {
+    font-size: 35px;
+    margin: 80px 0 5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--white-color);
+    padding: 0 5px;
+    text-align: center;
+}
+
+.lezioni p {
+    margin-bottom: 100px;
+    font-size: 20px;
+    color: var(--white-color);
+    font-weight: 500;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.lezioni .box ul li span {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    margin: 0 15px;
+    display: inline-block;
+    background-color: var(--second-color);
+    border-radius: 50%;
+    padding: 5px;
+    color: var(--white-color);
+    font-weight: 500;
+}
+
+.etichetta {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 150px;
+    height: 150px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.etichetta::before {
+    content: 'base';
+    position: absolute;
+    width: 150%;
+    height: 40px;
+    background-color: var(--notify-color);
+    transform: rotate(-45deg) translateY(-20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: var(--text-color);
+    font-weight: 600;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 420px) {
+    .lezioni .left {
+        position: absolute;
+        width: 30px;
+        left: 10px;
+        top: 10%;
+    }
+
+    .lezioni .right {
+        position: absolute;
+        width: 30px;
+        right: 10px;
+        top: 10%;
+    }
+
+    .lezioni .box h2 {
+        font-size: 20px;
+    }
+
+    .lezioni .box ul li a {
+        font-size: 16px;
+    }
+
+    .lezioni .box ul li span {
+        margin: 0 10px;
+
+    }
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Domanda</title>
+    <link rel="stylesheet" th:href="@{/stylesheet/modificaDomanda.css}" type="text/css"/>
+    <link href="/img/Logo.png" rel="shortcut icon"/>
+</head>
+<th:block th:include="fragments/header"></th:block>
+<body>
+<div class="modifica" id="modArg">
+    <h2>Domanda</h2>
+    <div class="daticard">
+        <span class="etichetta"></span>
+        <form method="post"
+              th:action="${param.id==null ? '/admin/inserimentoDomanda':'/admin/modificaDomanda'}"
+              th:object="${domandaForm}">
+            <label for="testo">Testo:</label>
+            <input class="input" id="testo" name="testo" required th:field="*{testo}" type="text">
+            <input class="input" id="id" name="id" style="display: none" th:value="${param.id}" type="text">
+            <div class="lala">
+                <label class="label" for="meta">Meta-info:</label>
+                <div class="custom-select">
+                    <select id="meta" name="metaInfoId" th:field="*{metaInfoId}">
+                        <option value="-1">Inserire</option>
+                        <th:block th:each="meta: ${metaInfo}">
+                            <option th:text="${meta.keyword}" th:value="${meta.id}"></option>
+                        </th:block>
+                    </select>
+                </div>
+            </div>
+            <label for="testo">Risposta corretta:</label>
+            <input class="input" id="corretta" name="corretta" required th:field="*{corretta}" type="text">
+            <label for="sbagliata1">Prima risposta sbagliata:</label>
+            <input class="input" id="sbagliata1" name="sbagliata1" required th:field="*{sbagliata1}" type="text">
+            <label for="sbagliata2">Seconda risposta sbagliata:</label>
+            <input class="input" id="sbagliata2" name="sbagliata2" required th:field="*{sbagliata2}" type="text">
+            <label for="sbagliata3">Terza risposta sbagliata:</label>
+            <input class="input" id="sbagliata3" name="sbagliata3" required th:field="*{sbagliata3}" type="text">
+            <input onclick="return validateDomanda(this)" type="submit" value="COMPLETATO">
+        </form>
+    </div>
+</div>
+
+<div class="contsnack">
+    <div id="snackbar"></div>
+</div>
+
+</body>
+<th:block th:include="fragments/footer"></th:block>
+<script th:src="@{/js/select.js}"></script>
+<script th:src="@{/js/modifica.js}"></script>
+</html>

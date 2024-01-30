@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat";
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #121b37;
+    --text-color: #f2f2f2;
+    --main-color: #30478c;
+    --second-color: #273a73;
+    --notify-color: #5b6ed9;
+    --white-color: white;
+    --aggiuntivo1: #33df3c;
+    --aggiuntivo2: #ffa900;
+    --aggiuntivo3: red;
+    --aggiuntivo4: #b700ff;
+}
+
+.gioco {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: auto;
+}
+
+.box {
+    position: relative;
+    min-width: 300px;
+    background-color: var(--second-color);
+    padding: 20px 0 20px 20px;
+    box-shadow: 0 35px 50px rgba(0, 0, 0, 0.25);
+    min-height: 100vh;
+}
+
+.box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(100% - 80px);
+    height: 100%;
+    background-color: var(--white-color);
+}
+
+.box h3 {
+    position: relative;
+    color: var(--bg-color);
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    padding-left: 55px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.box .list {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.box .list::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--second-color);
+    transition: transform 0.5s;
+    transform: scaleX(0);
+    transform-origin: right;
+    padding-left: -5px;
+}
+
+.box .list:hover::before {
+    transition: transform 0.5s;
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.box .list .imgBox {
+    position: relative;
+    width: 70px;
+    height: 54px;
+    overflow: hidden;
+    margin-right: 22px;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+.box .list .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+    margin-right: 10px;
+    padding: 5px;
+}
+
+.box .list:hover .contentBox {
+    color: var(--white-color);
+    transition: transform 0.5s;
+}
+
+.box .list .contentBox {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    color: var(--bg-color);
+}
+
+.box .list .contentBox h4 {
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.box .list .contentBox p {
+    text-transform: capitalize;
+}
+
+.giocoPos {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url(/img/backgroundLogo.png);
+    background-size: contain;
+}
+
+.giocoPos h2 {
+    color: var(--white-color);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.giocoPos canvas {
+    aspect-ratio: 16/9;
+    width: 80%;
+}
+
+@media (max-width: 600px) {
+    .box {
+        min-width: 200px
+    }
+}

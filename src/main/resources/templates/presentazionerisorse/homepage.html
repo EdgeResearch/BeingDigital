@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Homepage</title>
+    <link rel="stylesheet" th:href="@{/stylesheet/homepage.css}" type="text/css"/> <!-- style -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'> <!-- font -->
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
+          rel="stylesheet">
+    <link href="/img/Logo.png" rel="shortcut icon"/>
+    <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          referrerpolicy="no-referrer" rel="stylesheet"/>
+
+</head>
+
+
+<th:block th:include="fragments/header"></th:block>
+<body class="home">
+<section id="banner">
+    <img src="/img/BeingDigital.png">
+</section>
+
+
+<div class="lobby">
+    <div class="alltext">
+        <h1>Scopri i nostri contenuti</h1>
+        <p>Impara con noi a prenderti cura della tua privacy usufruendo <br> delle nostre funzionalità! </p>
+    </div>
+    <div class="allcont">
+        <div class="cardhome">
+            <div class="card">
+                <img alt="racconti" src="/img/paper.png">
+                <h2 style="color:#28c02f">RACCONTI</h2>
+                <p>I racconti spiegano ai più piccoli <br> i concetti fondamentali della privacy online.</p>
+            </div>
+            <div class="card">
+                <img alt="lezioni" src="/img/shield.png">
+                <h2 style="color:#ffa900">LEZIONI</h2>
+                <p>Impara a proteggerti online <br>tramite le nostre lezioni.</p>
+            </div>
+            <div class="card">
+                <img alt="test" src="/img/search.png">
+                <h2 style="color:#FF0000FF">TEST</h2>
+                <p>I test ti permettono di verificare <br>le tue conoscenze.</p>
+            </div>
+            <div class="card">
+                <img alt="giochi" src="/img/cyber-security.png">
+                <h2 style="color:#b700ff">GIOCHI</h2>
+                <p>Utilizza i nostri lesson <br>games per affinare le tue conoscenze.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<th:block th:include="fragments/footer"></th:block>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</body>
+</html>

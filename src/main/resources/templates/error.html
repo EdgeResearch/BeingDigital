@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title th:text="${status}"></title>
+    <link href="/stylesheet/error.css" rel="stylesheet">
+    <link href="/img/Logo.png" rel="shortcut icon"/>
+</head>
+<body>
+
+<div class="bigcont">
+    <div class="errorcont">
+        <div class="details">
+            <h1 th:text="${status}"></h1>
+            <h2 th:text="${error}"></h2>
+        </div>
+        <div class="btnerr">
+            <a class="btnhome" href="/">Homepage</a>
+        </div>
+    </div>
+</div>
+
+</body>
+
+
+</html>

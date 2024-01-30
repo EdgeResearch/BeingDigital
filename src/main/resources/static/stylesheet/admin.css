@@ -1,0 +1,269 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat";
+}
+
+:root {
+    --bg-color: #121b37;
+    --text-color: #f2f2f2;
+    --main-color: #30478c;
+    --second-color: #273a73;
+    --notify-color: #5b6ed9;
+    --white-color: white;
+    --aggiuntivo1: #33df3c;
+    --aggiuntivo2: #ffa900;
+    --aggiuntivo3: red;
+    --aggiuntivo4: #b700ff;
+}
+
+
+.admin {
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url(/img/backgroundLogo.png);
+    background-size: contain;
+}
+
+.admin .box {
+    width: 80%;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    margin-bottom: 120px;
+}
+
+.admin .table {
+    width: 70%;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    margin-bottom: 120px;
+}
+
+
+.admin .box h2 {
+    text-align: center;
+    color: var(--white-color);
+    background-color: var(--second-color);
+    padding: 22px 0;
+    font-size: 22px;
+    font-weight: 700;
+    width: 100%;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+
+.admin table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.notspecial {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    font-size: 18px;
+    border: none;
+    color: white;
+    background: var(--second-color);
+}
+
+.notspecial th {
+    padding: 15px 5px;
+    box-shadow: inset 0px -24px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+.special {
+    background-color: white;
+    padding: 10px 0;
+    box-shadow: inset 0px -24px 15px 0px rgba(0, 0, 0, 0.1);
+    color: var(--bg-color);
+}
+
+.special:hover {
+    color: white;
+    z-index: 100;
+    background-color: var(--notify-color);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+.special td {
+    padding: 10px 0;
+    width: 300px;
+    text-align: center;
+    box-shadow: inset 0px -24px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+.admin h1 {
+    font-size: 35px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--white-color);
+    padding: 0 5px;
+}
+
+.admin p {
+    font-size: 20px;
+    color: var(--white-color);
+    font-weight: 500;
+    text-align: center;
+    padding: 0 20px;
+    margin-bottom: 50px;
+}
+
+
+.admin i:hover {
+    color: var(--white-color);
+    transition: 1s;
+    cursor: pointer;
+}
+
+
+/*percentuali*/
+
+.percentualicont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: var(--main-color);
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 100px;
+}
+
+.percentualicont .text {
+    /* bottom: -265px; */
+    color: var(--white-color);
+    /* position: absolute; */
+}
+
+.percentualicont h1 {
+    font-size: 35px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--white-color);
+    padding: 0 5px;
+
+}
+
+.percentuali {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 60px 0;
+}
+
+.percentuali .progress {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    color: var(--white-color);
+    background: var(--notify-color) linear-gradient(to right, transparent 50%, var(--clr) 0);
+    margin: 0 40px;
+}
+
+.percentualicont p {
+    font-size: 20px;
+    color: var(--white-color);
+    font-weight: 500;
+    text-align: center;
+    padding: 0 20px;
+    margin: 10px 0 20px;
+}
+
+.percentuali .progress h3 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5em;
+    z-index: 1;
+    font-weight: 500;
+}
+
+.percentuali .progress h3 span {
+    font-size: 0.65em;
+    font-weight: 400;
+}
+
+.percentuali .progress h4 {
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 1;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.percentuali .progress::before {
+    content: '';
+    display: block;
+    height: 100%;
+    margin-left: 50%;
+    transform-origin: left;
+    border-radius: 0 100% 100% 0/50%;
+}
+
+.percentuali .progress::before {
+    background-color: var(--clr);
+    transform: rotate(calc(((var(--i) - 50) * 0.01turn)));
+}
+
+.percentuali .progress.less::before {
+    background-color: var(--notify-color);
+    transform: rotate(calc(((var(--i) - 0) * 0.01turn)));
+}
+
+.percentuali .progress::after {
+    content: '';
+    position: absolute;
+    inset: 30px;
+    background: var(--main-color);
+    border-radius: 50%;
+}
+
+.mamma {
+    margin-bottom: 130px;
+}
+
+.banner-btn a {
+    width: 150px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px 0;
+    padding: 12px 0;
+    color: var(--white-color);
+    background-color: var(--notify-color);
+    border: 3px solid var(--notify-color);
+    position: relative;
+    transition: 0.5s;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+
+.banner-btn a:hover {
+    background-color: var(--white-color);
+    color: var(--notify-color);
+}
+
+@media (max-width: 500px) {
+    .mamma {
+        display: flex;
+        flex-direction: column;
+    }
+}

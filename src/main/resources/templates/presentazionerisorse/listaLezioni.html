@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Lista Lezioni</title>
+    <link rel="stylesheet" th:href="@{/stylesheet/listaLezioni.css}" type="text/css"/>
+    <link href="/img/Logo.png" rel="shortcut icon"/>
+</head>
+<body>
+<th:block th:include="fragments/header"></th:block>
+<div class="lezioni">
+    <th:block th:if="${tipo}=='lezioniPrivacy'">
+        <h1 class="livello">Le tue lezioni</h1>
+        <p>Qui sono riportate le nostre lezioni adatte al tuo livello.</p>
+    </th:block>
+    <th:block th:if="${tipo}=='lezioniDaStudiare'">
+        <h1 class="livello">Le tue lezioni</h1>
+        <p>Qui sono riportate le nostre lezioni sugli argomenti da te sbagliati al test.</p>
+    </th:block>
+    <th:block th:if="${tipo}=='lezioniCittadinanza'">
+        <h1 class="livello">Cittadinanza digitale</h1>
+        <p>Qui sono riportate tutti quegli argomenti che riguardano l'educazione di tutte le fasce di età <br> a un uso
+            più consapevole del web, nel rispetto di noi stessi e di chi ci sta in torno.</p>
+    </th:block>
+
+    <th:block th:each="instance: ${lezioniPerMetaInfo}">
+        <div class="box">
+            <div style="width: 100%">
+                <img class="left" th:src="@{/icona(idMetaInfo=${instance.key.id})}">
+                <img class="right" th:src="@{/icona(idMetaInfo=${instance.key.id})}">
+                <h2 th:text="${instance.key.keyword}"></h2>
+            </div>
+            <ul>
+                <th:block th:each="arg, istat: ${instance.value}">
+                    <li><span th:text="${istat.count}"></span> <a
+                            th:href="@{/argomento(id=${arg.id})}"
+                            th:text="${arg.titolo}"></a></li>
+                </th:block>
+            </ul>
+        </div>
+    </th:block>
+
+
+</div>
+<th:block th:include="fragments/footer"></th:block>
+</body>
+</html>

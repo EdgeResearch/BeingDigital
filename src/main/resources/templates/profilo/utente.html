@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Area Personale</title>
+    <link rel="stylesheet" th:href="@{/stylesheet/utente.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/stylesheet/cancellazione.css}" type="text/css"/>
+    <link href="/img/Logo.png" rel="shortcut icon"/>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<th:block th:include="fragments/header"></th:block>
+
+<div class="utente" id="list">
+    <div class="daticard">
+        <span></span>
+        <div class="eliminaAcc"><i class="fa-solid fa-trash fa-xl" onclick="showConferma()"></i></div>
+        <div class="textUtente">
+            <div class="line"><h3>Email:</h3>
+                <p th:text="${utente.email}"></p></div>
+            <div class="line"><h3>Nome:</h3>
+                <p th:text="${utente.nome}"></p></div>
+            <div class="line"><h3>Cognome:</h3>
+                <p th:text="${utente.cognome}"></p></div>
+        </div>
+        <div class="areabtn1">
+            <a class="btnUtente" href="/auth/modificaProfilo">Modifica</a>
+            <a class="btnUtente" href="/logout">Logout</a>
+        </div>
+
+    </div>
+    <div class="plus">
+        <div class="progcard">
+            <span></span>
+            <div class="textProg">
+                <div class="line" th:if="${utente.livello.name()!='MASTER'}">
+                    <h3 style="margin-left: 20px;">Hai completato il test al
+                        <th:block th:text="${percentuale}"></th:block>
+                        %!
+                    </h3>
+                    <p> Perché non torni a esercitarti?
+                        E se provassi ad affinare le tue conoscenze con i nostri giochi? </p>
+                </div>
+                <div class="line" th:if="${utente.livello.name()=='MASTER'}">
+                    <h3 style="margin-left: 20px;">Hai completato tutti i test al 100%!
+                    </h3>
+                    <p> Perché non ti rinfreschi la memoria?
+                        E se provassi ad affinare le tue conoscenze con i nostri giochi? </p>
+                </div>
+            </div>
+            <div class="areabtn">
+                <a class="btnUtente" href="/utente/lezioniDaStudiare">lezioni</a>
+                <a class="btnUtente" href="/utente/giochiDaStudiare">giochi</a>
+            </div>
+
+        </div>
+        <div class="lesscard">
+            <span></span>
+            <div class="textProg">
+                <div class="line" th:if="${utente.livello.name()!='MASTER'}">
+                    <h3 style="margin-left: 20px;">Il tuo livello è
+                        <th:block th:text="${utente.livello}"></th:block>
+                    </h3>
+                    <p> Ti senti pronto per riprovare il test? </p>
+                </div>
+                <div class="line" th:if="${utente.livello.name()=='MASTER'}">
+                    <h3 style="margin-left: 20px;">Il tuo livello è
+                        <th:block th:text="${utente.livello}"></th:block>
+                    </h3>
+                    <p> Hai completato tutti i test, complimenti! </p>
+                </div>
+            </div>
+            <div class="areabtn">
+                <a class="btnUtente" href="/utente/test" th:if="${utente.livello.name()!='MASTER'}">Test</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<form action="/auth/cancellazioneAccount" method="post">
+    <input name="account" style="display:none">
+    <div class="all-canc" id="conf">
+        <div class="cancella">
+            <div class="textcancella">
+                <h1>ATTENZIONE</h1>
+                <p> Sicuro di voler procedere alla cancellazione di questo account?</p>
+                <div class="btn-canc">
+                    <button class="elimina" type="submit">SI</button>
+                    <a class="elimina" onclick="hideConferma()">NO</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="contsnack">
+    <div id="snackbar"></div>
+</div>
+<script th:if="${param.testCompletato != null}">
+
+    toast("Complimenti, hai completato il test! <br> Sei salito di livello!")
+
+    function toast(txt) {
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        x.innerHTML = txt;
+        setTimeout(function () {
+            x.className = x.className.replace("show", "");
+        }, 3000);
+    }
+
+</script>
+<th:block th:include="fragments/footer"></th:block>
+<script th:src="@{/js/utente.js}"></script>
+
+</body>
+</html>

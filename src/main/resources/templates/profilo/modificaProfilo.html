@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifica</title>
+    <link rel="stylesheet" th:href="@{/stylesheet/modificaProfilo.css}" type="text/css"/>
+    <link href="/img/Logo.png" rel="shortcut icon"/>
+</head>
+<body>
+
+<th:block th:include="fragments/header"></th:block>
+
+<div class="modifica" id="mod">
+    <div class="daticard">
+        <span class="etichetta"></span>
+        <form action="/auth/modificaProfilo" method="post" th:object="${modificaProfiloForm}">
+            <label for="email">Email:</label>
+            <input class="input" id="email" required th:field="*{email}" type="email">
+            <input class="input" id="email_v" style="display:none" th:value="*{email}" type="text">
+            <label for="nome">Nome:</label>
+            <input class="input" id="nome" required th:field="*{nome}" type="text">
+            <label for="nome">Cognome:</label>
+            <input class="input" id="cognome" required th:field="*{cognome}" type="text">
+            <label for="nome">Password attuale:</label>
+            <input class="input" id="p_vecchia" name="passwordAttuale" type="password">
+            <div class="occhio" onclick="showHide(true)"><img
+                    alt="" id="occhio_vecchio"
+                    src="/img/view.png"></div>
+            <label for="nome">Password nuova:</label>
+            <input class="input" id="p_nuova" name="passwordNuova" type="password">
+            <div class="occhio2" onclick="showHide(false)"><img
+                    alt="" id="occhio_nuovo"
+                    src="/img/view.png"></div>
+            <input onclick="return validate(this)" type="submit" value="COMPLETATO">
+        </form>
+    </div>
+</div>
+
+
+<div class="contsnack">
+    <div id="snackbar"></div>
+</div>
+
+
+<th:block th:include="fragments/footer"></th:block>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script th:src="@{/js/modificaProfilo.js}"></script>
+</body>
+</html>

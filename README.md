@@ -18,7 +18,10 @@
 
 In this section we introduce context information for the project.
 
-## Authors
+## OWNERSHIP
+EDGE LAB - https://www.di.unisa.it/en/department/structures?id=682
+
+## Students
 
 * **Michela Faella** - *Developer* - [MichelaFaella](https://github.com/MichelaFaella)
 * **Lorenzo Sorrentino** - *Developer* - [losor2002](https://github.com/losor2002)
@@ -54,10 +57,3 @@ Follow these steps:
 * [HTML5](https://www.w3schools.com/html/default.asp) - The programming language used for the front-end development.
 * [Thymeleaf](https://www.thymeleaf.org/) - Java template to render static pages into dynamic.
 
-# Contributors
-
-<a href="https://github.com/MichelaFaella/BeingDigital/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=MichelaFaella/BeingDigital" />
-</a>
-
-Made with [contrib.rocks](https://contrib.rocks).

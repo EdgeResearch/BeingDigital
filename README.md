@@ -18,13 +18,13 @@
 
 In this section we introduce context information for the project.
 
-## OWNERSHIP
+## Ownership
 EDGE LAB - https://www.di.unisa.it/en/department/structures?id=682
 
 ## Students
 
-* **Michela Faella** - *Developer* - [MichelaFaella](https://github.com/MichelaFaella)
-* **Lorenzo Sorrentino** - *Developer* - [losor2002](https://github.com/losor2002)
+* **Michela Faella**  - [MichelaFaella](https://github.com/MichelaFaella)
+* **Lorenzo Sorrentino**  - [losor2002](https://github.com/losor2002)
 
 ## Documentation
 

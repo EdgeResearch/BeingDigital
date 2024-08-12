@@ -1,10 +1,8 @@
 package it.unisa.beingdigital.service.profilo;
 
 import it.unisa.beingdigital.storage.entity.Admin;
-import it.unisa.beingdigital.storage.entity.AmministratoreCittadini;
 import it.unisa.beingdigital.storage.entity.Utente;
 import it.unisa.beingdigital.storage.repository.AdminRepository;
-import it.unisa.beingdigital.storage.repository.AmministratoreCittadiniRepository;
 import it.unisa.beingdigital.storage.repository.UtenteRepository;
 import jakarta.validation.constraints.NotNull;
 import java.util.Optional;
@@ -32,9 +30,6 @@ public class PromozioneUtenteService {
   @Autowired
   private CancellazioneAccountService cancellazioneAccountService;
 
-  @Autowired
-  private AmministratoreCittadiniRepository amministratoreCittadiniRepository;
-
   /**
    * Implementa la funzionalità di promozione di un account utente.
    * Si assume che la corretta formulazione dell'id sia stata controllata prima
@@ -56,20 +51,6 @@ public class PromozioneUtenteService {
     Admin admin = new Admin(utente.getNome(), utente.getCognome(), utente.getEmail(),
         utente.getPassword());
     adminRepository.save(admin);
-    return true;
-  }
-
-  public boolean promozioneAmministratoreCittadini(@NotNull Long id) {
-    Optional<Utente> optional = utenteRepository.findById(id);
-    if (optional.isEmpty()) {
-      return false;
-    }
-
-    Utente utente = optional.get();
-    cancellazioneAccountService.cancellazioneUtente(id);
-    utenteRepository.flush();
-    AmministratoreCittadini amministratoreCittadini = new AmministratoreCittadini(utente.getNome(), utente.getCognome(), utente.getEmail(), utente.getPassword());
-    amministratoreCittadiniRepository.save(amministratoreCittadini);
     return true;
   }
 }

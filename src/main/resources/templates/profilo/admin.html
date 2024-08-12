@@ -33,7 +33,8 @@
                 <th>Email</th>
                 <th>Nome</th>
                 <th>Cognome</th>
-                <th>Promuovi</th>
+                <th>Promuovi Amministratore cittadini</th>
+                <th>Promuovi Admin</th>
                 <th>Elimina</th>
             </tr>
             <th:block th:each="utente: ${listaUtenti}">
@@ -41,6 +42,7 @@
                     <td th:text="${utente.email}"></td>
                     <td th:text="${utente.nome}"></td>
                     <td th:text="${utente.cognome}"></td>
+                    <td><i class="fa-solid fa-crown" th:id="${utente.id}" onclick="showConferma4(this)"></i></td>
                     <td><i class="fa-solid fa-crown" th:id="${utente.id}" onclick="showConferma3(this)"></i></td>
                     <td><i class="fa-solid fa-trash" th:id="${utente.id}" onclick="showConferma(this)"></i></td>
                 </tr>
@@ -139,6 +141,21 @@
     </div>
 </form>
 
+<form action="/admin/promozioneAmministratoreCittadini" method="post">
+    <input id="utenteAdminPromosso" name="id" style="display:none">
+    <div id="promAdmin" class="all-canc">
+        <div class="cancella">
+            <div class="textcancella">
+                <h1>ATTENZIONE</h1>
+                <p> Sicuro di voler procedere alla promozione di questo account?</p>
+                <div class="btn-canc">
+                    <button class="elimina" type="submit">SI</button>
+                    <a class="elimina" onclick="hideConferma4()">NO</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
 <script th:src="@{/js/admin.js}"></script>
 

@@ -3,7 +3,6 @@ var conf = document.getElementById("conf");
 var per = document.getElementById("percentuali");
 var acc = document.getElementById("acc");
 var prom = document.getElementById("prom");
-var promAdmin = document.getElementById("promAdmin");
 
 
 function showConferma(campo) {
@@ -59,24 +58,4 @@ function hideConferma3() {
     lista.style.display = "flex";
     per.style.display = "flex";
     prom.style.display = "none";
-}
-
-function showConferma4(campo) {
-
-    console.log(campo.id)
-    lista.style.display = "none";
-    per.style.display = "none";
-
-    promAdmin.style.display = "flex";
-
-
-    var eliminato = document.getElementById("utenteAdminPromosso");
-    eliminato.value = campo.id;
-
-}
-
-function hideConferma4() {
-    lista.style.display = "flex";
-    per.style.display = "flex";
-    promAdmin.style.display = "none";
 }

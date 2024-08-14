@@ -3,6 +3,7 @@ package it.unisa.beingdigital.control.profilo;
 import it.unisa.beingdigital.service.autenticazione.util.PersonaAutenticata;
 import it.unisa.beingdigital.service.profilo.DatiUtentiService;
 import it.unisa.beingdigital.storage.entity.Admin;
+import it.unisa.beingdigital.storage.entity.AmministratoreCittadini;
 import it.unisa.beingdigital.storage.entity.Persona;
 import it.unisa.beingdigital.storage.entity.Utente;
 import it.unisa.beingdigital.storage.entity.util.Livello;
@@ -40,14 +41,26 @@ public class AreaPersonaleController {
       model.addAttribute("admin", persona);
       model.addAttribute("listaUtenti", datiUtentiService.getAllUtenti());
       model.addAttribute("percentualeBase",
-          datiUtentiService.getPercentualeUtenti(Livello.BASE));
+              datiUtentiService.getPercentualeUtenti(Livello.BASE));
       model.addAttribute("percentualeIntermedio",
-          datiUtentiService.getPercentualeUtenti(Livello.INTERMEDIO));
+              datiUtentiService.getPercentualeUtenti(Livello.INTERMEDIO));
       model.addAttribute("percentualeAvanzato",
-          datiUtentiService.getPercentualeUtenti(Livello.AVANZATO));
+              datiUtentiService.getPercentualeUtenti(Livello.AVANZATO));
       model.addAttribute("percentualeMaster",
-          datiUtentiService.getPercentualeUtenti(Livello.MASTER));
+              datiUtentiService.getPercentualeUtenti(Livello.MASTER));
       return "profilo/admin";
+    }else if (persona instanceof AmministratoreCittadini) {
+        model.addAttribute("amministratoreCittadini", persona);
+        model.addAttribute("listaUtenti", datiUtentiService.getAllUtenti());
+        model.addAttribute("percentualeBase",
+                datiUtentiService.getPercentualeUtenti(Livello.BASE));
+        model.addAttribute("percentualeIntermedio",
+                datiUtentiService.getPercentualeUtenti(Livello.INTERMEDIO));
+        model.addAttribute("percentualeAvanzato",
+                datiUtentiService.getPercentualeUtenti(Livello.AVANZATO));
+        model.addAttribute("percentualeMaster",
+                datiUtentiService.getPercentualeUtenti(Livello.MASTER));
+        return "profilo/amministratoreCittadini";
     } else {
       model.addAttribute("utente", persona);
       model.addAttribute("percentuale", datiUtentiService.getPercentualeCompletamento(

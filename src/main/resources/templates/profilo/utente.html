@@ -78,6 +78,25 @@
 
         </div>
     </div>
+
+    <div class="team">
+        <span></span>
+        <div th:if="${message != null}">
+            <p th:text="${message}"></p>
+        </div>
+
+        <div th:if="${teams != null}">
+            <h2>I tuoi team:</h2>
+            <ul>
+                <li th:each="team : ${teams}" th:text="${team.nome}"></li>
+            </ul>
+        </div>
+
+        <div class="areabtn">
+            <a class="btnUtente" href="/amministratoreCittadini/creazioneTeam">Crea Team</a>
+        </div>
+    </div>
+
 </div>
 
 <form action="/auth/cancellazioneAccount" method="post">

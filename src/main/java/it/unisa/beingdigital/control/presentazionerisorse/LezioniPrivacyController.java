@@ -3,6 +3,7 @@ package it.unisa.beingdigital.control.presentazionerisorse;
 import it.unisa.beingdigital.service.autenticazione.util.PersonaAutenticata;
 import it.unisa.beingdigital.service.presentazionerisorse.PrelievoArgomentoService;
 import it.unisa.beingdigital.storage.entity.Utente;
+import it.unisa.beingdigital.storage.entity.util.Livello;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,8 +35,7 @@ public class LezioniPrivacyController {
     Utente utente = (Utente) personaAutenticata.getPersona().get();
 
     model.addAttribute("lezioniPerMetaInfo",
-        prelievoArgomentoService.getLezioniPerMetaInfoSortedByLivelloKeywordTitolo(
-            utente.getLivello()));
+        prelievoArgomentoService.getLezioniPerMetaInfoSortedByLivelloKeywordTitolo(Livello.MASTER));
     model.addAttribute("tipo", "lezioniPrivacy");
     return "presentazionerisorse/listaLezioni";
   }

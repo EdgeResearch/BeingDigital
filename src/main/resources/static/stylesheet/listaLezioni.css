@@ -49,6 +49,15 @@
     overflow: hidden;
 }
 
+.box-lezione{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.livello-box{
+    width: 250px;
+}
 
 .lezioni .box h2 {
     text-align: center;
@@ -62,6 +71,11 @@
     text-transform: uppercase;
 }
 
+h4.livello-lezione{
+    font-size: 16px;
+    color: #5b6ed9;
+    font-weight: bolder;
+}
 
 .lezioni .box ul {
     max-height: 200px;
@@ -73,7 +87,6 @@
     border: 1px solid;
 
 }
-
 
 .lezioni .box ul::-webkit-scrollbar {
     width: 10px;
@@ -103,7 +116,7 @@
     cursor: pointer;
     margin-top: 5px;
     font-weight: 500;
-    position: absolute;
+    position: relative;
     /* padding-bottom: 13px; */
     color: var(--bg-color);
 }

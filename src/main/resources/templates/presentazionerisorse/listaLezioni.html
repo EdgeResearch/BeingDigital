@@ -8,7 +8,7 @@
     <link href="/img/Logo.png" rel="shortcut icon"/>
 </head>
 <body>
-<th:block th:include="fragments/header"></th:block>
+<th:block th:insert="~{fragments/header}"></th:block>
 <div class="lezioni">
     <th:block th:if="${tipo}=='lezioniPrivacy'">
         <h1 class="livello">Le tue lezioni</h1>
@@ -33,9 +33,19 @@
             </div>
             <ul>
                 <th:block th:each="arg, istat: ${instance.value}">
-                    <li><span th:text="${istat.count}"></span> <a
-                            th:href="@{/argomento(id=${arg.id})}"
-                            th:text="${arg.titolo}"></a></li>
+                    <li>
+                        <div class="box-lezione">
+                            <div>
+                                <span th:text="${istat.count}"></span>
+                                <a th:href="@{/argomento(id=${arg.id})}"
+                                   th:text="${arg.titolo}">
+                                </a>
+                            </div>
+                            <div class="livello-box">
+                                <h4 class="livello-lezione" th:text="'Livello lezione: ' + ${instance.key.getLivello()}"></h4>
+                            </div>
+                        </div>
+                    </li>
                 </th:block>
             </ul>
         </div>
@@ -43,6 +53,6 @@
 
 
 </div>
-<th:block th:include="fragments/footer"></th:block>
+<th:block th:insert="~{fragments/footer}"></th:block>
 </body>
 </html>

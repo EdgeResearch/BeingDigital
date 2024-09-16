@@ -22,27 +22,7 @@
 
     <nav id="menu">
         <ul>
-            <li><a href="#">Cittadinanza digitale <b>+</b></a>
-                <ul>
-                    <li><a href="/raccontiCittadinanza">Racconti</a></li>
-                    <li><a href="/lezioniCittadinanza">Lezioni</a></li>
-                    <li><a href="/giochiCittadinanza">Giochi</a></li>
-                </ul>
-            </li>
             <th:block th:with="accesso = ${@personaAutenticata.persona.isPresent()}">
-                <li th:if="${accesso
-                && !(@personaAutenticata.persona.get().getClass().getSimpleName().equals('Admin'))}">
-                    <a href="#">Privacy online
-                        <b>+</b></a>
-                    <ul>
-                        <li><a href="/utente/raccontiPrivacy">Racconti</a></li>
-                        <li><a href="/utente/lezioniPrivacy">Lezioni</a></li>
-                        <li><a href="/utente/giochiPrivacy">Giochi</a></li>
-                        <li th:if="${@personaAutenticata.persona.get().livello.name() != 'MASTER'}"><a
-                                href="/utente/test">Test</a>
-                        </li>
-                    </ul>
-                </li>
                 <li><a href="/login" th:if="${!accesso}">Accesso</a>
                     <a href="/auth/areaPersonale" th:if="${accesso}">Area personale</a>
                 </li>

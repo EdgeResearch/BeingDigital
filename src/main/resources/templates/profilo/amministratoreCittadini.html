@@ -19,63 +19,35 @@
     <div class="eliminaAcc"><i class="fa-solid fa-trash fa-xl" onclick="showConferma()"></i></div>
     <div class="textUtente">
       <div class="line"><h3>Email:</h3>
-        <p th:text="${utente.email}"></p></div>
+        <p th:text="${amministratoreCittadini.email}"></p></div>
       <div class="line"><h3>Nome:</h3>
-        <p th:text="${utente.nome}"></p></div>
+        <p th:text="${amministratoreCittadini.nome}"></p></div>
       <div class="line"><h3>Cognome:</h3>
-        <p th:text="${utente.cognome}"></p></div>
+        <p th:text="${amministratoreCittadini.cognome}"></p></div>
     </div>
     <div class="areabtn1">
       <a class="btnUtente" href="/auth/modificaProfilo">Modifica</a>
       <a class="btnUtente" href="/logout">Logout</a>
     </div>
-
   </div>
+
   <div class="plus">
-    <div class="progcard">
+    <div class="team">
       <span></span>
-      <div class="textProg">
-        <div class="line" th:if="${utente.livello.name()!='MASTER'}">
-          <h3 style="margin-left: 20px;">Hai completato il test al
-            <th:block th:text="${percentuale}"></th:block>
-            %!
-          </h3>
-          <p> Perché non torni a esercitarti?
-            E se provassi ad affinare le tue conoscenze con i nostri giochi? </p>
-        </div>
-        <div class="line" th:if="${utente.livello.name()=='MASTER'}">
-          <h3 style="margin-left: 20px;">Hai completato tutti i test al 100%!
-          </h3>
-          <p> Perché non ti rinfreschi la memoria?
-            E se provassi ad affinare le tue conoscenze con i nostri giochi? </p>
-        </div>
-      </div>
-      <div class="areabtn">
-        <a class="btnUtente" href="/utente/lezioniDaStudiare">lezioni</a>
-        <a class="btnUtente" href="/utente/giochiDaStudiare">giochi</a>
+      <div th:if="${message != null}">
+        <p th:text="${message}"></p>
       </div>
 
-    </div>
-    <div class="lesscard">
-      <span></span>
-      <div class="textProg">
-        <div class="line" th:if="${utente.livello.name()!='MASTER'}">
-          <h3 style="margin-left: 20px;">Il tuo livello è
-            <th:block th:text="${utente.livello}"></th:block>
-          </h3>
-          <p> Ti senti pronto per riprovare il test? </p>
-        </div>
-        <div class="line" th:if="${utente.livello.name()=='MASTER'}">
-          <h3 style="margin-left: 20px;">Il tuo livello è
-            <th:block th:text="${utente.livello}"></th:block>
-          </h3>
-          <p> Hai completato tutti i test, complimenti! </p>
-        </div>
-      </div>
-      <div class="areabtn">
-        <a class="btnUtente" href="/utente/test" th:if="${utente.livello.name()!='MASTER'}">Test</a>
+      <div th:if="${teams != null}">
+        <h2>I tuoi team:</h2>
+        <ul>
+          <li th:each="team : ${teams}" th:text="${team.nome}"></li>
+        </ul>
       </div>
 
+      <div class="areabtn">
+        <a class="btnUtente" href="/amministratoreCittadini/creazioneTeam">Crea Team</a>
+      </div>
     </div>
   </div>
 </div>
@@ -96,23 +68,6 @@
   </div>
 </form>
 
-<div class="contsnack">
-  <div id="snackbar"></div>
-</div>
-<script th:if="${param.testCompletato != null}">
-
-  toast("Complimenti, hai completato il test! <br> Sei salito di livello!")
-
-  function toast(txt) {
-    var x = document.getElementById("snackbar");
-    x.className = "show";
-    x.innerHTML = txt;
-    setTimeout(function () {
-      x.className = x.className.replace("show", "");
-    }, 3000);
-  }
-
-</script>
 <th:block th:include="fragments/footer"></th:block>
 <script th:src="@{/js/utente.js}"></script>
 

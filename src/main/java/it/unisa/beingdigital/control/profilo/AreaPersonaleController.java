@@ -1,17 +1,17 @@
 package it.unisa.beingdigital.control.profilo;
 
 import it.unisa.beingdigital.service.autenticazione.util.PersonaAutenticata;
+import it.unisa.beingdigital.service.presentazionerisorse.PrelievoTeamService;
 import it.unisa.beingdigital.service.profilo.DatiUtentiService;
-import it.unisa.beingdigital.storage.entity.Admin;
-import it.unisa.beingdigital.storage.entity.AmministratoreCittadini;
-import it.unisa.beingdigital.storage.entity.Persona;
-import it.unisa.beingdigital.storage.entity.Utente;
+import it.unisa.beingdigital.storage.entity.*;
 import it.unisa.beingdigital.storage.entity.util.Livello;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 /**
  * Questa classe rappresenta il controller per l'area personale.
@@ -26,6 +26,13 @@ public class AreaPersonaleController {
 
   @Autowired
   private DatiUtentiService datiUtentiService;
+
+  @Autowired
+  private PrelievoTeamService teamService;
+
+  @Autowired
+  private PrelievoTeamService prelievoTeamService;
+
 
   /**
    * Implementa il get per l'accesso all'area personale.
@@ -50,8 +57,13 @@ public class AreaPersonaleController {
               datiUtentiService.getPercentualeUtenti(Livello.MASTER));
       return "profilo/admin";
     }else if (persona instanceof AmministratoreCittadini) {
+        List<Team> teams = prelievoTeamService.getTeamsForAmministratore(persona.getId());
         model.addAttribute("amministratoreCittadini", persona);
-        model.addAttribute("listaUtenti", datiUtentiService.getAllUtenti());
+        if (teams.isEmpty()) {
+            model.addAttribute("message", "Non hai team.");
+        } else {
+            model.addAttribute("teams", teams);
+        }
         model.addAttribute("percentualeBase",
                 datiUtentiService.getPercentualeUtenti(Livello.BASE));
         model.addAttribute("percentualeIntermedio",

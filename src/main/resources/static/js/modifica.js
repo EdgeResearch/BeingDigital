@@ -28,6 +28,16 @@ function validateMeta(obj) {
     return false
 }
 
+function validateTeam(obj) {
+    var nome = document.getElementById("nome");
+    var email = document.getElementById("email");
+    if (validateTesto(nome) && validation_email(email)) {
+        console.log("Vai");
+        return true;
+    }
+    return false
+}
+
 function validateDomanda(obj) {
     var testo = document.getElementById("testo");
     var cor = document.getElementById("corretta");
@@ -146,4 +156,21 @@ function toast(txt) {
     setTimeout(function () {
         x.className = x.className.replace("show", "");
     }, 3000);
+}
+
+function validation_email(input) {
+
+    var pattern = /@[^ ]+.[a-z]{2,3}$/;
+
+    if (input == null) {
+        return false
+    }
+
+    if (input.match(pattern)) {
+        return true;
+    } else {
+        return false;
+    }
+
+
 }

@@ -57,6 +57,33 @@
     color: white;
 }
 
+.box-bottoni{
+    display: flex;
+    margin-top: 60px;
+    justify-content: center;
+}
+
+a.btnUtente{
+    display: flex;
+    width: 174px;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 10px 0;
+    padding: 12px 0;
+    color: var(--white-color);
+    background-color: var(--notify-color);
+    border: 3px solid var(--notify-color);
+    position: relative;
+    margin: 0px 20px;
+    transition: 0.5s;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+}
+
 img {
     max-width: 100%;
     height: auto;

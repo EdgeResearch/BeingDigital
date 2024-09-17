@@ -12,7 +12,6 @@
 <div class="lezioni">
     <th:block th:if="${tipo}=='lezioniPrivacy'">
         <h1 class="livello">Le tue lezioni</h1>
-        <p>Qui sono riportate le nostre lezioni adatte al tuo livello.</p>
     </th:block>
     <th:block th:if="${tipo}=='lezioniDaStudiare'">
         <h1 class="livello">Le tue lezioni</h1>
@@ -27,7 +26,6 @@
     <th:block th:each="instance: ${lezioniPerMetaInfo}">
         <div class="box">
             <div style="width: 100%">
-                <img class="left" th:src="@{/icona(idMetaInfo=${instance.key.id})}">
                 <img class="right" th:src="@{/icona(idMetaInfo=${instance.key.id})}">
                 <h2 th:text="${instance.key.keyword}"></h2>
             </div>

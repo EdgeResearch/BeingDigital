@@ -23,7 +23,7 @@
     justify-content: center;
     align-items: center;
     min-height: 130vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url(/img/backgroundLogo.png);
+    background-color: #e3e3e3;
     background-size: contain;
 }
 
@@ -42,10 +42,9 @@
 }
 
 .lezioni .box {
-    width: 80%;
+    width: 100%;
     position: relative;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-    margin-bottom: 120px;
+    margin-bottom: 30px;
     overflow: hidden;
 }
 
@@ -60,10 +59,9 @@
 }
 
 .lezioni .box h2 {
-    text-align: center;
     color: var(--white-color);
     background-color: var(--second-color);
-    padding: 20px 0;
+    padding: 20px 0 20px 20px;
     font-size: 20px;
     font-weight: 700;
     width: 100%;
@@ -128,10 +126,10 @@ h4.livello-lezione{
 
 .livello {
     font-size: 35px;
-    margin: 80px 0 5px;
+    margin: 80px 0 50px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: var(--white-color);
+    color: #273a73;
     padding: 0 5px;
     text-align: center;
 }

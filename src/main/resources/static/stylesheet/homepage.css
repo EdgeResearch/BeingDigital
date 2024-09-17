@@ -105,7 +105,6 @@
     flex-direction: column;
     justify-content: space-evenly;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: -9px 8px 17px -3px rgba(0, 0, 0, 0.2);
     align-items: center;
     top: 13px;
 }

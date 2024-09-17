@@ -34,8 +34,27 @@ public class ArgomentoController {
   @GetMapping
   public String get(@RequestParam Long id, Model model) {
     Optional<Argomento> optional = prelievoArgomentoService.getArgomento(id);
+
+    Optional<Argomento> nextArgomento = prelievoArgomentoService.getArgomento(id + 1);
+
+    Optional<Argomento> lastArgomento = prelievoArgomentoService.getArgomento(id - 1);
+
     if (optional.isEmpty()) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+    }
+
+    if (nextArgomento.isPresent()) {
+      model.addAttribute("nextId", id + 1);  // Passa l'ID successivo
+    }
+    else {
+      model.addAttribute("nextId", null);  // Nessun argomento successivo
+    }
+
+    if (lastArgomento.isPresent()) {
+      model.addAttribute("lastId", id - 1);  // Passa l'ID successivo
+    }
+    else {
+      model.addAttribute("lastId", null);  // Nessun argomento successivo
     }
 
     model.addAttribute("argomento", optional.get());

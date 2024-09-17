@@ -50,10 +50,14 @@ public class Argomento {
   @JoinColumn(nullable = false)
   private MetaInfo metaInfo;
 
-  protected Argomento(String titolo, String corpo, byte[] copertina, MetaInfo metaInfo) {
+  @Column(nullable = true)
+  private String mappa;
+
+  protected Argomento(String titolo, String corpo, byte[] copertina, MetaInfo metaInfo, String mappa) {
     this.titolo = titolo;
     this.corpo = corpo;
     this.copertina = copertina;
     this.metaInfo = metaInfo;
+    this.mappa = mappa;
   }
 }

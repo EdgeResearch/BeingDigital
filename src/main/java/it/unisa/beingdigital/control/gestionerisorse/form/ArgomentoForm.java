@@ -34,4 +34,6 @@ public class ArgomentoForm {
 
   @NotNull
   private Long metaInfoId;
+
+  private  String mappa;
 }

@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Posiziona il dropdown sotto la card-bottom
         dropdown.style.position = 'absolute';
-        dropdown.style.left = `${rect.left + window.scrollX - 25}px`;  // Posiziona orizzontalmente in base al div
-        dropdown.style.top = `${rect.bottom + window.scrollY}px`;  // Posiziona verticalmente sotto il div
+        dropdown.style.left = `${rect.left + window.scrollX - 12}px`;  // Posiziona orizzontalmente in base al div
+        dropdown.style.top = `${rect.bottom + window.scrollY + 10}px`;  // Posiziona verticalmente sotto il div
         dropdown.style.display = 'grid'; // Mostra il dropdown
     }
 

@@ -18,15 +18,14 @@
 }
 
 .utente {
-    display: grid;
-    grid-template-columns: repeat(3, 35rem);
+    display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url(/img/backgroundLogo.png);
+    min-height: 88vh;
     background-size: contain;
+    background: #edecec63;
     overflow-x: hidden;
     justify-items: center;
+    align-items: center;
 }
 
 
@@ -62,10 +61,10 @@
 .team {
     display: flex;
     position: relative;
-    width: 400px;
-    height: 530px;
+    width: 380px;
+    height: 470px;
+    margin: 50px 25px;
     background-color: var(--white-color);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -74,30 +73,31 @@
 
 .team span {
     position: absolute;
-    top: -18px;
-    left: -10px;
-    width: 150px;
-    height: 150px;
-    justify-content: center;
+    top: -6px;
+    left: -1px;
+    width: 120px;
+    height: 100px;
     display: flex;
-    align-items: center;
     overflow: hidden;
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 .team span::before {
     content: 'Team';
     position: absolute;
-    width: 150%;
+    width: 151%;
     height: 40px;
     background-color: #e1d007;
-    transform: rotate(-45deg) translateY(-20px);
+    transform: rotate(-36deg) translateY(-20px);
     display: flex;
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
     color: var(--text-color);
     font-weight: 600;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: -4px 5px 6px rgba(0, 0, 0, 0.25);
 }
 
 .daticard {
@@ -106,39 +106,40 @@
     align-items: center;
     position: relative;
     flex-direction: column;
-    width: 400px;
-    height: 530px;
+    width: 380px;
+    height: 470px;
+    margin: 50px 25px;
     background-color: var(--white-color);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
 }
 
 .daticard span {
     position: absolute;
-    top: -18px;
-    left: -10px;
-    width: 150px;
-    height: 150px;
-    justify-content: center;
+    top: -6px;
+    left: -1px;
+    width: 120px;
+    height: 100px;
     display: flex;
-    align-items: center;
     overflow: hidden;
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 .daticard span::before {
     content: 'Dati personali';
     position: absolute;
-    width: 150%;
-    height: 40px;
+    width: 145%;
+    height: 34px;
     background-color: var(--aggiuntivo1);
-    transform: rotate(-45deg) translateY(-20px);
+    transform: rotate(-36deg) translateY(-20px);
     display: flex;
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
     color: var(--text-color);
     font-weight: 600;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: -4px 5px 6px rgba(0, 0, 0, 0.25);
 }
 
 .plus {
@@ -147,6 +148,8 @@
     justify-content: center;
     display: flex;
     align-items: center;
+    height: 470px;
+    margin: 50px 30px;
 }
 
 .progcard {
@@ -155,23 +158,23 @@
     align-items: center;
     position: relative;
     flex-direction: column;
-    width: 500px;
-    height: 250px;
+    width: 380px;
+    height: 238px;
     background-color: var(--white-color);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
 }
 
 .progcard span {
     position: absolute;
-    top: -18px;
-    left: -10px;
-    width: 150px;
-    height: 150px;
-    justify-content: center;
+    top: -6px;
+    left: -1px;
+    width: 120px;
+    height: 100px;
     display: flex;
-    align-items: center;
     overflow: hidden;
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 .progcard span::before {
@@ -180,14 +183,14 @@
     width: 150%;
     height: 40px;
     background-color: var(--aggiuntivo2);
-    transform: rotate(-45deg) translateY(-20px);
+    transform: rotate(-36deg) translateY(-20px);
     display: flex;
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
     color: var(--text-color);
     font-weight: 600;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: -4px 5px 6px rgba(0, 0, 0, 0.25);
 }
 
 .lesscard {
@@ -197,23 +200,23 @@
     align-items: center;
     position: relative;
     flex-direction: column;
-    width: 500px;
-    height: 250px;
+    width: 380px;
+    height: 200px;
     background-color: var(--white-color);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
 }
 
 .lesscard span {
     position: absolute;
-    top: -18px;
-    left: -10px;
-    width: 150px;
-    height: 150px;
-    justify-content: center;
+    top: -6px;
+    left: -1px;
+    width: 120px;
+    height: 100px;
     display: flex;
-    align-items: center;
     overflow: hidden;
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 .lesscard span::before {
@@ -243,21 +246,21 @@
 
 .line h3 {
     color: var(--main-color);
-    font-size: 22px;
+    font-size: 15px;
 }
 
 .line p {
     margin-left: 20px;
     margin-top: 5px;
     color: #121b37;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 .btnUtente {
-    width: 150px;
+    width: 96px;
     text-decoration: none;
     display: inline-block;
-    margin: 10px 0;
+    margin: 10px 20px;
     padding: 12px 0;
     color: var(--white-color);
     background-color: var(--notify-color);
@@ -268,6 +271,7 @@
     text-align: center;
     text-transform: uppercase;
     font-weight: 600;
+    font-size: 12px;
 }
 
 .btnUtente:hover {

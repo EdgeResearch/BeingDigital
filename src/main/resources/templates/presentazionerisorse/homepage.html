@@ -15,7 +15,6 @@
           referrerpolicy="no-referrer" rel="stylesheet"/>
 </head>
 
-
 <th:block th:insert="~{fragments/header}"></th:block>
 <body class="home">
 
@@ -24,14 +23,18 @@
 
     <div class="alltext">
         <h1>Scopri i nostri contenuti</h1>
-        <p>Impara i concetti sulla cittadinaza digitale usufruendo <br> delle nostre funzionalità! </p>
+        <p>Impara i concetti sulla <a style="
+            text-decoration: underline;
+            color: #5b6ed9;
+            font-weight: 900;"
+           href="#">cittadinaza digitale</a> usufruendo <br> delle nostre funzionalità! </p>
     </div>
 
     <div class="carousel-container">
         <button class="prev">‹</button>
         <div class="carousel-slide" style="transform: translateX(0px);">
             <div class="card" data-dropdown="dropdown-1">
-                <img alt="privacy" src="/img/icons8-privacy-100.png">
+                <img alt="privacy e sicurezza" src="/img/icons8-privacy-100.png">
                 <h2 >PRIVACY</h2>
                 <p>Scopri qui i contenuti <br> sulla Privacy Online.</p>
                 <div class="card-bottom">
@@ -102,25 +105,25 @@
             <div class="dropdown-card">
                 <a href="/utente/raccontiPrivacy">
                     <img alt="racconti" src="/img/paper.png">
-                    <h2>RACCONTI</h2>
+                    <h2 style="color: #33df3c">RACCONTI</h2>
                 </a>
             </div>
             <div class="dropdown-card">
                 <a href="/utente/lezioniPrivacy">
                     <img alt="lezioni" src="/img/shield.png">
-                    <h2>LEZIONI</h2>
+                    <h2 style="color: #efb90e">LEZIONI</h2>
                 </a>
             </div>
             <div class="dropdown-card">
                 <a href="/utente/test">
                     <img alt="test" src="/img/search.png">
-                    <h2>TEST</h2>
+                    <h2 style="color: red">TEST</h2>
                 </a>
             </div>
             <div class="dropdown-card">
                 <a href="/utente/giochiPrivacy">
                     <img alt="giochi" src="/img/cyber-security.png">
-                    <h2>GIOCHI</h2>
+                    <h2 style="color: purple">GIOCHI</h2>
                 </a>
             </div>
         </div>

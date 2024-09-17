@@ -93,9 +93,9 @@
 .card {
     position: relative;
     transition: transform .2s;
-    min-width: 300px;
+    min-width: 245px;
     max-width: 350px;
-    max-height: 350px;
+    max-height: 260px;
     display: flex;
     background-color: #edecec63;
     height: 350px;
@@ -118,13 +118,13 @@
 .dropdown {
     display: none;
     position: absolute;
-    background-color: white;
+    background-color: transparent;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 9999;
-    padding: 10px;
+    padding: 5px;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
+    max-width: 256px;
 }
 
 .card:hover .dropdown {
@@ -134,7 +134,7 @@
 .carousel-container {
     display: flex;
     position: relative;
-    width: 74%;
+    width: 77%;
     overflow: hidden;
 }
 
@@ -172,8 +172,8 @@
 }
 
 .dropdown-card {
-    max-width: 150px;
-    max-height: 200px;
+    max-width: 125px;
+    max-height: 150px;
     display: flex;
     background-color: #edecec;
     height: 200px;
@@ -216,7 +216,7 @@
 }
 
 .dropdown-card h2{
-    font-size: 16px;
+    font-size: 11px;
 }
 
 .dropdown-card p{
@@ -225,11 +225,13 @@
 
 .card h2{
     color: #121b37;
+
 }
 
 .card h2 {
     margin: 15px 0;
     font-weight: 700;
+    font-size: 14px;
 }
 
 .card a {
@@ -238,12 +240,12 @@
 
 .card p {
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .card img {
     margin-top: 30px;
-    width: 115px;
+    width: 70px;
 }
 
 .dropdown-card a {
@@ -277,19 +279,19 @@
     text-align: center;
     justify-content: center;
     align-items: center;
-    margin-top: 80px;
-    margin-bottom: 100px;
+    margin-top: 6px;
+    margin-bottom: 42px;
 }
 
 .lobby .alltext h1 {
-    font-size: 45px;
+    font-size: 23px;
     text-transform: uppercase;
     font-weight: 900;
     color: #121b37;
 }
 
 .lobby h1{
-    font-size: 60px;
+    font-size: 25px;
     color: #121b37;
     font-weight: 900;
     text-transform: uppercase;
@@ -297,7 +299,7 @@
 }
 
 .alltext p {
-    font-size: 20px;
+    font-size: 14px;
     color: #121b37;
     font-weight: bold;
     margin-top: 15px;

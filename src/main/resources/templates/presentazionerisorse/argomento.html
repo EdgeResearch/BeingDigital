@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -36,6 +36,11 @@
             <th:block th:utext="${argomento.corpo}"></th:block>
         </p>
 
+        <!-- Contenitore per il diagramma -->
+        <div id="myDiagramDiv"></div>
+        <div id="myOverviewDiv" style="width: 100%; height: 1000px; border: solid 1px black; margin: 20px 0;"></div>
+
+
         <div class="box-bottoni">
             <a class="btnUtente" th:if="${lastId != null}" th:href="@{/argomento(id=${lastId})}">Lezione precedente</a>
             <a class="btnUtente" href="/utente/lezioniPrivacy">Lista Lezioni</a>
@@ -43,8 +48,17 @@
         </div>
     </div>
 
-
 </div>
+
+
 <th:block th:include="fragments/footer"></th:block>
 </body>
+
+<!-- Includi lo script lezione_passwordsicura.js -->
+<script src="https://unpkg.com/gojs/release/go-debug.js"></script>
+<script th:src="@{/js/mappe/privacy/base/lezione_passwordsicura.js}"></script>
+
+<!-- Caricamento dinamico del file JS della mappa -->
+<!-- <script th:src="@{${argomento.mappa}}"></script> -->
+
 </html>

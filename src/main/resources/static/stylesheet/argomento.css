@@ -20,7 +20,7 @@
 
 .racconto {
     min-height: 200vh;
-    background-color: var(--second-color);
+    background-color: #edecec63;
     overflow-x: hidden;
 }
 
@@ -41,7 +41,7 @@
 .racconto .raccontoText p {
     /* justify-content: center; */
     text-align: justify;
-    /* color: var(--bg-color); */
+    color: var(--bg-color);
 }
 
 .raccontoText {

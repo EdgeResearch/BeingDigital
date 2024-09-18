@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title th:text="${argomento.titolo}"></title>
+
+    <!-- Link per Slick Carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <link rel="stylesheet" th:href="@{/stylesheet/argomento.css}" type="text/css"/>
     <link href="/img/Logo.png" rel="shortcut icon"/>
 </head>
+
 <body>
 <th:block th:include="fragments/header"></th:block>
 <style>
@@ -20,8 +26,77 @@
     .image {
         text-align: center;
     }
-</style>
 
+    .card-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .card {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: left; /* Allinea il testo a sinistra */
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        color: #121b37;
+        margin-bottom: 20px;
+    }
+
+    .card h2 {
+        color: #1E88E5;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .card p {
+        color: #555;
+    }
+
+    /* Carosello Slick */
+
+    .slick-dots {
+        position: absolute;
+        top: 0; /* Posiziona i pallini in alto */
+        left: 50%;
+        transform: translateX(-50%); /* Centrali orizzontalmente */
+        z-index: 100; /* Assicurati che siano sopra le card */
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        list-style: none;
+    }
+
+    .slick-prev, .slick-next {
+        color: #1E88E5 !important;
+    }
+
+    .slick-prev:hover, .slick-next:hover {
+        color: #1565C0 !important;
+    }
+
+    .slick-dots li {
+        display: inline-block;
+        margin: 0 5px;
+    }
+
+    .slick-dots button {
+        background-color: #1E88E5;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        padding: 0;
+        font-size: 0;
+        line-height: 0;
+        cursor: pointer;
+    }
+
+    .slick-dots .slick-active button {
+        background-color: #1565C0;
+    }
+</style>
 <div class="racconto">
     <section class="bannerRacconto"
              th:style="'background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url('+@{/copertina(idArgomento=${param.id})}+'); background-size: cover; background-position: center;'">
@@ -30,15 +105,30 @@
         </div>
     </section>
 
-
     <div class="raccontoText">
-        <p>
-            <th:block th:utext="${argomento.corpo}"></th:block>
-        </p>
 
-        <!-- Contenitore per il diagramma -->
-        <div id="myDiagramDiv"></div>
-        <div id="myOverviewDiv" style="width: 100%; height: 1000px; border: solid 1px black; margin: 20px 0;"></div>
+        <h2> Lezione </h2>
+
+        <div id="argomentoContent" th:utext="${argomento.corpo}" style="display: none;"></div>
+        <!-- Contenitore per le card -->
+        <div class="card-container" id="cardContainer">
+            <!-- Le card verranno inserite qui dinamicamente -->
+        </div>
+
+        <h2> Esempi </h2>
+
+
+        <h2> Flash Cards </h2>
+        <iframe th:replace="presentazionerisorse/flashcard :: flashcardContent"></iframe>
+        <!-- <svg width="1000" height="1000"></svg> -->
+
+        <!-- Contenitore per la mappa -->
+        <h2> Mappa concettuale </h2>
+        <div id="diagram" style="position: relative">
+            <div id="myDiagramDiv"
+                 style="background-color: #f2f2f2; border: solid 1px black; width: 100%; height: 700px"></div>
+            <div id="myOverviewDiv"></div>
+        </div>
 
 
         <div class="box-bottoni">
@@ -56,9 +146,72 @@
 
 <!-- Includi lo script lezione_passwordsicura.js -->
 <script src="https://unpkg.com/gojs/release/go-debug.js"></script>
+<script src="https://d3js.org/d3.v6.min.js"></script>
 <script th:src="@{/js/mappe/privacy/base/lezione_passwordsicura.js}"></script>
 
 <!-- Caricamento dinamico del file JS della mappa -->
 <!-- <script th:src="@{${argomento.mappa}}"></script> -->
+
+<!-- Includi Slick Carousel -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script>
+    // Funzione che crea le card dividendo il testo in base al <p>
+    function generateCards() {
+        const content = document.getElementById('argomentoContent').innerHTML;
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(content, 'text/html');
+
+        // Seleziona tutti i tag <p>
+        const sections = doc.querySelectorAll('p');
+
+        const cardContainer = document.getElementById('cardContainer');
+
+        let cardIndex = 0;
+
+        sections.forEach((section) => {
+            // Ottieni il contenuto del paragrafo
+            const sectionContent = section.innerHTML.trim();
+
+            // Ignora i paragrafi che contengono solo "&nbsp;" o sono vuoti
+            if (sectionContent === "&nbsp;" || sectionContent === "") {
+                return; // Salta questo ciclo e non crea la card
+            }
+
+            // Crea una nuova card
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            // Crea il titolo della card
+            const titlecard = document.createElement('h2');
+            titlecard.textContent = `0${++cardIndex}`;
+
+            // Crea il paragrafo della card
+            const paragraph = document.createElement('p');
+            paragraph.innerHTML = sectionContent;
+
+            // Aggiunge titolo, paragrafo e bottone alla card
+            card.appendChild(titlecard);
+            card.appendChild(paragraph);
+
+            // Aggiunge la card al container
+            cardContainer.appendChild(card);
+        });
+
+        // Inizializza il carosello Slick
+        $('.card-container').slick({
+            slidesToShow: 1,  // Mostra una card alla volta
+            slidesToScroll: 1,
+            dots: true,       // Aggiunge i puntini di navigazione
+            infinite: false,  // Disabilita lo scorrimento infinito
+            prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+            nextArrow: '<button type="button" class="slick-next">Next</button>'
+        });
+    }
+
+    // Chiama la funzione quando la pagina è caricata
+    window.onload = generateCards;
+</script>
+
 
 </html>

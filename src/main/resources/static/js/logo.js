@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (scrollButton) {
         scrollButton.addEventListener('click', () => {
             const targetElement = document.querySelector('#intro');
-            const offset = 100; // Modifica questo valore per scrollare più o meno in basso
+            const offset = 240; // Modifica questo valore per scrollare più o meno in basso
 
             window.scrollTo({
                 top: targetElement.offsetTop + offset,

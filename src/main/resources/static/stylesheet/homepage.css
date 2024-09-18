@@ -340,6 +340,46 @@
     background-color: var(--second-color);
 }
 
+button#scrollButton {
+    width: 25px;
+    height: 37px;
+    color: #121b37;
+    background-color: #f2f2f2;
+    border: 3px solid var(--notify-color);
+    position: absolute;
+    transition: 0.5s;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 30px;
+    top: 90%;
+    border-radius: 34px;
+    overflow: hidden;
+}
+
+button#scrollButton span {
+    display: block;
+    position: relative;
+    transition: transform 0.3s ease;
+    animation: none;
+    bottom: 20px;
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(50%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+button#scrollButton:hover span {
+    animation: scrollText 1s ease-in-out;
+}
 
 @media (max-width: 1300px) {
     .banner-text h1 {

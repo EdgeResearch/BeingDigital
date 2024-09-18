@@ -1,21 +1,13 @@
 package it.unisa.beingdigital.storage.entity;
 
-import jakarta.persistence.Basic;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.List;
 
 /**
  * Questa classe rappresenta un argomento.
@@ -53,11 +45,23 @@ public class Argomento {
   @Column(nullable = true)
   private String mappa;
 
-  protected Argomento(String titolo, String corpo, byte[] copertina, MetaInfo metaInfo, String mappa) {
+  @ElementCollection
+  @CollectionTable(name = "flashcard_domande", joinColumns = @JoinColumn(name = "argomento_id"))
+  @Column(name = "flashcard_domande")
+  private List<String> flashcard_domande;
+
+  @ElementCollection
+  @CollectionTable(name = "flashcard_risposte", joinColumns = @JoinColumn(name = "argomento_id"))
+  @Column(name = "flashcard_risposte")
+  private List<String> flashcard_risposte;
+
+  protected Argomento(String titolo, String corpo, byte[] copertina, MetaInfo metaInfo, String mappa, List<String>flashcard_domande, List<String>flashcard_risposte) {
     this.titolo = titolo;
     this.corpo = corpo;
     this.copertina = copertina;
     this.metaInfo = metaInfo;
     this.mappa = mappa;
+    this.flashcard_domande = flashcard_domande;
+    this.flashcard_risposte = flashcard_risposte;
   }
 }

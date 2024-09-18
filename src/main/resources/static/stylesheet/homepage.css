@@ -67,13 +67,13 @@
 
 .lobby {
     text-align: center;
-    margin: 0;
+    margin-top: 0;
     padding: 0;
     display: flex;
     align-items: center;
     font-family: Arial, sans-serif;
     flex-direction: column;
-    min-height: 1250px;
+    min-height: 850px;
 }
 
 .allcont {
@@ -279,7 +279,7 @@
     text-align: center;
     justify-content: center;
     align-items: center;
-    margin-top: 6px;
+    margin-top: 90px;
     margin-bottom: 42px;
 }
 
@@ -304,6 +304,42 @@
     font-weight: bold;
     margin-top: 15px;
 }
+
+.intro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Occupare tutto lo schermo */
+    background-color: var(--bg-color); /* Colore di sfondo della sezione intro */
+    text-align: center;
+}
+
+.intro-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.intro img.logo {
+    max-width: 300px; /* Dimensione del logo */
+    height: auto;
+}
+
+.scroll-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: var(--notify-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.scroll-btn:hover {
+    background-color: var(--second-color);
+}
+
 
 @media (max-width: 1300px) {
     .banner-text h1 {
@@ -350,5 +386,14 @@
 
     .card {
         margin-bottom: 50px;
+    }
+
+    .intro img.logo {
+        max-width: 200px;
+    }
+
+    .scroll-btn {
+        font-size: 16px;
+        padding: 8px 16px;
     }
 }

@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 /**
  * Questa classe rappresenta una lezione.
  * Una lezione è un tipo di argomento che può essere studiato da un utente.
@@ -13,7 +15,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class Lezione extends Argomento {
 
-  public Lezione(String titolo, String corpo, byte[] copertina, MetaInfo metaInfo, String mappa) {
-    super(titolo, corpo, copertina, metaInfo, mappa);
+  public Lezione(String titolo, String corpo, byte[] copertina, MetaInfo metaInfo, String mappa, List<String> flashcard_domande, List<String> flashcard_risposte) {
+    super(titolo, corpo, copertina, metaInfo, mappa, flashcard_domande, flashcard_risposte);
   }
 }

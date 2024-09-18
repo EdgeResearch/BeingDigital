@@ -72,10 +72,12 @@ public class InserimentoArgomentoController {
     boolean result = switch (tipo) {
       case "lezione" -> inserimentoRisorsaService.inserimentoLezione(argomentoForm.getTitolo(),
           argomentoForm.getCorpo(), argomentoForm.getCopertina().getBytes(),
-          argomentoForm.getMetaInfoId(), argomentoForm.getMappa());
+          argomentoForm.getMetaInfoId(), argomentoForm.getMappa(),
+          argomentoForm.getFlashcard_domande(), argomentoForm.getFlashcard_risposte());
       case "racconto" -> inserimentoRisorsaService.inserimentoRacconto(argomentoForm.getTitolo(),
           argomentoForm.getCorpo(), argomentoForm.getCopertina().getBytes(),
-          argomentoForm.getMetaInfoId(), argomentoForm.getMappa());
+          argomentoForm.getMetaInfoId(), argomentoForm.getMappa(),
+          argomentoForm.getFlashcard_domande(),argomentoForm.getFlashcard_risposte());
       default -> throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     };
 

@@ -10,6 +10,8 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 /**
  * Questa classe rappresenta il form per l'inserimento e la modifica di un Argomento.
  */
@@ -36,4 +38,8 @@ public class ArgomentoForm {
   private Long metaInfoId;
 
   private  String mappa;
+
+  private List<String> flashcard_domande;
+
+  private List<String> flashcard_risposte;
 }

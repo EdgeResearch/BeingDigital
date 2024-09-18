@@ -15,11 +15,16 @@
           referrerpolicy="no-referrer" rel="stylesheet"/>
 </head>
 
-<th:block th:insert="~{fragments/header}"></th:block>
+<th:block th:insert="~{fragments/header_homepage}"></th:block>
 <body class="home">
-
+    <div class="intro">
+        <div class="intro-content">
+            <img id="logo" src="/img/Logo2.png" alt="BeDigital Logo" class="intro-logo">
+            <button id="scrollButton" class="scroll-button">Scopri di più</button>
+            <div id="intro" class="intro-section"></div>
+        </div>
+    </div>
 <div class="lobby">
-    <h1><span style="color: #121b37;"> BeDigital</span> Slogan replacement</h1>
 
     <div class="alltext">
         <h1>Scopri i nostri contenuti</h1>
@@ -182,5 +187,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script th:src="@{/js/carosello.js}"></script>
 <script th:src="@{/js/dropdown-menu.js}"></script>
+    <script th:src="@{/js/logo.js}"></script>
 </body>
 </html>

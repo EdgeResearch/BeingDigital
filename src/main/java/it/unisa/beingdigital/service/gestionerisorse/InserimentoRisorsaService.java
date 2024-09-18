@@ -59,13 +59,14 @@ public class InserimentoRisorsaService {
    * @throws jakarta.validation.ConstraintViolationException se i parametri risultano null.
    */
   public boolean inserimentoLezione(@NotNull String titolo, @NotNull String corpo,
-                                    @NotNull byte[] copertina, @NotNull Long metaInfoId, String mappa) {
+                                    @NotNull byte[] copertina, @NotNull Long metaInfoId, String mappa,
+                                    List<String>flashcard_domande, List<String> flashcard_risposte) {
     Optional<MetaInfo> optional = metaInfoRepository.findById(metaInfoId);
     if (optional.isEmpty()) {
       return false;
     }
 
-    Lezione lezione = new Lezione(titolo, corpo, copertina, optional.get(), mappa);
+    Lezione lezione = new Lezione(titolo, corpo, copertina, optional.get(), mappa, flashcard_domande, flashcard_risposte);
     argomentoRepository.save(lezione);
     return true;
   }
@@ -83,13 +84,14 @@ public class InserimentoRisorsaService {
    * @throws jakarta.validation.ConstraintViolationException se i parametri risultano null.
    */
   public boolean inserimentoRacconto(@NotNull String titolo, @NotNull String corpo,
-                                     @NotNull byte[] copertina, @NotNull Long metaInfoId, String mappa) {
+                                     @NotNull byte[] copertina, @NotNull Long metaInfoId, String mappa,
+                                     List<String>flashcard_domande, List<String>flashcard_risposte){
     Optional<MetaInfo> optional = metaInfoRepository.findById(metaInfoId);
     if (optional.isEmpty()) {
       return false;
     }
 
-    Racconto racconto = new Racconto(titolo, corpo, copertina, optional.get(), mappa);
+    Racconto racconto = new Racconto(titolo, corpo, copertina, optional.get(), mappa, flashcard_domande, flashcard_risposte);
     argomentoRepository.save(racconto);
     return true;
   }

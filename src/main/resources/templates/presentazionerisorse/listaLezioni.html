@@ -11,7 +11,10 @@
 <th:block th:insert="~{fragments/header}"></th:block>
 <div class="lezioni">
     <th:block th:if="${tipo}=='lezioniPrivacy'">
-        <h1 class="livello">Le tue lezioni</h1>
+        <h1 class="livello">Le tue lezioni sulla Privacy</h1>
+    </th:block>
+    <th:block th:if="${tipo}=='lezioniIntelligenza'">
+        <h1 class="livello">Le tue lezioni sull' Intelligenza Artificiale</h1>
     </th:block>
     <th:block th:if="${tipo}=='lezioniDaStudiare'">
         <h1 class="livello">Le tue lezioni</h1>

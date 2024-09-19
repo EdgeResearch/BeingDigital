@@ -26,6 +26,9 @@ public class Argomento {
   private Long id;
 
   @Column(nullable = false)
+  private String sottoArgomento;
+
+  @Column(nullable = false)
   private String titolo;
 
   @Lob
@@ -55,7 +58,8 @@ public class Argomento {
   @Column(name = "flashcard_risposte")
   private List<String> flashcard_risposte;
 
-  protected Argomento(String titolo, String corpo, byte[] copertina, MetaInfo metaInfo, String mappa, List<String>flashcard_domande, List<String>flashcard_risposte) {
+  protected Argomento(String sottoArgomento,String titolo, String corpo, byte[] copertina, MetaInfo metaInfo, String mappa, List<String>flashcard_domande, List<String>flashcard_risposte) {
+    this.sottoArgomento = sottoArgomento;
     this.titolo = titolo;
     this.corpo = corpo;
     this.copertina = copertina;

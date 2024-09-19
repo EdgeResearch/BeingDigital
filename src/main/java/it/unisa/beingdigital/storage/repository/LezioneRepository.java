@@ -1,6 +1,9 @@
 package it.unisa.beingdigital.storage.repository;
 
 import it.unisa.beingdigital.storage.entity.Lezione;
+import it.unisa.beingdigital.storage.entity.MetaInfo;
+
+import java.util.List;
 
 /**
  * Questa interfaccia rappresenta la repository di una lezione.
@@ -9,4 +12,5 @@ import it.unisa.beingdigital.storage.entity.Lezione;
  */
 
 public interface LezioneRepository extends ArgomentoGenericRepository<Lezione> {
+    List<Lezione> findByMetaInfoAndSottoArgomento(MetaInfo metaInfo, String sottoArgomento);
 }

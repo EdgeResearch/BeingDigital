@@ -15,7 +15,7 @@ import java.util.List;
 @ToString(callSuper = true)
 public class Lezione extends Argomento {
 
-  public Lezione(String titolo, String corpo, byte[] copertina, MetaInfo metaInfo, String mappa, List<String> flashcard_domande, List<String> flashcard_risposte) {
-    super(titolo, corpo, copertina, metaInfo, mappa, flashcard_domande, flashcard_risposte);
+  public Lezione(String sottoArgomento, String titolo, String corpo, byte[] copertina, MetaInfo metaInfo, String mappa, List<String> flashcard_domande, List<String> flashcard_risposte) {
+    super(sottoArgomento,titolo, corpo, copertina, metaInfo, mappa, flashcard_domande, flashcard_risposte);
   }
 }

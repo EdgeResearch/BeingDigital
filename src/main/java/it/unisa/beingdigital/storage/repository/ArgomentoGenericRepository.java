@@ -20,4 +20,5 @@ public interface ArgomentoGenericRepository<T extends Argomento> extends JpaRepo
   void deleteByMetaInfo(MetaInfo metaInfo);
 
   List<T> findByMetaInfoLivello(Livello livello, Sort sort);
+
 }

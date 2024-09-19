@@ -25,6 +25,10 @@ public class ArgomentoForm {
 
   @NotBlank
   @Size(max = 255)
+  private String sottoArgomento;
+
+  @NotBlank
+  @Size(max = 255)
   private String titolo;
 
   @NotBlank

@@ -10,6 +10,8 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,8 +33,13 @@ public class AuthFilter implements Filter {
     if (optional.isPresent() && isClassValid(optional.get())) {
       filterChain.doFilter(servletRequest, servletResponse);
     } else {
+      HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
+      String requestURI = httpRequest.getRequestURI();
+      String queryString = httpRequest.getQueryString();
+      String fullUrl = requestURI + (queryString != null ? "?" + queryString : "");
+
       ((HttpServletResponse) servletResponse).sendRedirect(
-          "/login?risorsa=" + ((HttpServletRequest) servletRequest).getRequestURI());
+              "/login?risorsa=" + URLEncoder.encode(fullUrl, StandardCharsets.UTF_8));
     }
   }
 

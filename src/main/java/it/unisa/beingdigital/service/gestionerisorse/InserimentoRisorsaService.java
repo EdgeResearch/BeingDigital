@@ -58,7 +58,7 @@ public class InserimentoRisorsaService {
    * @return true se l'inserimento è andato a buon fine, false altrimenti.
    * @throws jakarta.validation.ConstraintViolationException se i parametri risultano null.
    */
-  public boolean inserimentoLezione(@NotNull String titolo, @NotNull String corpo,
+  public boolean inserimentoLezione(@NotNull String sottoArgomento,@NotNull String titolo, @NotNull String corpo,
                                     @NotNull byte[] copertina, @NotNull Long metaInfoId, String mappa,
                                     List<String>flashcard_domande, List<String> flashcard_risposte) {
     Optional<MetaInfo> optional = metaInfoRepository.findById(metaInfoId);
@@ -66,7 +66,7 @@ public class InserimentoRisorsaService {
       return false;
     }
 
-    Lezione lezione = new Lezione(titolo, corpo, copertina, optional.get(), mappa, flashcard_domande, flashcard_risposte);
+    Lezione lezione = new Lezione(sottoArgomento,titolo, corpo, copertina, optional.get(), mappa, flashcard_domande, flashcard_risposte);
     argomentoRepository.save(lezione);
     return true;
   }
@@ -83,7 +83,7 @@ public class InserimentoRisorsaService {
    * @return true se l'inserimento è andato a buon fine, false altrimenti.
    * @throws jakarta.validation.ConstraintViolationException se i parametri risultano null.
    */
-  public boolean inserimentoRacconto(@NotNull String titolo, @NotNull String corpo,
+  public boolean inserimentoRacconto(@NotNull String sottoArgomento, @NotNull String titolo, @NotNull String corpo,
                                      @NotNull byte[] copertina, @NotNull Long metaInfoId, String mappa,
                                      List<String>flashcard_domande, List<String>flashcard_risposte){
     Optional<MetaInfo> optional = metaInfoRepository.findById(metaInfoId);
@@ -91,7 +91,7 @@ public class InserimentoRisorsaService {
       return false;
     }
 
-    Racconto racconto = new Racconto(titolo, corpo, copertina, optional.get(), mappa, flashcard_domande, flashcard_risposte);
+    Racconto racconto = new Racconto(sottoArgomento,titolo, corpo, copertina, optional.get(), mappa, flashcard_domande, flashcard_risposte);
     argomentoRepository.save(racconto);
     return true;
   }

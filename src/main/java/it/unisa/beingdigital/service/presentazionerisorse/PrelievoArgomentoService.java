@@ -158,12 +158,12 @@ public class PrelievoArgomentoService {
    * @throws jakarta.validation.ConstraintViolationException se il livello risulta null.
    */
   public List<
-      Map.Entry<MetaInfo, List<Lezione>>> getLezioniPerMetaInfoSortedByLivelloKeywordTitolo(
-      @NotNull Livello livello) {
+          Map.Entry<MetaInfo, List<Lezione>>> getLezioniPerMetaInfoSortedByLivelloKeywordTitolo(
+          @NotNull Livello livello) {
     List<MetaInfo> metaInfos;
     if (livello == Livello.MASTER) {
       metaInfos = prelievoMetaInfoService.getAllMetaInfoSortedByLivelloKeyword().stream()
-          .filter(metaInfo -> metaInfo.getLivello() != Livello.CITTADINANZA_DIGITALE).toList();
+              .filter(metaInfo -> metaInfo.getLivello() != Livello.CITTADINANZA_DIGITALE).toList();
     } else {
       metaInfos = metaInfoRepository.findByLivello(livello, Sort.by("keyword"));
     }
@@ -183,4 +183,38 @@ public class PrelievoArgomentoService {
 
     return lezioniPerMetaInfo;
   }
+
+  /**
+   * Implementa la funzionalità di prelievo di tutte le lezioni per un livello ordinate per livello
+   * della meta-info, keyword e titolo del racconto.
+   * Si assume che la corretta formulazione del livello sia stata controllata prima
+   * di effettuare la chiamata.
+   *
+   * @param livello livello delle lezioni da prelevare.
+   * @return Lista di coppie chiave-valore ordinata.
+   * @throws jakarta.validation.ConstraintViolationException se il livello risulta null.
+   */
+  public List<
+          Map.Entry<MetaInfo, List<Lezione>>> getLezioniPerMetaInfoSortedByLivelloKeywordTitoloAndSottoArgomento(
+          @NotNull Livello livello, String sottoArgomento) {
+
+    List<MetaInfo> metaInfos;
+    if (livello == Livello.MASTER) {
+      metaInfos = prelievoMetaInfoService.getAllMetaInfoSortedByLivelloKeyword().stream()
+              .filter(metaInfo -> metaInfo.getLivello() != Livello.CITTADINANZA_DIGITALE).toList();
+    } else {
+      metaInfos = metaInfoRepository.findByLivello(livello, Sort.by("keyword"));
+    }
+
+    return metaInfos.stream()
+            .map(metaInfo -> Map.entry(
+                    metaInfo,
+                    lezioneRepository.findByMetaInfoAndSottoArgomento(metaInfo, sottoArgomento).stream()
+                            .sorted(Comparator.comparing(Lezione::getTitolo))
+                            .toList()
+            ))
+            .filter(entry -> !entry.getValue().isEmpty())
+            .toList();
+  }
+
 }

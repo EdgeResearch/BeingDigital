@@ -31,11 +31,12 @@
             </div>
 
             <div class="form-step"> <!--da qui-->
-                    <div class="input-group">
-                        <th:block th:each="domanda, istat : ${domande}">
-                            <p class="domanda" th:text="${istat.count}+') '+${domanda.testo}"></p>
-                            <input th:name="'rispostaFormList['+ ${istat.count - 1} +'].idDomanda'" th:value="${domanda.id}"
-                                   type="hidden">
+
+                <div class="container-domande">
+                    <th:block th:each="domanda, istat : ${domande}">
+                        <p class="domanda" th:text="${istat.count}+') '+${domanda.testo}"></p>
+
+                        <div class="input-group">
                             <th:block
                                     th:with="risposte = ${@arrays.shuffle(domanda.corretta, domanda.sbagliata1, domanda.sbagliata2, domanda.sbagliata3)}">
                                 <label class="container"><p class="risposta" th:text="${risposte.get(0)}"></p>
@@ -63,11 +64,13 @@
                                     <span class="checkmark"></span>
                                 </label>
                             </th:block>
-                        </th:block>
-                    </div>
+                            <input th:name="'rispostaFormList['+ ${istat.count - 1} +'].idDomanda'" th:value="${domanda.id}" type="hidden">
+                        </div>
+                    </th:block>
+                </div>
                 <div class="btns-group">
                     <a class="btn btn-prev" href="#">Indietro</a>
-                    <a class="btn btn-next" href="#">Avanti</a>
+                    <a class="btn btn-next disabled" href="#">Avanti</a>
                 </div>
             </div>
             <div class="form-step">

@@ -42,8 +42,4 @@ public class ArgomentoForm {
   private Long metaInfoId;
 
   private  String mappa;
-
-  private List<String> flashcard_domande;
-
-  private List<String> flashcard_risposte;
 }

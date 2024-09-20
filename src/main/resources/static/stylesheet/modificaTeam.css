@@ -20,7 +20,7 @@
 
 
 .input {
-    width: 80%;
+    width: 100%;
     margin-bottom: 33px;
     padding: 10px;
     outline: none;
@@ -35,7 +35,7 @@
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url(/img/backgroundLogo.png);
+    background: #edecec63;
     background-size: contain;
     padding: 20px 0 50px;
 }
@@ -57,11 +57,13 @@
 .form{
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .radioButton{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 22px;
 }
 
 .select-items::-webkit-scrollbar-track {
@@ -77,6 +79,38 @@
 
 .select-items::-webkit-scrollbar-thumb {
     background: var(--second-color);
+}
+
+label#label_classe {
+    font-size: 13px;
+    margin: 2px 16px 2px 6px;
+}
+
+label#label_gruppo {
+    font-size: 13px;
+    margin: 2px 5px 2px 6px;
+}
+
+.modifica form label {
+    text-align: left;
+    width: 80%;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-wrap: nowrap;
+    color: var(--notify-color);
+}
+
+input#confirmTeam {
+    border: 3px solid var(--notify-color);
+    color: var(--white-color);
+    cursor: pointer;
+    background: var(--notify-color);
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 16px;
+    transition: all 150ms linear;
 }
 
 @media (max-width: 1046px) {

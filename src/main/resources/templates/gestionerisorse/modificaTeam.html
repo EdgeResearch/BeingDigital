@@ -20,9 +20,9 @@
 
                 <div class="radioButton">
                     <input type="radio" id="classe1" name="selezione" value="classe" th:field="*{tipoTeam}" onclick="cambiaStile('classe')">
-                    <label for="classe">Classe</label><br>
+                    <label id="label_classe" for="classe">Classe</label><br>
                     <input type="radio" id="gruppo" name="selezione" value="gruppo" th:field="*{tipoTeam}" onclick="cambiaStile('gruppo')">
-                    <label for="gruppo">Gruppo</label><br>
+                    <label id="label_gruppo" for="gruppo">Gruppo</label><br>
                 </div>
 
                 <input class="input" id="codice" name="codice" style="display: none" value="" type="text">

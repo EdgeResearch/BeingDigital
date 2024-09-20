@@ -48,24 +48,12 @@ public class Argomento {
   @Column(nullable = true)
   private String mappa;
 
-  @ElementCollection
-  @CollectionTable(name = "flashcard_domande", joinColumns = @JoinColumn(name = "argomento_id"))
-  @Column(name = "flashcard_domande")
-  private List<String> flashcard_domande;
-
-  @ElementCollection
-  @CollectionTable(name = "flashcard_risposte", joinColumns = @JoinColumn(name = "argomento_id"))
-  @Column(name = "flashcard_risposte")
-  private List<String> flashcard_risposte;
-
-  protected Argomento(String sottoArgomento,String titolo, String corpo, byte[] copertina, MetaInfo metaInfo, String mappa, List<String>flashcard_domande, List<String>flashcard_risposte) {
+  protected Argomento(String sottoArgomento,String titolo, String corpo, byte[] copertina, MetaInfo metaInfo, String mappa) {
     this.sottoArgomento = sottoArgomento;
     this.titolo = titolo;
     this.corpo = corpo;
     this.copertina = copertina;
     this.metaInfo = metaInfo;
     this.mappa = mappa;
-    this.flashcard_domande = flashcard_domande;
-    this.flashcard_risposte = flashcard_risposte;
   }
 }

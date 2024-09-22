@@ -19,13 +19,13 @@
 
 .utente {
     display: flex;
-    justify-content: center;
     min-height: 88vh;
     background-size: contain;
     background: #edecec63;
     overflow-x: hidden;
     justify-items: center;
     align-items: center;
+    justify-content: space-evenly;
 }
 
 
@@ -52,7 +52,6 @@
     left: 47%;
     bottom: 30px;
 }
-
 
 #snackbar.show {
     visibility: visible;
@@ -261,7 +260,7 @@
     text-decoration: none;
     display: inline-block;
     margin: 10px 20px;
-    padding: 12px 0;
+    padding: 6px 0;
     color: var(--white-color);
     background-color: var(--notify-color);
     border: 3px solid var(--notify-color);
@@ -272,6 +271,55 @@
     text-transform: uppercase;
     font-weight: 600;
     font-size: 12px;
+}
+
+.btnUtente.btnTeam{
+    max-width: 150px;
+    width: auto;
+}
+
+.box-team {
+    display: flex;
+    margin: 7px 0px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gestione_team {
+    display: flex;
+    margin: 7px 0px;
+    flex-direction: column;
+    align-items: center;;
+}
+
+a#creaTeam {
+    width: 150px;
+}
+
+p#scritta-team {
+    margin-bottom: 5px;
+}
+
+ul {
+    max-height: 107px;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+}
+
+div#box-crea-button {
+    margin-top: 12px;
+}
+
+.box-codice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
 }
 
 .btnUtente:hover {
@@ -307,6 +355,24 @@
 
 .eliminaAcc:hover {
     font-size: 1.3em;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--notify-color);
+    margin: 22px 9px;
+}
+
+.input {
+    width: 50%;
+    margin-bottom: 9px;
+    padding: 10px;
+    outline: none;
+    font-size: 0.8em;
+    border: 1px solid #121b37;
+    letter-spacing: 0.1em;
 }
 
 @media (max-width: 990px) {

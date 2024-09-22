@@ -6,6 +6,7 @@ import it.unisa.beingdigital.storage.entity.util.Livello;
 import it.unisa.beingdigital.storage.repository.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -177,6 +178,22 @@ public class InserimentoRisorsaService {
   }
 
   /**
+   * metodo per generare il codice del team
+   */
+  private String generateShortCode(int length) {
+    String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // Puoi includere anche lettere minuscole se vuoi
+    SecureRandom random = new SecureRandom();
+    StringBuilder code = new StringBuilder(length);
+
+    for (int i = 0; i < length; i++) {
+      int index = random.nextInt(chars.length());
+      code.append(chars.charAt(index));
+    }
+
+    return code.toString();
+  }
+
+  /**
    * Implementa la funzionalità di creazione di un Team.
    * Si assume che la corretta formulazione dei parametri sia stata controllata prima
    * di effettuare la chiamata.
@@ -190,7 +207,7 @@ public class InserimentoRisorsaService {
    */
   public boolean inserimentoTeam(@NotNull String nome, @NotNull String email, String tipoTeam, String città, String classe1, String scuola){
 
-    String codice = UUID.randomUUID().toString();
+    String codice = generateShortCode(7);
 
     List<AmministratoreCittadini> amministratoriCittadini = new ArrayList<>();
 

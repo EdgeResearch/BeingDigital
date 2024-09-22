@@ -33,19 +33,33 @@
 
   <div class="team">
     <span></span>
-    <div th:if="${message != null}">
-      <p th:text="${message}"></p>
+    <div class="box-codice">
+      <label class="text" for="nome">Entra in un team inserendo un codice</label>
+      <input class="input" id="nome" name="nome" required="" type="text" value="">
+      <div class="areabtn">
+        <a class="btnUtente" href="/amministratoreCittadini/creazioneTeam">Entra</a>
+      </div>
     </div>
-
-    <div th:if="${teams != null}">
-      <h2>I tuoi team:</h2>
-      <ul>
-        <li th:each="team : ${teams}" th:text="${team.nome}"></li>
-      </ul>
-    </div>
-
-    <div class="areabtn">
-      <a class="btnUtente" href="/amministratoreCittadini/creazioneTeam">Crea Team</a>
+    <div class="box-team">
+      <div class="gestione_team">
+        <div th:if="${message != null}">
+          <p th:text="${message}"></p>
+        </div>
+      </div>
+      <div class="gestione_team" th:if="${teams != null}">
+        <p id="scritta-team">I tuoi team:</p>
+        <ul>
+          <li th:each="team : ${teams}">
+            <form action="/team" method="post">
+              <input type="hidden" name="codice" th:value="${team.codice}">
+              <button type="submit" class="btnUtente btnTeam" th:text="${team.nome}"></button>
+            </form>
+          </li>
+        </ul>
+      </div>
+      <div class="areabtn">
+        <a id="creaTeam" class="btnUtente" href="/amministratoreCittadini/creazioneTeam">Crea Team</a>
+      </div>
     </div>
   </div>
 </div>

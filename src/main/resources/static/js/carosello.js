@@ -1,3 +1,5 @@
+
+/*
 document.addEventListener('DOMContentLoaded', () => {
     const prevButton = document.querySelector('.prev');
     const nextButton = document.querySelector('.next');
@@ -28,5 +30,16 @@ document.addEventListener('DOMContentLoaded', () => {
             currentIndex = slide.children.length - 3;
         }
         updateCarousel();
+    });
+});
+
+*/
+
+document.addEventListener('DOMContentLoaded', () => {
+    $('.carousel-slide').slick({
+        infinite: false,
+        variableWidth:true,
+        prevArrow:".prev",
+        nextArrow:".next"
     });
 });

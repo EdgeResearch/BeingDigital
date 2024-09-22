@@ -73,7 +73,7 @@
     align-items: center;
     font-family: Arial, sans-serif;
     flex-direction: column;
-    min-height: 850px;
+    min-height: 900px;
 }
 
 .allcont {
@@ -107,6 +107,7 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     align-items: center;
     top: 13px;
+    border: solid 5px #f8f8f8;
 }
 
 .card:hover {
@@ -121,10 +122,10 @@
     background-color: transparent;
     border-radius: 8px;
     z-index: 9999;
-    padding: 5px;
+    padding: 10px 0px;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-    max-width: 256px;
+    max-width: 250px;
 }
 
 .card:hover .dropdown {
@@ -172,7 +173,7 @@
 }
 
 .dropdown-card {
-    max-width: 125px;
+    width: 111px;
     max-height: 150px;
     display: flex;
     background-color: #edecec;
@@ -183,6 +184,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    border: solid 3px #edecec;
 }
 
 .dropdown-card img {

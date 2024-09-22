@@ -33,13 +33,18 @@ public class Team{
     @Column(nullable = false)
     private String nome;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany
+    @JoinTable(
+            name = "team_utenti",
+            joinColumns = @JoinColumn(name = "codice"),
+            inverseJoinColumns = @JoinColumn(name = "utente_id")
+    )
     private List<Utente> utenti;
 
     @ManyToMany
     @JoinTable(
             name = "team_amministratore_cittadini",
-            joinColumns = @JoinColumn(name = "team_id"),
+            joinColumns = @JoinColumn(name = "codice"),
             inverseJoinColumns = @JoinColumn(name = "amministratore_id")
     )
     private List<AmministratoreCittadini> amministratoriCittadini;

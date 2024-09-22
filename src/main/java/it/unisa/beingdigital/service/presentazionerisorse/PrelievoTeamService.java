@@ -32,6 +32,9 @@ public class PrelievoTeamService {
     @Autowired
     private AmministratoreCittadiniRepository amministratoreCittadiniRepository;
 
+    @Autowired
+    private UtenteRepository utenteRepository;
+
     public Optional<Team> getTeam(@NotNull String codice) {
         return teamRepository.findById(codice);
     }
@@ -51,4 +54,8 @@ public class PrelievoTeamService {
         return amministratoreCittadini.getTeams();
     }
 
+    public List<Team> getTeamsForUtente(Long utenteId) {
+        Utente utente = utenteRepository.findById(utenteId).orElseThrow(() -> new IllegalStateException("Utente non trovato con id " + utenteId));
+        return utente.getTeams();
+    }
 }

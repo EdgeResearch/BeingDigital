@@ -2,7 +2,7 @@ document.addEventListener('scroll', function() {
     const logo = document.getElementById('header-logo');
     const mainlogo = document.getElementById('logo');
 
-    if (window.scrollY > 180) {
+    if (window.scrollY > 400) {
         logo.style.display = 'flex';
         logo.classList.add('scrolled');
         mainlogo.style.display = 'none';
@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (scrollButton) {
         scrollButton.addEventListener('click', () => {
-            const targetElement = document.querySelector('#intro');
-            const offset = 240; // Modifica questo valore per scrollare più o meno in basso
+            const targetElement = document.querySelector('#main');
+            const offset = 0; // Modifica questo valore per scrollare più o meno in basso
 
             window.scrollTo({
                 top: targetElement.offsetTop + offset,

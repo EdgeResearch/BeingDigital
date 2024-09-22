@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Team</title>
+    <link rel="stylesheet" th:href="@{/css/team.css}" type="text/css"/>
+</head>
+<body>
+
+<th:block th:insert="~{fragments/header}"></th:block>
+
+<div>
+    <h1>Dettagli del Team</h1>
+
+    <div th:if="${team != null}">
+        <p><strong>Codice del team:</strong> <span th:text="${team.codice}"></span></p>
+        <p><strong>Nome del Team:</strong> <span th:text="${team.nome}"></span></p>
+        <h2>Utenti del Team</h2>
+        <ul>
+            <li th:each="utente : ${utenti}">
+                <span th:text="${utente.nome} + ' ' + ${utente.cognome}"></span>
+            </li>
+        </ul>
+        <h2>Amministratori Cittadini del Team</h2>
+        <ul>
+            <li th:each="amministratoreCittadini : ${amministratoriCittadini}">
+                <span th:text="${amministratoreCittadini.nome} + ' ' + ${amministratoreCittadini.cognome}"></span>
+            </li>
+        </ul>
+    </div>
+</div>
+<th:block th:insert="~{fragments/footer}"></th:block>
+</body>
+</html>

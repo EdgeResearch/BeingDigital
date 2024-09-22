@@ -13,6 +13,11 @@
     <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           referrerpolicy="no-referrer" rel="stylesheet"/>
+
+    <!-- Link per Slick Carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 </head>
 
 <th:block th:insert="~{fragments/header_homepage}"></th:block>
@@ -21,10 +26,10 @@
         <div class="intro-content">
             <img id="logo" src="/img/Logo2.png" alt="BeDigital Logo" class="intro-logo">
             <button id="scrollButton" class="scroll-button"><span>.</span></button>
-            <div id="intro" class="intro-section"></div>
+
         </div>
     </div>
-<div class="lobby">
+<div class="lobby" id="main">
 
     <div class="alltext">
         <h1>Scopri i nostri contenuti</h1>
@@ -37,7 +42,8 @@
 
     <div class="carousel-container">
         <button class="prev">‹</button>
-        <div class="carousel-slide" style="transform: translateX(0px);">
+        <div class="carousel-slide" style="max-width:100%; transform: translateX(0px);">
+            <div class="card-parent">
             <div class="card" data-dropdown="dropdown-1">
                 <img alt="privacy e sicurezza" src="/img/icons8-privacy-100.png">
                 <h2 >PRIVACY</h2>
@@ -46,6 +52,9 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
+            </div>
+
+            <div class="card-parent">
             <div class="card" data-dropdown="dropdown-2">
                 <img alt="artificial" src="/img/icons8-intelligenza-artificiale-100.png">
                 <h2>INTELLIGENZA ARTIFICIALE</h2>
@@ -54,6 +63,9 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
+            </div>
+
+            <div class="card-parent">
             <div class="card" data-dropdown="dropdown-3">
                 <img alt="online-Content" src="/img/icons8-creation-100.png">
                 <h2>CREAZIONE <br> CONTENUTI</h2>
@@ -62,6 +74,9 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
+            </div>
+
+            <div class="card-parent">
             <div class="card" data-dropdown="dropdown-4">
                 <img alt="online-communication" src="/img/icons8-comunicazione-100.png">
                 <h2>COMUNICAZIONE</h2>
@@ -70,6 +85,9 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
+            </div>
+
+            <div class="card-parent">
             <div class="card" data-dropdown="dropdown-5">
                 <img alt="privacy" src="/img/icons8-privacy-100.png">
                 <h2 >PRIVACY</h2>
@@ -78,6 +96,9 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
+            </div>
+
+            <div class="card-parent">
             <div class="card" data-dropdown="dropdown-6">
                 <img alt="artificial" src="/img/icons8-intelligenza-artificiale-100.png">
                 <h2>INTELLIGENZA ARTIFICIALE</h2>
@@ -86,6 +107,9 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
+            </div>
+
+            <div class="card-parent">
             <div class="card" data-dropdown="dropdown-7">
                 <img alt="online-Content" src="/img/icons8-creation-100.png">
                 <h2>CREAZIONE <br> CONTENUTI</h2>
@@ -94,6 +118,9 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
+            </div>
+
+            <div class="card-parent">
             <div class="card" data-dropdown="dropdown-8">
                 <img alt="online-communication" src="/img/icons8-comunicazione-100.png">
                 <h2>COMUNICAZIONE</h2>
@@ -102,6 +129,8 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
+            </div>
+
         </div>
         <button class="next">›</button>
     </div>
@@ -207,5 +236,8 @@
 <script th:src="@{/js/carosello.js}"></script>
 <script th:src="@{/js/dropdown-menu.js}"></script>
     <script th:src="@{/js/logo.js}"></script>
+
+<!-- Includi Slick Carousel -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </body>
 </html>

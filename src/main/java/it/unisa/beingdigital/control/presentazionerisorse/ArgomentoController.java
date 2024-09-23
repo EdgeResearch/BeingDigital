@@ -60,4 +60,9 @@ public class ArgomentoController {
     model.addAttribute("argomento", optional.get());
     return "presentazionerisorse/argomento";
   }
+
+
+  public void caricaFlashcard(){
+
+  }
 }

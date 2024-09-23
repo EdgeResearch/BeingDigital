@@ -23,17 +23,17 @@ public class FlashCard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ElementCollection
-    private List<String> domande;
+    @Column(nullable = false, columnDefinition = "domande")
+    private String domande;
 
-    @ElementCollection
-    private List<String> risposte;
+    @Column(nullable = false, columnDefinition = "risposte")
+    private String risposte;
 
     @ManyToOne
     @JoinColumn(name = "argomento_id", nullable = false)
     private Argomento argomento;
 
-    public FlashCard(List<String> domande, List<String> risposte, Argomento argomento) {
+    public FlashCard(String domande, String risposte, Argomento argomento) {
         this.domande = domande;
         this.risposte = risposte;
         this.argomento = argomento;

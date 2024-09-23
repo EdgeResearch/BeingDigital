@@ -15,99 +15,22 @@
 </head>
 
 <body>
+
 <th:block th:include="fragments/header"></th:block>
-<style>
-    .image-style-side {
-        float: right;
-        margin-left: var(--ck-image-style-spacing);
-        max-width: 50%;
-        margin: 10px 0 0 0;
-    }
 
-    .image {
-        text-align: center;
-    }
-
-    .card-container {
-        display: flex;
-        justify-content: center;
-    }
-
-    .card {
-        background-color: white;
-        padding: 20px;
-        border-radius: 5px;
-        text-align: left; /* Allinea il testo a sinistra */
-        margin-bottom: 20px;
-    }
-
-    h2 {
-        color: #121b37;
-        margin-bottom: 20px;
-    }
-
-    .card h2 {
-        color: #1E88E5;
-        margin-bottom: 15px;
-        font-weight: bold;
-    }
-
-    .card p {
-        color: #555;
-    }
-
-    /* Carosello Slick */
-
-    .slick-dots {
-        position: absolute;
-        top: 0; /* Posiziona i pallini in alto */
-        left: 50%;
-        transform: translateX(-50%); /* Centrali orizzontalmente */
-        z-index: 100; /* Assicurati che siano sopra le card */
-        margin: 0;
-        padding: 0;
-        text-align: center;
-        list-style: none;
-    }
-
-    .slick-prev, .slick-next {
-        color: #1E88E5 !important;
-    }
-
-    .slick-prev:hover, .slick-next:hover {
-        color: #1565C0 !important;
-    }
-
-    .slick-dots li {
-        display: inline-block;
-        margin: 0 5px;
-    }
-
-    .slick-dots button {
-        background-color: #1E88E5;
-        border-radius: 50%;
-        width: 10px;
-        height: 10px;
-        padding: 0;
-        font-size: 0;
-        line-height: 0;
-        cursor: pointer;
-    }
-
-    .slick-dots .slick-active button {
-        background-color: #1565C0;
-    }
-</style>
 <div class="racconto">
-    <section class="bannerRacconto"
-             th:style="'background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url('+@{/copertina(idArgomento=${param.id})}+'); background-size: cover; background-position: center;'">
+    <section class="bannerRacconto" th:style="'background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url('+@{/copertina(idArgomento=${param.id})}+'); background-size: cover; background-position: center;'">
         <div class="banner-text">
             <h1 th:text="${argomento.titolo}"></h1>
         </div>
     </section>
 
-    <div class="raccontoText">
+    <!-- caso in cui l'argomento è un racconto -->
+    <div th:if="${argomento.id == 500}">
+        <iframe th:replace="presentazionerisorse/racconto :: racconto"></iframe>
+    </div>
 
+    <div th:if="${argomento.id != 500}" class="raccontoText">
         <h2> Lezione </h2>
 
         <div id="argomentoContent" th:utext="${argomento.corpo}" style="display: none;"></div>
@@ -118,16 +41,18 @@
 
         <h2> Esempi </h2>
 
-
         <h2> Flash Cards </h2>
-        <iframe th:replace="presentazionerisorse/flashcard :: flashcardContent"></iframe>
+
+        <div class="iframe-row">
+            <iframe th:replace="presentazionerisorse/flashcard :: flashcardContent"></iframe>
+        </div>
         <!-- <svg width="1000" height="1000"></svg> -->
 
         <!-- Contenitore per la mappa -->
         <h2> Mappa concettuale </h2>
         <div id="diagram" style="position: relative">
             <div id="myDiagramDiv"
-                 style="background-color: #f2f2f2; border: solid 1px black; width: 100%; height: 700px"></div>
+                 style="background-color: #f2f2f2; border: solid 1px black; width: 100%; height: 500px"></div>
             <div id="myOverviewDiv"></div>
         </div>
 

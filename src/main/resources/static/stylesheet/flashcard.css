@@ -1,7 +1,12 @@
+.domanda .risposta {
+    margin-top: 15px;
+    font-family: 'Montserrat';
+}
+
 .flip-card {
     background-color: transparent;
-    width: 300px;
-    height: 300px;
+    width: 180px;
+    height: 250px;
     perspective: 1000px;
 }
 
@@ -12,7 +17,8 @@
     text-align: center;
     transition: transform 0.6s;
     transform-style: preserve-3d;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 .flip-card:hover .flip-card-inner {
@@ -25,15 +31,43 @@
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
 }
 
 .flip-card-front {
-    background-color: #bbb;
+    background-color: white; /* Colore di sfondo frontale */
     color: black;
+    font-family: 'Montserrat';
+    border: 4px dashed #8e44ad;
 }
 
 .flip-card-back {
-    background-color: #2980b9;
-    color: white;
+    background-color: white;
+    color: black;
     transform: rotateY(180deg);
+    font-family: 'Montserrat';
+    border: 4px dashed #3498db;
+}
+
+
+/* Stili aggiuntivi per il testo */
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #e74c3c; /* Colore del titolo */
+}
+
+.card-content {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #2c3e50;
+}
+
+.card-footer {
+    font-size: 12px;
+    margin-top: 20px;
+    color: #7f8c8d;
 }

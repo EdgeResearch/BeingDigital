@@ -27,7 +27,7 @@ import org.springframework.web.server.ResponseStatusException;
  */
 
 @Controller
-@RequestMapping("/admin/modificaTeam")
+@RequestMapping("/amministratoreCittadini/modificaTeam")
 public class ModificaTeamController {
 
     @Autowired
@@ -78,5 +78,26 @@ public class ModificaTeamController {
             return "gestionerisorse/modificaTeam";
         }
         return "redirect:/auth/areaPersonale";
+    }
+
+    @PostMapping("/espelliUtente")
+    public String espelliUtente(@RequestParam String codiceTeam, @RequestParam String idUtente) {
+
+        System.out.println(codiceTeam);
+        System.out.println(idUtente);
+
+        Optional<Team> optionalTeam = prelievoTeamService.getTeam(codiceTeam);
+        if (optionalTeam.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Team non trovato");
+        }
+
+        Team team = optionalTeam.get();
+
+        boolean espulsioneSuccesso = modificaRisorsaService.espelliUtententeDalTeam(team, Long.valueOf(idUtente));
+        if (!espulsioneSuccesso) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Espulsione fallita");
+        }
+
+        return "redirect:/team?codice=" + codiceTeam;
     }
 }

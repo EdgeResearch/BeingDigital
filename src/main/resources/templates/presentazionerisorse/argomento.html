@@ -46,6 +46,15 @@
         <div class="iframe-row">
             <iframe th:replace="presentazionerisorse/flashcard :: flashcardContent"></iframe>
         </div>
+
+        <div class="iframe-row">
+            <div th:each="flashCard : ${flashCards}">
+                <div class="card">
+                    <h2 th:text="'Card ' + ${flashCard.id}"></h2>
+                    <p th:text="${flashCard.domande}"></p>
+                </div>
+            </div>
+        </div>
         <!-- <svg width="1000" height="1000"></svg> -->
 
         <!-- Contenitore per la mappa -->

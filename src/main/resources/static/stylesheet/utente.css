@@ -308,6 +308,7 @@ ul {
     padding: 0;
     margin: 0;
     overflow-y: auto;
+    align-items: center;
 }
 
 div#box-crea-button {

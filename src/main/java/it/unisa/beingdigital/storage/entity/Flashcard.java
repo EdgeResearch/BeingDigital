@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 /**
  * Questa classe rappresenta una FlashCard.
  * Ogni FlashCard contiene delle domande e risposte,
@@ -17,23 +15,23 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Setter
-public class FlashCard {
+public class Flashcard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, columnDefinition = "domande")
+    @Column(nullable = false)
     private String domande;
 
-    @Column(nullable = false, columnDefinition = "risposte")
+    @Column(nullable = false)
     private String risposte;
 
     @ManyToOne
     @JoinColumn(name = "argomento_id", nullable = false)
     private Argomento argomento;
 
-    public FlashCard(String domande, String risposte, Argomento argomento) {
+    public Flashcard(String domande, String risposte, Argomento argomento) {
         this.domande = domande;
         this.risposte = risposte;
         this.argomento = argomento;

@@ -4,32 +4,67 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Team</title>
-    <link rel="stylesheet" th:href="@{/css/team.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/stylesheet/team.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/stylesheet/cancellazione.css}" type="text/css"/>
+    <link href="/img/Logo.png" rel="shortcut icon"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
 <th:block th:insert="~{fragments/header}"></th:block>
 
-<div>
-    <h1>Dettagli del Team</h1>
+<div class="box" id="boxTeam">
+    <h2>Dettagli del Team</h2>
 
-    <div th:if="${team != null}">
-        <p><strong>Codice del team:</strong> <span th:text="${team.codice}"></span></p>
-        <p><strong>Nome del Team:</strong> <span th:text="${team.nome}"></span></p>
-        <h2>Utenti del Team</h2>
-        <ul>
-            <li th:each="utente : ${utenti}">
-                <span th:text="${utente.nome} + ' ' + ${utente.cognome}"></span>
-            </li>
-        </ul>
-        <h2>Amministratori Cittadini del Team</h2>
-        <ul>
-            <li th:each="amministratoreCittadini : ${amministratoriCittadini}">
-                <span th:text="${amministratoreCittadini.nome} + ' ' + ${amministratoreCittadini.cognome}"></span>
-            </li>
-        </ul>
+    <p class="team-code">Codice del Team: <span th:text="${team.codice}"></span></p>
+
+    <div style="overflow-x:auto;">
+        <table>
+            <tr class="notspecial">
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Livello</th>
+                <th th:if="${AmministratoreCittadini != null}">Cancella</th>
+            </tr>
+            <th:block th:each="amministratoreCittadini : ${amministratoriCittadini}">
+                <tr class="special" >
+                    <td th:text="${amministratoreCittadini.nome}"></td>
+                    <td th:text="${amministratoreCittadini.cognome}"></td>
+                    <td></td>
+                    <td th:if="${AmministratoreCittadini != null}"><i class="fa-solid fa-trash" th:data-id-utente="${amministratoreCittadini.id}" onclick="showConferma(this)"></i></td>
+                </tr>
+            </th:block>
+            <th:block th:each="utente : ${utenti}">
+                <tr class="special" >
+                    <td th:text="${utente.nome}"></td>
+                    <td th:text="${utente.cognome}"></td>
+                    <td th:text="${utente.livello}"></td>
+                    <td th:if="${AmministratoreCittadini != null}"><i class="fa-solid fa-trash" th:data-id-utente="${utente.id}" onclick="showConferma(this)"></i></td>
+                </tr>
+            </th:block>
+        </table>
     </div>
 </div>
+
+<form action="/amministratoreCittadini/modificaTeam/espelliUtente" method="post">
+    <input type="hidden" name="codiceTeam" th:value="${team.codice}">
+    <input type="text" name="idUtente" placeholder="Codice utente" style="display:none">
+    <div id="conf" class="all-canc">
+        <div class="cancella">
+            <div class="textcancella">
+                <h1>ATTENZIONE</h1>
+                <p> Sicuro di voler procedere all'espulsione di questo utente?</p>
+                <div class="btn-canc">
+                    <button class="elimina" type="submit">SI</button>
+                    <a class="elimina" onclick="hideConferma()">NO</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script th:src="@{/js/amministratoreCittadini.js}"></script>
+
 <th:block th:insert="~{fragments/footer}"></th:block>
 </body>
 </html>

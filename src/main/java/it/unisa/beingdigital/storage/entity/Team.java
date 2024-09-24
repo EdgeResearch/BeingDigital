@@ -2,6 +2,7 @@ package it.unisa.beingdigital.storage.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Iterator;
 import java.util.List;
 
 import lombok.AccessLevel;
@@ -51,6 +52,18 @@ public class Team{
 
     @Column(nullable = false, length = 319)
     private String email;
+
+    public boolean espelliUtente(Long idUtente) {
+        Iterator<Utente> iterator = utenti.iterator();
+        while (iterator.hasNext()) {
+            Utente utente = iterator.next();
+            if (utente.getId().equals(idUtente)) {
+                iterator.remove();
+                return true;
+            }
+        }
+        return false;
+    }
 
     public Team(String codice, String nome, List<Utente> utenti, List<AmministratoreCittadini> amministratoreCittadini, String email) {
         this.codice = codice;

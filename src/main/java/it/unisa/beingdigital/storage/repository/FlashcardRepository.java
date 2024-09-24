@@ -1,12 +1,10 @@
 package it.unisa.beingdigital.storage.repository;
 
-import it.unisa.beingdigital.storage.entity.FlashCard;
+import it.unisa.beingdigital.storage.entity.Flashcard;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+public interface FlashcardRepository extends JpaRepository<Flashcard, Long> {
 
-public interface FlashcardRepository extends JpaRepository<FlashCard, Long> {
-
-    // Trova tutte le flashcard per un dato argomento_id
-    List<FlashCard> findByArgomentoId(Long argomentoId);
+    List<Flashcard> findByArgomentoId(Long argomentoId);
 }

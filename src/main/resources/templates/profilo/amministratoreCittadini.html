@@ -33,13 +33,18 @@
 
   <div class="team">
     <span></span>
-    <div class="box-codice">
-      <label class="text" for="nome">Entra in un team inserendo un codice</label>
-      <input class="input" id="nome" name="nome" required="" type="text" value="">
-      <div class="areabtn">
-        <a class="btnUtente" href="/amministratoreCittadini/creazioneTeam">Entra</a>
+    <form action="/auth/areaPersonale/entraTeam" method="post">
+      <div class="box-codice">
+        <label class="text" for="codice">Entra in un team inserendo un codice</label>
+        <input class="input" id="codice" name="codice" required="" type="text" value="">
+        <div class="areabtn">
+          <button type="submit" class="btnUtente">Entra</button>
+        </div>
+        <div th:if="${messageTeam != null}">
+          <p th:text="${messageTeam}"></p>
+        </div>
       </div>
-    </div>
+    </form>
     <div class="box-team">
       <div class="gestione_team">
         <div th:if="${message != null}">

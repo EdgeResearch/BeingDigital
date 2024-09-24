@@ -19,7 +19,7 @@
         <th:block th:text="${admin.nome}"></th:block>
         ! Accedi alle risorse di Being Digital.
     </p>
-    <div class="banner-btn mamma">
+    <div class="banner-btn">
         <a href="/logout">Logout</a>
         <a onclick="showConferma2()">Elimina</a>
         <a href="/auth/modificaProfilo">Modifica</a>
@@ -159,8 +159,6 @@
 
 
 <script th:src="@{/js/admin.js}"></script>
-
-</script>
 
 <th:block th:include="fragments/footer"></th:block>
 </body>

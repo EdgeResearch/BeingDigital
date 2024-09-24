@@ -17,7 +17,6 @@
     --aggiuntivo4: #b700ff;
 }
 
-
 .admin {
     padding-top: 30px;
     display: flex;
@@ -25,37 +24,31 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url(/img/backgroundLogo.png);
+    background: #edecec63;
     background-size: contain;
 }
 
 .admin .box {
     width: 80%;
     position: relative;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-    margin-bottom: 120px;
+    margin-bottom: 50px;
+    background: var(--white-color);
+    border-radius: 15px;
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
 }
-
-.admin .table {
-    width: 70%;
-    position: relative;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-    margin-bottom: 120px;
-}
-
 
 .admin .box h2 {
     text-align: center;
     color: var(--white-color);
     background-color: var(--second-color);
     padding: 22px 0;
-    font-size: 22px;
-    font-weight: 700;
-    width: 100%;
     font-size: 24px;
+    font-weight: 700;
     text-transform: uppercase;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 20px;
 }
-
 
 .admin table {
     width: 100%;
@@ -73,7 +66,6 @@
 
 .notspecial th {
     padding: 15px 5px;
-    box-shadow: inset 0px -24px 15px 0px rgba(0, 0, 0, 0.1);
 }
 
 .special {
@@ -94,7 +86,6 @@
     padding: 10px 0;
     width: 300px;
     text-align: center;
-    box-shadow: inset 0px -24px 15px 0px rgba(0, 0, 0, 0.1);
 }
 
 .admin h1 {
@@ -102,28 +93,24 @@
     margin-bottom: 5px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: var(--white-color);
+    color: #121b37;
     padding: 0 5px;
 }
 
 .admin p {
     font-size: 20px;
-    color: var(--white-color);
+    color: #121b37;
     font-weight: 500;
     text-align: center;
     padding: 0 20px;
     margin-bottom: 50px;
 }
 
-
 .admin i:hover {
     color: var(--white-color);
     transition: 1s;
     cursor: pointer;
 }
-
-
-/*percentuali*/
 
 .percentualicont {
     display: flex;
@@ -138,9 +125,7 @@
 }
 
 .percentualicont .text {
-    /* bottom: -265px; */
     color: var(--white-color);
-    /* position: absolute; */
 }
 
 .percentualicont h1 {
@@ -150,7 +135,6 @@
     text-transform: uppercase;
     color: var(--white-color);
     padding: 0 5px;
-
 }
 
 .percentuali {
@@ -234,8 +218,8 @@
     border-radius: 50%;
 }
 
-.mamma {
-    margin-bottom: 130px;
+.banner-btn {
+    margin-bottom: 40px;
 }
 
 .banner-btn a {
@@ -255,14 +239,13 @@
     font-weight: 600;
 }
 
-
 .banner-btn a:hover {
     background-color: var(--white-color);
     color: var(--notify-color);
 }
 
 @media (max-width: 500px) {
-    .mamma {
+    .banner-btn {
         display: flex;
         flex-direction: column;
     }

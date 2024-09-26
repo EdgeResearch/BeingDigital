@@ -17,7 +17,6 @@
     --aggiuntivo4: #b700ff;
 }
 
-
 .racconto {
     min-height: 200vh;
     background-color: #edecec63;
@@ -39,31 +38,29 @@
 }
 
 .racconto .raccontoText p {
-    /* justify-content: center; */
     text-align: justify;
     color: var(--bg-color);
 }
 
 .raccontoText {
-    /* display: flex; */
     justify-items: center;
     align-items: center;
     justify-content: center;
     margin-top: 70px;
-    padding: 0 10%;
+    padding: 0 10%; /*quello al lato */
     font-size: 22px;
     letter-spacing: 1px;
     padding-bottom: 210px;
     color: white;
 }
 
-.box-bottoni{
+.box-bottoni {
     display: flex;
     margin-top: 60px;
     justify-content: center;
 }
 
-a.btnUtente{
+a.btnUtente {
     display: flex;
     width: 174px;
     text-decoration: none;
@@ -90,53 +87,60 @@ img {
     margin: 22px;
 }
 
-.card-container {
+ul, ol {
+    list-style-type: disc;
+    margin-left: 20px;
+    color: black;
+    padding-left: 30px;
+    font-size: 18px;
+}
+
+h3 {
+    color: #b700ff;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.titoli {
+    color: white;
+    padding-bottom: 10px;
+    text-align: center;
+    border: 1px lightgrey solid;
     display: flex;
     justify-content: center;
+    align-items: center;
+    border-radius: 10%;
+    letter-spacing: 10px;
 }
 
-.card {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: left; /* Allinea il testo a sinistra */
-    margin-bottom: 20px;
+p {
+    padding-top: 10px;
+    font-size: 18px;
 }
 
-h2 {
-    color: #121b37;
-    margin-bottom: 20px;
+.card-container {
+    width: 100%;
+    height: 100%; /* Altezza fissa per il contenitore del carosello */
+
 }
 
-.card h2 {
-    color: #1E88E5;
-    margin-bottom: 15px;
-    font-weight: bold;
-}
-
-.card p {
-    color: #555;
-}
-
-/* Carosello Slick */
 .slick-dots {
     position: absolute;
-    top: 0; /* Posiziona i pallini in alto */
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%); /* Centrali orizzontalmente */
-    z-index: 100; /* Assicurati che siano sopra le card */
-    margin: 0;
-    padding: 0;
+    z-index: 101; /* Assicurati che siano sopra le card */
+    margin-top: 20px;
     text-align: center;
     list-style: none;
 }
 
-.slick-prev, .slick-next {
-    color: #1E88E5 !important;
+.slick-next:before {
+    color: #cda5dc;
 }
 
-.slick-prev:hover, .slick-next:hover {
-    color: #1565C0 !important;
+.slick-prev:before {
+    color: #cda5dc;
 }
 
 .slick-dots li {
@@ -156,24 +160,34 @@ h2 {
 }
 
 .slick-dots .slick-active button {
-    background-color: #1565C0;
+    background-color: #cda5dc;
 }
 
-/* Imposta il layout in riga e abilita lo scrolling orizzontale */
+.card {
+    width: 100%;
+    height: 100%; /* Altezza fissa per le card */
+    box-sizing: border-box; /* Include padding e border nel calcolo della larghezza e altezza */
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 10px; /* Spazio tra le card */
+    /* overflow-y: auto;  Abilita lo scroll verticale all'interno delle card */
+}
+
+.linea {
+    border: none;          /* Rimuove il bordo predefinito */
+    height: 1px;           /* Imposta l'altezza della linea */
+    background-color: #ccc; /* Colore grigio chiaro */
+    margin-bottom: 40px;        /* Spaziatura sopra e sotto la linea */
+}
+
+/* Imposta il layout in colonna per il carosello */
 .iframe-row {
     display: flex;
     flex-direction: row;
-    /*max-width: 100vw;  /*Larghezza massima uguale alla larghezza della finestra */
+    max-width: 100vw;
     gap: 40px; /* Spazio tra gli iframe */
 }
-
-/* Stili per gli iframe */
-/*.iframe-row iframe {
-    width: 300px; /* Imposta una larghezza fissa per ogni iframe */
-    /*height: 200px; /* Imposta l'altezza per ogni iframe */
-    /*border: none; /* Rimuovi i bordi, se necessario */
-/*}*/
-
 
 /* LIBRO */
 .book {

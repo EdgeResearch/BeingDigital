@@ -1,6 +1,9 @@
 package it.unisa.beingdigital.storage.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -11,6 +14,9 @@ import java.util.List;
 @Entity
 @Table(name = "classe")
 @PrimaryKeyJoinColumn(name = "codice")
+@Getter
+@Setter
+@ToString
 public class Classe extends Team{
     @Column(name = "classe")
     private String classe;

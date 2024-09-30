@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Team</title>
+    <link rel="stylesheet" th:href="@{/stylesheet/utente.css}" type="text/css"/>
     <link rel="stylesheet" th:href="@{/stylesheet/team.css}" type="text/css"/>
     <link rel="stylesheet" th:href="@{/stylesheet/cancellazione.css}" type="text/css"/>
     <link href="/img/Logo.png" rel="shortcut icon"/>
@@ -13,55 +14,99 @@
 
 <th:block th:insert="~{fragments/header}"></th:block>
 
-<div class="box" id="boxTeam">
-    <h2>Dettagli del Team</h2>
-
-    <p class="team-code">Codice del Team: <span th:text="${team.codice}"></span></p>
-
-    <div style="overflow-x:auto;">
-        <table>
-            <tr class="notspecial">
-                <th>Nome</th>
-                <th>Cognome</th>
-                <th>Livello</th>
-                <th th:if="${AmministratoreCittadini != null}">Cancella</th>
-            </tr>
-            <th:block th:each="amministratoreCittadini : ${amministratoriCittadini}">
-                <tr class="special" >
-                    <td th:text="${amministratoreCittadini.nome}"></td>
-                    <td th:text="${amministratoreCittadini.cognome}"></td>
-                    <td></td>
-                    <td th:if="${AmministratoreCittadini != null}"><i class="fa-solid fa-trash" th:data-id-utente="${amministratoreCittadini.id}" onclick="showConferma(this)"></i></td>
-                </tr>
-            </th:block>
-            <th:block th:each="utente : ${utenti}">
-                <tr class="special" >
-                    <td th:text="${utente.nome}"></td>
-                    <td th:text="${utente.cognome}"></td>
-                    <td th:text="${utente.livello}"></td>
-                    <td th:if="${AmministratoreCittadini != null}"><i class="fa-solid fa-trash" th:data-id-utente="${utente.id}" onclick="showConferma(this)"></i></td>
-                </tr>
-            </th:block>
-        </table>
+<!-- Box per accesso e creazione del team -->
+<div class="Lobby" id="team">
+    <div class="team">
+        <span></span>
+        <form action="/team/entraTeam" method="post">
+            <div class="box-codice2">
+                <label class="text" for="codice">Entra in un team!</label>
+                <input class="input" id="codice" name="codice" required="" type="text" value="" placeholder="inserisci un codice">
+                <div class="areabtn">
+                    <button type="submit" class="btnUtente">Entra</button>
+                </div>
+                <div th:if="${messageTeam != null}">
+                    <p th:text="${messageTeam}"></p>
+                </div>
+                <div th:if="${AmministratoreCittadini != null}">
+                    <a id="creaTeam" class="btnUtente" href="/amministratoreCittadini/creazioneTeam">Crea Team</a>
+                </div>
+            </div>
+        </form>
     </div>
+
+    <!-- Mostra tutti i team con i partecipanti -->
+    <div class="box" id="boxTeam">
+        <th:block th:each="team : ${teams}">
+            <div class="team-box">
+                <!-- Nome del team -->
+                <div class="box-nomeTeam">
+                    <div th:if="${AmministratoreCittadini != null}">
+                        <a th:href="@{'/amministratoreCittadini/modificaTeam?codice=' + ${team.codice}}" class="edit-team-icon">
+                            <i class="fa-solid fa-pencil"></i>
+                        </a>
+                    </div>
+                    <h2 th:text="${team.nome}"></h2>
+                    <div th:if="${Utente != null}">
+                        <a th:data-id-utente-loggato="${Utente.id}" onclick="showConferma1(this)" class="exit-team-icon">
+                            <i class="fa-solid fa-door-open"></i>
+                        </a>
+                    </div>
+                    <div th:if="${AmministratoreCittadini != null}">
+                        <a th:data-id-utente-loggato="${AmministratoreCittadini.id}" onclick="showConferma1(this)" class="exit-team-icon">
+                            <i class="fa-solid fa-door-open"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="team-code">Codice del Team: <span th:text="${team.codice}"></span></p>
+                <input type="hidden" name="codiceTeam" th:value="${team.codice}">
+
+                <!-- Partecipanti -->
+                <div style="overflow-x:auto;display: flex;margin: 15px 0px;">
+                    <!-- Amministratori -->
+                    <th:block th:each="amministratoreCittadini : ${team.amministratoriCittadini}">
+                        <div class="box-utente">
+                            <img th:src="@{'/fotoprofilo/' + ${amministratoreCittadini.id}}" alt="Immagine di profilo" class="profile-image">
+                            <h5 th:text="${amministratoreCittadini.nome} + ' ' + ${amministratoreCittadini.cognome}"></h5>
+                            <div th:if="${AmministratoreCittadini != null}">
+                                <i class="fa-solid fa-trash" th:data-id-utente="${amministratoreCittadini.id}" onclick="showConferma(this)"></i>
+                            </div>
+                        </div>
+                    </th:block>
+                    <!-- Utenti -->
+                    <th:block th:each="utente : ${team.utenti}">
+                        <div class="box-utente">
+                            <img th:src="@{'/fotoprofilo/' + ${utente.id}}" alt="Immagine di profilo" class="profile-image">
+                            <h5 th:text="${utente.nome} + ' ' + ${utente.cognome}"></h5>
+                            <div th:if="${AmministratoreCittadini != null}">
+                                <i class="fa-solid fa-trash" th:data-id-utente="${utente.id}" onclick="showConferma(this)"></i>
+                            </div>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+        </th:block>
+    </div>
+
 </div>
 
-<form action="/amministratoreCittadini/modificaTeam/espelliUtente" method="post">
-    <input type="hidden" name="codiceTeam" th:value="${team.codice}">
-    <input type="text" name="idUtente" placeholder="Codice utente" style="display:none">
-    <div id="conf" class="all-canc">
-        <div class="cancella">
-            <div class="textcancella">
-                <h1>ATTENZIONE</h1>
-                <p> Sicuro di voler procedere all'espulsione di questo utente?</p>
+<!-- Conferma eliminazione -->
+<div id="conf" class="all-canc" style="display: none;">
+    <div class="cancella">
+        <div class="textcancella">
+            <h1>ATTENZIONE</h1>
+            <p id="testo-espulsione">Sicuro di voler procedere all'espulsione di questo utente?</p>
+            <form action="/amministratoreCittadini/modificaTeam/espelliUtente" name="confForm" method="post" id="confForm">
+                <input type="hidden" name="codiceTeam" id="codiceTeam">
+                <input type="hidden" name="idUtente" id="idUtente">
                 <div class="btn-canc">
                     <button class="elimina" type="submit">SI</button>
                     <a class="elimina" onclick="hideConferma()">NO</a>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
-</form>
+</div>
 
 <script th:src="@{/js/amministratoreCittadini.js}"></script>
 

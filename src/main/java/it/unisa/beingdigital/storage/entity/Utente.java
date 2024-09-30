@@ -1,10 +1,7 @@
 package it.unisa.beingdigital.storage.entity;
 
 import it.unisa.beingdigital.storage.entity.util.Livello;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,12 +24,17 @@ public class Utente extends Persona {
   @Enumerated(EnumType.STRING)
   private Livello livello;
 
-  public Utente(String nome, String cognome, String email, String password, Livello livello) {
-    super(nome, cognome, email, password);
+  public Utente(String nome, String cognome, String email, String password, Livello livello, byte[] fotoprofilo) {
+    super(nome, cognome, email, password, fotoprofilo);
     this.livello = livello;
   }
 
-  @ManyToMany(mappedBy = "utenti")
+  @ManyToMany
+  @JoinTable(
+          name = "team_utenti",
+          joinColumns = @JoinColumn(name = "utente_id"),
+          inverseJoinColumns = @JoinColumn(name = "codice")
+  )
   private List<Team> teams;
 
   public List<Team> getTeams() {

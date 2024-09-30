@@ -1,58 +1,53 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const cardBottoms = document.querySelectorAll('.card-bottom');
-    let activeDropdown = null;  // Per tenere traccia del dropdown attualmente aperto
+    const cards = document.querySelectorAll('.card');
+    let activeDropdown = null;
     let timeoutId;
 
-    // Funzione per mostrare il dropdown sotto la card-bottom
     function showDropdown(dropdownId, triggerElement) {
-        clearTimeout(timeoutId); // Evita che il dropdown si chiuda subito
+        clearTimeout(timeoutId);
         if (activeDropdown) {
-            activeDropdown.style.display = 'none'; // Nascondi il dropdown attivo precedente
+            activeDropdown.style.display = 'none';
         }
         const dropdown = document.getElementById(dropdownId);
-        activeDropdown = dropdown; // Memorizza il dropdown attivo
+        activeDropdown = dropdown;
 
-        // Ottieni le coordinate di card-bottom
         const rect = triggerElement.getBoundingClientRect();
 
-        // Posiziona il dropdown sotto la card-bottom
         dropdown.style.position = 'absolute';
-        dropdown.style.left = `${rect.left + window.scrollX - 12}px`;  // Posiziona orizzontalmente in base al div
-        dropdown.style.top = `${rect.bottom + window.scrollY + 10}px`;  // Posiziona verticalmente sotto il div
-        dropdown.style.display = 'grid'; // Mostra il dropdown
+        dropdown.style.left = `${rect.left + window.scrollX - 5}px`;
+        dropdown.style.top = `${rect.bottom + window.scrollY + 10}px`;
+        dropdown.style.display = 'grid';
     }
 
-    // Funzione per nascondere il dropdown con ritardo
     function scheduleHideDropdown(dropdownId) {
         timeoutId = setTimeout(function () {
             const dropdown = document.getElementById(dropdownId);
             dropdown.style.display = 'none';
-            activeDropdown = null; // Rimuovi il riferimento al dropdown attivo
-        }, 200); // Ritardo di 200ms per permettere il passaggio del mouse
+            activeDropdown = null;
+        }, 200);
     }
 
-    // Aggiungi event listener per ciascuna card-bottom
-    cardBottoms.forEach(function (cardBottom) {
-        const card = cardBottom.closest('.card');
+
+    cards.forEach(function (card) {
         const dropdownId = card.getAttribute('data-dropdown');
 
-        // Mostra il dropdown quando il mouse entra nella parte inferiore della card
-        cardBottom.addEventListener('mouseenter', function () {
-            showDropdown(dropdownId, cardBottom);
+
+        card.addEventListener('mouseenter', function () {
+            showDropdown(dropdownId, card);
         });
 
-        // Pianifica la chiusura del dropdown quando il mouse esce dalla card
-        cardBottom.addEventListener('mouseleave', function () {
+
+        card.addEventListener('mouseleave', function () {
             scheduleHideDropdown(dropdownId);
         });
 
-        // Gestisce anche il mouseenter e mouseleave sul dropdown stesso
+
         const dropdown = document.getElementById(dropdownId);
         dropdown.addEventListener('mouseenter', function () {
-            clearTimeout(timeoutId); // Evita che si chiuda se il mouse è nel dropdown
+            clearTimeout(timeoutId);
         });
         dropdown.addEventListener('mouseleave', function () {
-            scheduleHideDropdown(dropdownId); // Chiude il dropdown quando il mouse esce dal dropdown
+            scheduleHideDropdown(dropdownId);
         });
     });
 });

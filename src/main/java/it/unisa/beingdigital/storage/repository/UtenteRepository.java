@@ -2,6 +2,9 @@ package it.unisa.beingdigital.storage.repository;
 
 import it.unisa.beingdigital.storage.entity.Utente;
 import it.unisa.beingdigital.storage.entity.util.Livello;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 /**
@@ -10,9 +13,12 @@ import java.util.List;
  * utenti presenti nel DB.
  */
 
-public interface UtenteRepository extends PersonaGenericRepository<Utente> {
+@Repository
+public interface UtenteRepository extends JpaRepository<Utente, Long> {
 
   List<Utente> findByLivello(Livello livello);
 
   long countByLivello(Livello livello);
+
+  List<Utente> findByTeamsCodice(String codice);
 }

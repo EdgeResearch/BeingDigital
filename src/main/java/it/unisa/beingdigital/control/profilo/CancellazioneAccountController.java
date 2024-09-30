@@ -3,7 +3,9 @@ package it.unisa.beingdigital.control.profilo;
 import it.unisa.beingdigital.service.autenticazione.util.PersonaAutenticata;
 import it.unisa.beingdigital.service.profilo.CancellazioneAccountService;
 import it.unisa.beingdigital.storage.entity.Admin;
+import it.unisa.beingdigital.storage.entity.AmministratoreCittadini;
 import it.unisa.beingdigital.storage.entity.Persona;
+import it.unisa.beingdigital.storage.entity.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,10 +36,14 @@ public class CancellazioneAccountController {
 
     if (persona instanceof Admin) {
       cancellazioneAccountService.cancellazioneAdmin(persona.getId());
-    } else {
+    } else if (persona instanceof Utente) {
       cancellazioneAccountService.cancellazioneUtente(persona.getId());
+    } else if (persona instanceof AmministratoreCittadini) {
+      cancellazioneAccountService.eliminaAmministratore(persona.getId());
     }
 
     return "redirect:/logout";
   }
+
+
 }

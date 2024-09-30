@@ -22,13 +22,27 @@
   </div>
 
   <nav id="menu">
-    <ul>
+    <div class="team-header" th:if="${@personaAutenticata.persona.isPresent()}">
+      <a class="bottoni-header" href="#">Diario di bordo</a>
+    </div>
+
+    <div class="team-header" th:if="${teams != null}">
+      <a class="bottoni-header" href="#">Team</a>
+    </div>
+
+    <div>
       <th:block th:with="accesso = ${@personaAutenticata.persona.isPresent()}">
-        <li><a href="/login" th:if="${!accesso}">Accesso</a>
-          <a href="/auth/areaPersonale" th:if="${accesso}">Area personale</a>
-        </li>
+        <a class="bottoni-header" href="/login" th:if="${!accesso}">Accesso</a>
+        <a class="bottoni-header" href="/auth/Profilo" th:if="${accesso}">Profilo</a>
       </th:block>
-    </ul>
+    </div>
+
+    <div>
+      <th:block th:with="accesso = ${@personaAutenticata.persona.isPresent()}">
+        <a class="bottoni-header" href="/logout" th:if="${accesso}">Logout</a>
+      </th:block>
+    </div>
+
   </nav>
 </header>
 

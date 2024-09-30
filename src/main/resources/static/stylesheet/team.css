@@ -26,16 +26,36 @@ body {
     min-height: 100vh;
 }
 
+.Lobby {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.team {
+    display: flex;
+    position: relative;
+    width: 355px;
+    height: 250px;
+    margin: 0px 20px;
+    background-color: var(--white-color);
+    flex-direction: column;
+    align-items: center;
+    border-radius: 25px;
+}
+
 .box {
     display: flex;
     flex-direction: column;
-    width: 80%;
-    margin-top: 50px;
+    width: 50%;
     position: relative;
     background: var(--white-color);
     border-radius: 10px;
+    margin: 0px 20px;
     padding: 20px;
-    margin-bottom: 120px;
+    overflow-y: auto;
 }
 
 .box h2 {
@@ -101,7 +121,6 @@ i:hover {
     transition: 0.5s;
 }
 
-/* Stili generali */
 body h1 {
     font-size: 35px;
     margin-bottom: 5px;
@@ -137,6 +156,91 @@ body p {
 .banner-btn a:hover {
     background-color: var(--white-color);
     color: var(--notify-color);
+}
+
+.box-codice2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.profile-image {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--main-color);
+}
+
+.box-utente {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 5px;
+    min-width: 100px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+h5 {
+    font-size: 11px;
+}
+
+.team-box {
+    margin: 15px 0px;
+    border-bottom: 1px solid;
+}
+
+.box-nomeTeam {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--second-color);
+    border-radius: 10px 10px 0px 0px;
+}
+
+.exit-team-icon {
+    font-size: 1.5em;
+    color: #f2f2f2;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.edit-team-icon {
+    margin-left: 20px;
+    color: #f2f2f2;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.edit-team-icon i {
+    font-size: 18px;
+}
+
+.box-nomeTeam {
+    display: flex;
+    align-items: center;
+}
+
+.box-nomeTeam h2 {
+    margin-left: 10px;
+}
+
+@media (max-width: 900px) {
+    .Lobby {
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .team{
+        margin: 40px 20px;
+    }
+
+    .box{
+        margin: 40px 20px;
+    }
 }
 
 @media (max-width: 768px) {

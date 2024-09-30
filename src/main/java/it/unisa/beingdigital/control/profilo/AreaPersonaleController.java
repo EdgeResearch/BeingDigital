@@ -50,7 +50,7 @@ public class AreaPersonaleController {
         Persona persona = personaAutenticata.getPersona().get();
         return caricaDatiPersonali(model, persona);
     }
-    @PostMapping("/entraTeam")
+    @PostMapping("/daDefinire")
     public String entraTeam(@RequestParam("codice") String codiceTeam, Model model) {
         Persona persona = personaAutenticata.getPersona().get();
 

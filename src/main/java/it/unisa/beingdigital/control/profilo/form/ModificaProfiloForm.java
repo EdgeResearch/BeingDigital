@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Questa classe rappresenta il form di modifica di un profilo.
@@ -44,4 +45,6 @@ public class ModificaProfiloForm {
   @Pattern(regexp =
       "^(()|((?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*\\p{Punct})[A-Za-z\\d\\p{Punct}]{8,}))$")
   private String passwordNuova;
+
+  private MultipartFile fotoprofilo;
 }

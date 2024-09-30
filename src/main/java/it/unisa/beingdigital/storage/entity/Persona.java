@@ -1,12 +1,6 @@
 package it.unisa.beingdigital.storage.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,10 +36,16 @@ public class Persona {
   @Column(nullable = false)
   private String password;
 
-  protected Persona(String nome, String cognome, String email, String password) {
+  @Lob
+  @Basic
+  @Column(nullable = true, length = 102400)
+  private byte[] fotoprofilo;
+
+  protected Persona(String nome, String cognome, String email, String password, byte[] fotoprofilo) {
     this.nome = nome;
     this.cognome = cognome;
     this.email = email;
     this.password = password;
+    this.fotoprofilo = fotoprofilo;
   }
 }

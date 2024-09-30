@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Area Personale</title>
+  <link rel="stylesheet" th:href="@{/stylesheet/utente.css}" type="text/css"/>
+  <link rel="stylesheet" th:href="@{/stylesheet/cancellazione.css}" type="text/css"/>
+  <link href="/img/Logo.png" rel="shortcut icon"/>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<th:block th:include="fragments/header"></th:block>
+
+<div class="utente" id="list">
+  <div class="daticard">
+    <span></span>
+    <div class="profile-image-container">
+      <img
+              th:src="${utente != null} ? '/fotoprofilo/' + ${utente.id} : (${amministratoreCittadini != null} ? '/fotoprofilo/' + ${amministratoreCittadini.id} : '/img/user_stock.png')"
+              alt="Immagine di profilo"
+              class="profile-image"
+              id="profileImagePreview">
+    </div>
+
+    <!-- Dati dell'utente -->
+    <div th:if="${utente != null}" class="textUtente">
+      <div class="line">
+        <p th:text="${utente.nome}"></p><p th:text="${utente.cognome}"></p>
+      </div>
+      <div class="line">
+        <p th:text="${utente.email}"></p>
+      </div>
+    </div>
+
+    <div th:if="${amministratoreCittadini != null}" class="textUtente">
+      <div class="line">
+        <p th:text="${amministratoreCittadini.nome}"></p><p th:text="${amministratoreCittadini.cognome}"></p>
+      </div>
+      <div class="line">
+        <p th:text="${amministratoreCittadini.email}"></p>
+      </div>
+    </div>
+
+    <div class="areabtn1">
+      <a class="btnUtente" href="/auth/modificaProfilo">Modifica</a>
+      <button class="btnUtente" onclick="showConferma()">Elimina Account</button>
+    </div>
+  </div>
+</div>
+
+<form action="/auth/cancellazioneAccount" method="post">
+  <input name="account" style="display:none">
+  <div class="all-canc" id="conf">
+    <div class="cancella">
+      <div class="textcancella">
+        <h1>ATTENZIONE</h1>
+        <p> Sicuro di voler procedere alla cancellazione di questo account?</p>
+        <div class="btn-canc">
+          <button class="elimina" type="submit">SI</button>
+          <a class="elimina" onclick="hideConferma()">NO</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<th:block th:include="fragments/footer"></th:block>
+
+<script>
+  function previewImage(event) {
+    const reader = new FileReader();
+    reader.onload = function() {
+      const output = document.getElementById('profileImagePreview');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+</script>
+
+</body>
+</html>

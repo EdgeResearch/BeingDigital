@@ -28,12 +28,8 @@ public class TeamForm {
     @NotBlank
     @Size(max = 255)
     private String email;
-
     private String tipoTeam;
-
     private String città;
-
     private String classe;
-
     private String scuola;
 }

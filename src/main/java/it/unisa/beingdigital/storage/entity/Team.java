@@ -42,7 +42,7 @@ public class Team{
     )
     private List<Utente> utenti;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "team_amministratore_cittadini",
             joinColumns = @JoinColumn(name = "codice"),

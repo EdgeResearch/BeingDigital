@@ -5,6 +5,8 @@ import it.unisa.beingdigital.control.gestionerisorse.form.TeamForm;
 import it.unisa.beingdigital.service.gestionerisorse.ModificaRisorsaService;
 import it.unisa.beingdigital.service.presentazionerisorse.PrelievoMetaInfoService;
 import it.unisa.beingdigital.service.presentazionerisorse.PrelievoTeamService;
+import it.unisa.beingdigital.storage.entity.Classe;
+import it.unisa.beingdigital.storage.entity.Gruppo;
 import it.unisa.beingdigital.storage.entity.MetaInfo;
 import it.unisa.beingdigital.storage.entity.Team;
 import jakarta.validation.Valid;
@@ -44,17 +46,33 @@ public class ModificaTeamController {
      * @return Stringa rappresentante il path della view da rappresentare.
      * @throws ResponseStatusException se il codice è nullo o non valido.
      */
+
     @GetMapping
-    public String get(@RequestParam String codice, @ModelAttribute TeamForm teamForm) {
+    public String get(@RequestParam String codice, @ModelAttribute TeamForm teamForm, Model model) {
         Optional<Team> optional = prelievoTeamService.getTeam(codice);
         if (optional.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Team non trovato");
         }
 
         Team team = optional.get();
+
+        teamForm.setNome(team.getNome());
+        teamForm.setEmail(team.getEmail());
+
+        if (team instanceof Classe) {
+            Classe classeTeam = (Classe) team;
+            teamForm.setTipoTeam("classe");
+            teamForm.setClasse(classeTeam.getClasse());
+            teamForm.setScuola(classeTeam.getScuola());
+        } else if (team instanceof Gruppo) {
+            Gruppo gruppoTeam = (Gruppo) team;
+            teamForm.setTipoTeam("gruppo");
+            teamForm.setCittà(gruppoTeam.getCittà());
+        }
+
+        model.addAttribute("team", team);
         return "gestionerisorse/modificaTeam";
     }
-
     /**
      * Implementa il post per la modifica di un Team.
      *
@@ -70,21 +88,24 @@ public class ModificaTeamController {
                        @ModelAttribute @Valid TeamForm teamForm,
                        BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-
-        if (!modificaRisorsaService.modificaTeam(codice, teamForm.getNome(),
-                teamForm.getEmail())) {
+            model.addAttribute("team", prelievoTeamService.getTeam(codice).orElseThrow());
             return "gestionerisorse/modificaTeam";
         }
-        return "redirect:/auth/areaPersonale";
+
+        boolean successo = modificaRisorsaService.modificaTeamAmministratore(
+                teamForm.getTipoTeam(), codice, teamForm.getNome(), teamForm.getEmail(),
+                teamForm.getCittà(), teamForm.getScuola(), teamForm.getClasse());
+
+        if (!successo) {
+            model.addAttribute("error", "Modifica fallita.");
+            return "gestionerisorse/modificaTeam";
+        }
+
+        return "redirect:/team";
     }
 
     @PostMapping("/espelliUtente")
     public String espelliUtente(@RequestParam String codiceTeam, @RequestParam String idUtente) {
-
-        System.out.println(codiceTeam);
-        System.out.println(idUtente);
 
         Optional<Team> optionalTeam = prelievoTeamService.getTeam(codiceTeam);
         if (optionalTeam.isEmpty()) {

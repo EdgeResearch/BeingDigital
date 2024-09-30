@@ -38,6 +38,12 @@
     transition: all 0.5s ease-in-out;
 }
 
+@media (min-width: 971px) {
+    #menu {
+        display: flex;
+    }
+}
+
 #menu.scrolled {
     display: flex;
     justify-content: flex-end;
@@ -105,14 +111,34 @@ header ul li ul li {
 .hamburger {
     display: none;
     cursor: pointer;
-    margin-left: 95%;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    background-color: var(--text-color);
+}
+
+.bottoni-header{
+    color: var(--white-color);
+    font-size: 15px;
+    padding: 20px 25px;
+    display: flex;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+    justify-content: space-between;
 }
 
 @media (max-width: 971px) {
     header {
         padding: 10px 20px;
         display: flex;
-        justify-content: space-between; /* Logo a sinistra, scritta a destra */
+        justify-content: space-between;
         align-items: center;
     }
 
@@ -131,7 +157,7 @@ header ul li ul li {
     header nav ul {
         width: 100%;
         display: flex;
-        justify-content: space-between; /* Assicura che gli elementi del menu siano distribuiti */
+        justify-content: space-between;
     }
 
     header nav ul li {
@@ -145,8 +171,17 @@ header ul li ul li {
     }
 
     #menu {
-        right: 40px;
-        max-width: fit-content;
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 90px;
+        right: 75px;
+        width: 30%;
+        background-color: var(--bg-color);
+    }
+
+    #menu.active {
+        display: flex;
     }
 
     header nav ul li:hover ul li {
@@ -165,6 +200,8 @@ header ul li ul li {
 
     .hamburger {
         display: block;
+        cursor: pointer;
+        margin-right: 30px;
     }
 
     .hamburger.active .bar:nth-child(2) {
@@ -177,5 +214,18 @@ header ul li ul li {
 
     .hamburger.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .bottoni-header {
+        padding: 15px;
+        color: var(--white-color);
+        text-align: center;
+        text-decoration: none;
+        border-bottom: 1px solid var(--second-color);
+        width: 100%;
+    }
+
+    .bottoni-header:hover {
+        background-color: var(--notify-color);
     }
 }

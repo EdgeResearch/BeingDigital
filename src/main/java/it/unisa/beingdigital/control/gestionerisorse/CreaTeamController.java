@@ -54,6 +54,6 @@ public class CreaTeamController {
             return "gestionerisorse/modificaTeam";
         }
 
-        return "redirect:/auth/areaPersonale";
+        return "redirect:/team";
     }
 }

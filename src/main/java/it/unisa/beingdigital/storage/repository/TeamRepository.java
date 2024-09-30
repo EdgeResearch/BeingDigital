@@ -1,7 +1,13 @@
 package it.unisa.beingdigital.storage.repository;
 
+import it.unisa.beingdigital.storage.entity.Admin;
+import it.unisa.beingdigital.storage.entity.AmministratoreCittadini;
 import it.unisa.beingdigital.storage.entity.Team;
+
+import java.util.List;
 import java.util.Optional;
+
+import it.unisa.beingdigital.storage.entity.Utente;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -13,5 +19,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface TeamRepository extends JpaRepository<Team, String> {
 
     Optional<Team> findByCodice(String codice);
+
+    List<Team> findByUtentiContains(Utente utente);
+
+    List<Team> findByAmministratoriCittadiniContains(AmministratoreCittadini amministratoreCittadini);
 }
 

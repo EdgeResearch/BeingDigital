@@ -268,6 +268,45 @@ public class ModificaRisorsaService {
   }
 
   /**
+   * Implementa la funzionalità di modifica di un team.
+   * Si assume che la corretta formulazione dei parametri sia stata controllata prima
+   * di effettuare la chiamata.
+   * Tutti i parametri, tranne codice, possono essere nulli, se non si vuole modificare quel dato.
+   *
+   * @param codice codice del Team.
+   * @param nuovoNome   nome del Team.
+   * @param nuovaEmail  tipo di email che bisogna possedere per poter partecipare al team.
+   * @return true se la modifica è andata a buon fine, false altrimenti.
+   * @throws jakarta.validation.ConstraintViolationException se il codice risulta null.
+   */
+  public boolean modificaTeamAmministratore(String tipoTeam, @NotNull String codice, @NotNull String nuovoNome,
+                                            @NotNull String nuovaEmail, String città, String scuola, String classe) {
+    Optional<Team> optional = teamRepository.findByCodice(codice);
+    if (optional.isEmpty()) {
+      return false;
+    }
+
+    Team team = optional.get();
+
+    team.setNome(nuovoNome);
+    team.setEmail(nuovaEmail);
+
+    if ("classe".equalsIgnoreCase(tipoTeam) && team instanceof Classe) {
+      Classe classeTeam = (Classe) team;
+      classeTeam.setScuola(scuola);
+      classeTeam.setClasse(classe);
+    } else if ("gruppo".equalsIgnoreCase(tipoTeam) && team instanceof Gruppo) {
+      Gruppo gruppoTeam = (Gruppo) team;
+      gruppoTeam.setCittà(città);
+    } else {
+      return false;
+    }
+
+    teamRepository.save(team);
+    return true;
+  }
+
+  /**
    * Implementa la funzionalità di espulsione di un utente dal team.
    * Si assume che la corretta formulazione dei parametri sia stata controllata prima
    * di effettuare la chiamata.

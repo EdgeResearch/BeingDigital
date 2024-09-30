@@ -8,19 +8,25 @@
 </head>
 
 <body>
+
 <div th:fragment="flashcardContent">
-    <div th:each="flashcard : ${flashcard}">
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <h4 class="domanda">Domanda</h4>
-                    <!-- Visualizza la domanda dalla flashcard -->
-                    <p th:utext="${flashcard.domande}"></p>
-                </div>
-                <div class="flip-card-back">
-                    <h4 class="risposta">Risposta</h4>
-                    <!-- Visualizza la risposta dalla flashcard -->
-                    <p th:utext="${flashcard.risposte}"></p>
+    <div th:with="colors=${'#ff6666,#66ff66,#6666ff,#ffcc66,#66ccff'.split(',')}">
+        <div class="iframe-row">
+            <!-- Itera sulle flashCards e applica un colore a ciascuna card -->
+            <div th:each="flashCard, iterStat : ${flashCards}">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <!-- Imposta lo stile dinamicamente per ogni card, direttamente nella generazione -->
+                        <div class="flip-card-front"
+                             th:style="'background-color: ' + ${colors[iterStat.index % colors.length]}">
+                            <h2 class="card-title">Domanda</h2>
+                            <p th:text="${flashCard.domande}" class="card-body-front"></p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h2 class="card-title" style="color: darkgreen">Risposta</h2>
+                            <p th:utext="${flashCard.risposte}"></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

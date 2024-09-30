@@ -19,19 +19,19 @@
 <th:block th:include="fragments/header"></th:block>
 
 <div class="racconto">
-    <section class="bannerRacconto" th:style="'background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url('+@{/copertina(idArgomento=${param.id})}+'); background-size: cover; background-position: center;'">
+    <section class="bannerRacconto"
+             th:style="'background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url('+@{/copertina(idArgomento=${param.id})}+'); background-size: cover; background-position: center;'">
         <div class="banner-text">
             <h1 th:text="${argomento.titolo}"></h1>
         </div>
     </section>
 
-    <!-- caso in cui l'argomento è un racconto -->
+    <!-- caso in cui l'argomento è un racconto (fare controllo migliore) -->
     <div th:if="${argomento.id == 500}">
         <iframe th:replace="presentazionerisorse/racconto :: racconto"></iframe>
     </div>
 
     <div th:if="${argomento.id != 500}" class="raccontoText">
-        <h2> Lezione </h2>
 
         <div id="argomentoContent" th:utext="${argomento.corpo}" style="display: none;"></div>
         <!-- Contenitore per le card -->
@@ -39,32 +39,22 @@
             <!-- Le card verranno inserite qui dinamicamente -->
         </div>
 
-        <h2> Esempi </h2>
+        <hr class="linea">
 
-        <h2> Flash Cards </h2>
-
-        <div class="iframe-row">
+        <div class="iframe-row" style="padding-bottom: 50px">
             <iframe th:replace="presentazionerisorse/flashcard :: flashcardContent"></iframe>
         </div>
 
-        <div class="iframe-row">
-            <div th:each="flashCard : ${flashCards}">
-                <div class="card">
-                    <h2 th:text="'Card ' + ${flashCard.id}"></h2>
-                    <p th:text="${flashCard.domande}"></p>
-                </div>
-            </div>
-        </div>
+        <hr class="linea">
+
         <!-- <svg width="1000" height="1000"></svg> -->
 
-        <!-- Contenitore per la mappa -->
-        <h2> Mappa concettuale </h2>
+        <!-- Contenitore per la mappa
         <div id="diagram" style="position: relative">
             <div id="myDiagramDiv"
                  style="background-color: #f2f2f2; border: solid 1px black; width: 100%; height: 500px"></div>
             <div id="myOverviewDiv"></div>
-        </div>
-
+        </div> -->
 
         <div class="box-bottoni">
             <a class="btnUtente" th:if="${lastId != null}" th:href="@{/argomento(id=${lastId})}">Lezione precedente</a>
@@ -82,7 +72,9 @@
 <!-- Includi lo script lezione_passwordsicura.js -->
 <script src="https://unpkg.com/gojs/release/go-debug.js"></script>
 <script src="https://d3js.org/d3.v6.min.js"></script>
-<script th:src="@{/js/mappe/privacy/base/lezione_passwordsicura.js}"></script>
+
+
+<!--<script th:src="@{/js/mappe/privacy/base/lezione_passwordsicura.js}"></script> -->
 
 <!-- Caricamento dinamico del file JS della mappa -->
 <!-- <script th:src="@{${argomento.mappa}}"></script> -->
@@ -91,62 +83,46 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <script>
-    // Funzione che crea le card dividendo il testo in base al <p>
-    function generateCards() {
-        const content = document.getElementById('argomentoContent').innerHTML;
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(content, 'text/html');
+    document.addEventListener('DOMContentLoaded', function () {
+        // Funzione per inizializzare Slick Carousel
+        function initializeCarousel() {
+            $('#cardContainer').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 1,
+                slidesToScroll: 1
+            });
+        }
 
-        // Seleziona tutti i tag <p>
-        const sections = doc.querySelectorAll('p');
+        // Funzione per creare e aggiungere le card al carosello
+        function populateCarousel() {
+            // Recupera il contenuto dell'elemento con id 'argomentoContent'
+            var content = document.getElementById('argomentoContent').innerHTML;
 
-        const cardContainer = document.getElementById('cardContainer');
+            // Crea un parser HTML
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(content, 'text/html');
 
-        let cardIndex = 0;
+            // Trova tutti i div nel contenuto
+            var divs = doc.querySelectorAll('div');
+            var cardContainer = document.getElementById('cardContainer');
 
-        sections.forEach((section) => {
-            // Ottieni il contenuto del paragrafo
-            const sectionContent = section.innerHTML.trim();
+            // Aggiungi ogni div come una card al carosello
+            divs.forEach(function (div) {
+                var card = document.createElement('div');
+                card.classList.add('card');
+                card.innerHTML = div.innerHTML; // Copia il contenuto del div originale
+                cardContainer.appendChild(card);
+            });
 
-            // Ignora i paragrafi che contengono solo "&nbsp;" o sono vuoti
-            if (sectionContent === "&nbsp;" || sectionContent === "") {
-                return; // Salta questo ciclo e non crea la card
-            }
+            // Inizializza il carosello Slick dopo aver aggiunto le card
+            initializeCarousel();
+        }
 
-            // Crea una nuova card
-            const card = document.createElement('div');
-            card.classList.add('card');
-
-            // Crea il titolo della card
-            const titlecard = document.createElement('h2');
-            titlecard.textContent = `0${++cardIndex}`;
-
-            // Crea il paragrafo della card
-            const paragraph = document.createElement('p');
-            paragraph.innerHTML = sectionContent;
-
-            // Aggiunge titolo, paragrafo e bottone alla card
-            card.appendChild(titlecard);
-            card.appendChild(paragraph);
-
-            // Aggiunge la card al container
-            cardContainer.appendChild(card);
-        });
-
-        // Inizializza il carosello Slick
-        $('.card-container').slick({
-            slidesToShow: 1,  // Mostra una card alla volta
-            slidesToScroll: 1,
-            dots: true,       // Aggiunge i puntini di navigazione
-            infinite: false,  // Disabilita lo scorrimento infinito
-            prevArrow: '<button type="button" class="slick-prev">Previous</button>',
-            nextArrow: '<button type="button" class="slick-next">Next</button>'
-        });
-    }
-
-    // Chiama la funzione quando la pagina è caricata
-    window.onload = generateCards;
+        // Chiama la funzione per popolare il carosello
+        populateCarousel();
+    });
 </script>
-
 
 </html>

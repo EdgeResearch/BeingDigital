@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title th:text="${argomento.titolo}"></title>
+
+    <link rel="stylesheet" th:href="@{/stylesheet/argomento.css}" type="text/css"/>
+
+    <link href="/img/Logo.png" rel="shortcut icon"/>
+</head>
+
+<body>
+<th:block th:include="fragments/header"></th:block>
+
+<div class="racconto" th:fragment="racconto">
+
+    <div class="raccontoText">
+
+        <div id="argomentoContent" th:utext="${argomento.corpo}"></div>
+
+    </div>
+
+</div>
+
+<th:block th:include="fragments/footer"></th:block>
+</body>
+
+
+<!-- script divisione paragrafi -->
+<script>
+    // Funzione che crea le card dividendo il testo in base al <p>
+    function generateCards() {
+        const content = document.getElementById('argomentoContent').innerHTML;
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(content, 'text/html');
+
+        // Seleziona tutti i tag <p>
+        const sections = doc.querySelectorAll('p');
+
+        const cardContainer = document.getElementById('cardContainer');
+
+        let cardIndex = 0;
+
+        sections.forEach((section) => {
+            // Ottieni il contenuto del paragrafo
+            const sectionContent = section.innerHTML.trim();
+
+            // Ignora i paragrafi che contengono solo "&nbsp;" o sono vuoti
+            if (sectionContent === "&nbsp;" || sectionContent === "") {
+                return; // Salta questo ciclo e non crea la card
+            }
+
+            // Crea una nuova card
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            // Crea il titolo della card
+            const titlecard = document.createElement('h2');
+            titlecard.textContent = `0${++cardIndex}`;
+
+            // Crea il paragrafo della card
+            const paragraph = document.createElement('p');
+            paragraph.innerHTML = sectionContent;
+
+            // Aggiunge titolo, paragrafo e bottone alla card
+            card.appendChild(titlecard);
+            card.appendChild(paragraph);
+
+            // Aggiunge la card al container
+            cardContainer.appendChild(card);
+        });
+
+        // Inizializza il carosello Slick
+        $('.card-container').slick({
+            slidesToShow: 1,  // Mostra una card alla volta
+            slidesToScroll: 1,
+            dots: true,       // Aggiunge i puntini di navigazione
+            infinite: false,  // Disabilita lo scorrimento infinito
+            prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+            nextArrow: '<button type="button" class="slick-next">Next</button>'
+        });
+    }
+
+    // Chiama la funzione quando la pagina è caricata
+    window.onload = generateCards;
+</script>
+
+
+</html>

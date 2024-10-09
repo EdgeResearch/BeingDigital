@@ -38,10 +38,10 @@ public class LezioniPrivacyController {
     Utente utente = (Utente) personaAutenticata.getPersona().get();
 
     if ("Privacy".equalsIgnoreCase(sottoArgomento)) {
-      model.addAttribute("lezioniPerMetaInfo", prelievoArgomentoService.getLezioniPerMetaInfoSortedByLivelloKeywordTitoloAndSottoArgomento(Livello.MASTER, "Privacy"));
+      model.addAttribute("lezioniPerMetaInfo", prelievoArgomentoService.getLezioniPerMetaInfoSortedByLivelloKeywordIdAndSottoArgomento(Livello.MASTER, "Privacy"));
       model.addAttribute("tipo", "lezioniPrivacy");
     } else if ("IntelligenzaArtificiale".equalsIgnoreCase(sottoArgomento)) {
-      model.addAttribute("lezioniPerMetaInfo", prelievoArgomentoService.getLezioniPerMetaInfoSortedByLivelloKeywordTitoloAndSottoArgomento(Livello.MASTER, "IntelligenzaArtificiale"));
+      model.addAttribute("lezioniPerMetaInfo", prelievoArgomentoService.getLezioniPerMetaInfoSortedByLivelloKeywordIdAndSottoArgomento(Livello.MASTER, "IntelligenzaArtificiale"));
       model.addAttribute("tipo", "lezioniIntelligenza");
     }
 

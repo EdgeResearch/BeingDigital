@@ -1,14 +1,14 @@
 .iframe-row {
     display: flex;
-    justify-content: center;  /* Centra orizzontalmente */
-    /*align-items: center;      /* Centra verticalmente */
+    justify-content: center;
 }
-
 
 .flip-card {
     background-color: transparent;
     width: 280px;
     height: 320px;
+    position: relative;
+    margin: 10px;
 }
 
 .flip-card-inner {
@@ -43,27 +43,12 @@
     word-spacing: normal;
     font-size: 18px;
     font-weight: bolder;
-    align-content: center;
     color: white;
-}
-
-.flip-card-front {
-    font-family: 'Montserrat', sans-serif;;
-    color: white;
-    /*background-color: #60c660; */
-}
-
-.flip-card-back {
-    background-color: white;
-    transform: rotateY(180deg);
-    font-family: 'Montserrat', sans-serif;
 }
 
 .card-title {
     letter-spacing: 4px;
-    display: inline-block; /* Makes the title only as wide as the content */
-    padding-bottom: 5px; /* Adds some space between the text and the border */
-    /* Positioning */
+    display: inline-block;
     position: absolute;
     top: 20px;
     left: 50%;
@@ -71,5 +56,54 @@
     text-align: center;
     width: 100%;
     color: white;
+    font-weight: bold;
+    font-size: 24px;
 }
 
+.card-body-front {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    color: black;
+    padding-top: 60px;
+}
+
+.flip-card-back {
+    background-color: white;
+    transform: rotateY(180deg);
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    padding-top: 60px;
+}
+
+.pattern-1 {
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.2) 15%, transparent 16%);
+    background-size: 30px 30px;
+}
+
+.pattern-2 {
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%);
+    background-size: 50px 50px;
+}
+
+.pattern-3 {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+.pattern-4 {
+    background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2) 1px, transparent 1px, transparent 10px);
+    background-size: 10px 100%;
+}

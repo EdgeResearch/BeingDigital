@@ -10,15 +10,16 @@
 <body>
 
 <div th:fragment="flashcardContent">
-    <div th:with="colors=${'#ff6666,#66ff66,#6666ff,#ffcc66,#66ccff'.split(',')}">
+    <div th:with="colors=${'#ff6666,#66ff66,#6666ff,#ffcc66,#66ccff'.split(',')}, patterns=${'pattern-1,pattern-2,pattern-3,pattern-4,pattern-5'.split(',')}">
         <div class="iframe-row">
-            <!-- Itera sulle flashCards e applica un colore a ciascuna card -->
+            <!-- Itera sulle flashCards e applica un pattern e colore a ciascuna card -->
             <div th:each="flashCard, iterStat : ${flashCards}">
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <!-- Imposta lo stile dinamicamente per ogni card, direttamente nella generazione -->
                         <div class="flip-card-front"
-                             th:style="'background-color: ' + ${colors[iterStat.index % colors.length]}">
+                             th:style="'background-color: ' + ${colors[iterStat.index % colors.length]} + '; '"
+                             th:classappend="${patterns[iterStat.index % patterns.length]}">
                             <h2 class="card-title">Domanda</h2>
                             <p th:text="${flashCard.domande}" class="card-body-front"></p>
                         </div>

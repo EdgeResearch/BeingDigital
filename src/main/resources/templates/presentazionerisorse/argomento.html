@@ -4,11 +4,6 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title th:text="${argomento.titolo}"></title>
-
-    <!-- Link per Slick Carousel CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css"
-          href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <link rel="stylesheet" th:href="@{/stylesheet/argomento.css}" type="text/css"/>
     <link rel="stylesheet" th:href="@{/stylesheet/flashcard.css}" type="text/css"/>
     <link href="/img/Logo.png" rel="shortcut icon"/>
@@ -31,12 +26,18 @@
         <iframe th:replace="presentazionerisorse/racconto :: racconto"></iframe>
     </div>
 
+   <!-- caso in cui è una lezione -->
     <div th:if="${argomento.id != 500}" class="raccontoText">
 
         <div id="argomentoContent" th:utext="${argomento.corpo}" style="display: none;"></div>
-        <!-- Contenitore per le card -->
-        <div class="card-container" id="cardContainer">
-            <!-- Le card verranno inserite qui dinamicamente -->
+
+        <div class="card-container" id="cardContainer"></div>
+
+
+        <div th:if="${argomento.mappa != null}">
+            <hr class="linea">
+            <svg width="500" height="300" style="position: relative;"></svg>
+            <script th:src="@{${argomento.mappa}}" defer></script>
         </div>
 
         <hr class="linea">
@@ -46,8 +47,6 @@
         </div>
 
         <hr class="linea">
-
-        <!-- <svg width="1000" height="1000"></svg> -->
 
         <!-- Contenitore per la mappa
         <div id="diagram" style="position: relative">
@@ -65,64 +64,37 @@
 
 </div>
 
-
 <th:block th:include="fragments/footer"></th:block>
 </body>
 
 <!-- Includi lo script lezione_passwordsicura.js -->
 <script src="https://unpkg.com/gojs/release/go-debug.js"></script>
 <script src="https://d3js.org/d3.v6.min.js"></script>
-
-
 <!--<script th:src="@{/js/mappe/privacy/base/lezione_passwordsicura.js}"></script> -->
 
-<!-- Caricamento dinamico del file JS della mappa -->
-<!-- <script th:src="@{${argomento.mappa}}"></script> -->
-
-<!-- Includi Slick Carousel -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Funzione per inizializzare Slick Carousel
-        function initializeCarousel() {
-            $('#cardContainer').slick({
-                dots: true,
-                infinite: true,
-                speed: 500,
-                slidesToShow: 1,
-                slidesToScroll: 1
-            });
-        }
-
-        // Funzione per creare e aggiungere le card al carosello
-        function populateCarousel() {
-            // Recupera il contenuto dell'elemento con id 'argomentoContent'
+        function populateCards() {
             var content = document.getElementById('argomentoContent').innerHTML;
 
-            // Crea un parser HTML
             var parser = new DOMParser();
             var doc = parser.parseFromString(content, 'text/html');
 
-            // Trova tutti i div nel contenuto
             var divs = doc.querySelectorAll('div');
             var cardContainer = document.getElementById('cardContainer');
 
-            // Aggiungi ogni div come una card al carosello
             divs.forEach(function (div) {
                 var card = document.createElement('div');
                 card.classList.add('card');
-                card.innerHTML = div.innerHTML; // Copia il contenuto del div originale
+                card.innerHTML = div.innerHTML;
                 cardContainer.appendChild(card);
             });
-
-            // Inizializza il carosello Slick dopo aver aggiunto le card
-            initializeCarousel();
         }
 
-        // Chiama la funzione per popolare il carosello
-        populateCarousel();
+        populateCards();
     });
 </script>
+
 
 </html>

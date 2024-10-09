@@ -34,7 +34,7 @@ public class LezioniDaStudiareController {
     Utente utente = (Utente) personaAutenticata.getPersona().get();
 
     model.addAttribute("lezioniPerMetaInfo",
-        prelievoArgomentoService.getLezioniDaStudiarePerMetaInfoSortedByLivelloKeywordTitolo(
+        prelievoArgomentoService.getLezioniDaStudiarePerMetaInfoSortedByLivelloKeywordId(
             utente));
     model.addAttribute("tipo", "lezioniDaStudiare");
     return "presentazionerisorse/listaLezioni";

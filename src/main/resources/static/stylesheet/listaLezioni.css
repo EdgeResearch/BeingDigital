@@ -17,12 +17,22 @@
     --aggiuntivo4: #b700ff;
 }
 
+.livello {
+    font-size: 35px;
+    margin: 50px 0 50px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--second-color);
+    padding: 0 5px;
+    text-align: center;
+}
+
 .lezioni {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 130vh;
+    /*min-height: 130vh; */
     background-color: #e3e3e3;
     background-size: contain;
 }
@@ -124,15 +134,6 @@ h4.livello-lezione{
     font-weight: 700;
 }
 
-.livello {
-    font-size: 35px;
-    margin: 80px 0 50px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #273a73;
-    padding: 0 5px;
-    text-align: center;
-}
 
 .lezioni p {
     margin-bottom: 100px;

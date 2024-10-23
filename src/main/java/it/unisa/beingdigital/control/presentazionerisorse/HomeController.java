@@ -38,6 +38,7 @@ public class HomeController {
 
         List<Team> teamList = teamRepository.findByUtentiContains(utente);
 
+        model.addAttribute("utente", utente);
         model.addAttribute("teams", teamList.isEmpty() ? null : teamList);
       }
     }

@@ -34,7 +34,7 @@ public class RegistrazioneService {
   @Autowired
   private PasswordEncryptor passwordEncryptor;
 
-  private static final String STOCK_IMAGE_PATH = "static/img/user_stock.png";
+  private static final String STOCK_IMAGE_PATH = "static/img/user_stock.jpeg";
 
   /**
    * Implementa la funzionalità di registrazione di un utente.
@@ -58,7 +58,7 @@ public class RegistrazioneService {
     byte[] immagineDefault = loadStockImage();
 
     Utente utente =
-        new Utente(nome, cognome, email, passwordEncryptor.encryptPassword(password), Livello.BASE, immagineDefault);
+        new Utente(nome, cognome, email, passwordEncryptor.encryptPassword(password), Livello.BASE, immagineDefault, "");
 
     utenteRepository.save(utente);
     return true;

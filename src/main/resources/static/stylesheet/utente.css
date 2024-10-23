@@ -21,7 +21,6 @@
     display: flex;
     min-height: 88vh;
     background-size: contain;
-    background: #edecec63;
     overflow-x: hidden;
     justify-items: center;
     align-items: center;
@@ -110,35 +109,6 @@
     margin: 50px 25px;
     background-color: var(--white-color);
     border-radius: 25px;
-}
-
-.daticard span {
-    position: absolute;
-    top: -6px;
-    left: -1px;
-    width: 120px;
-    height: 100px;
-    display: flex;
-    overflow: hidden;
-    font-size: 10px;
-    justify-content: center;
-    align-items: center;
-}
-
-.daticard span::before {
-    content: 'Dati personali';
-    position: absolute;
-    width: 145%;
-    height: 34px;
-    background-color: var(--aggiuntivo1);
-    transform: rotate(-36deg) translateY(-20px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
-    color: var(--text-color);
-    font-weight: 600;
-    box-shadow: -4px 5px 6px rgba(0, 0, 0, 0.25);
 }
 
 .plus {
@@ -438,6 +408,87 @@ button#cambiaImmagine {
     text-align: center;
 }
 
+.bio-box {
+    display: flex;
+    min-height: 88vh;
+    background-size: contain;
+    overflow-x: hidden;
+    justify-items: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.biocard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    width: 380px;
+    height: 470px;
+    margin: 50px 25px;
+    background-color: var(--white-color);
+    border-radius: 25px;
+}
+
+.biocard span {
+    position: absolute;
+    top: -6px;
+    left: -1px;
+    width: 120px;
+    height: 100px;
+    display: flex;
+    overflow: hidden;
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.biocard span::before {
+    content: 'Bio';
+    position: absolute;
+    width: 145%;
+    height: 34px;
+    background-color: var(--aggiuntivo1);
+    transform: rotate(-36deg) translateY(-20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: var(--text-color);
+    font-weight: 600;
+    box-shadow: -4px 5px 6px rgba(0, 0, 0, 0.25);
+}
+
+.bio-form {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bio-inner-box{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+textarea{
+    resize: none;
+}
+
+.bio-inner-box p {
+    margin: 20px 2px;
+}
+
+.bio-edit {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 @media (max-width: 990px) {
 
     .utente {
@@ -462,7 +513,6 @@ button#cambiaImmagine {
     .btnUtente {
         margin: 10px 5px;
     }
-
 }
 
 @media (max-width: 500px) {

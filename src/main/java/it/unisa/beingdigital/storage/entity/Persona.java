@@ -41,11 +41,15 @@ public class Persona {
   @Column(nullable = true, length = 102400)
   private byte[] fotoprofilo;
 
-  protected Persona(String nome, String cognome, String email, String password, byte[] fotoprofilo) {
+  @Column(nullable = true, length = 350)
+  private String biografia;
+
+  protected Persona(String nome, String cognome, String email, String password, byte[] fotoprofilo, String biografia) {
     this.nome = nome;
     this.cognome = cognome;
     this.email = email;
     this.password = password;
     this.fotoprofilo = fotoprofilo;
+    this.biografia = biografia;
   }
 }

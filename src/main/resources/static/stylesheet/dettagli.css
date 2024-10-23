@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat";
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #121b37;
+    --text-color: #f2f2f2;
+    --main-color: #30478c;
+    --second-color: #273a73;
+    --notify-color: #5b6ed9;
+    --white-color: white;
+    --highlight-color: #ffa900;
+    --danger-color: #ff4d4d;
+}
+
+body {
+    background: #edecec63;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text-color);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+    background: var(--white-color);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--second-color);
+    padding-bottom: 15px;
+}
+
+.header h1 {
+    font-size: 2em;
+    color: var(--main-color);
+}
+
+.header .btnBack {
+    padding: 10px 20px;
+    color: var(--white-color);
+    background-color: var(--main-color);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin: 5px;
+}
+
+.header .btnBack:hover {
+    background-color: var(--second-color);
+}
+
+.details-section {
+    margin-top: 20px;
+}
+
+.details-section h2 {
+    font-size: 1.8em;
+    color: var(--main-color);
+    margin-bottom: 10px;
+}
+
+.details-section p {
+    font-size: 1.1em;
+    color: var(--bg-color);
+}
+
+.member-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.member-card {
+    background-color: #f2f2f2;
+    color: var(--text-color);
+    width: 150px;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.member-card img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 3px solid var(--main-color);
+}
+
+.member-card h3 {
+    font-size: 1em;
+    margin-bottom: 5px;
+    color: #121b37;
+}
+
+.member-card .role {
+    font-size: 0.85em;
+    margin-bottom: 10px;
+}
+
+.member-card .btnRemove {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.2em;
+    color: var(--danger-color);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.member-card .btnRemove:hover {
+    color: var(--highlight-color);
+}
+
+.button-group {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+}
+
+.button-group a,
+.button-group button {
+    padding: 10px 20px;
+    color: var(--white-color);
+    background-color: var(--notify-color);
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-group a:hover,
+.button-group button:hover {
+    background-color: var(--main-color);
+}
+
+.bottoni-dettagli{
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .header h1 {
+        font-size: 1.5em;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .member-list {
+        justify-content: center;
+    }
+}

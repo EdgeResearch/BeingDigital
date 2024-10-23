@@ -4,8 +4,9 @@ import it.unisa.beingdigital.control.profilo.form.ModificaProfiloForm;
 import it.unisa.beingdigital.service.autenticazione.CheckPasswordService;
 import it.unisa.beingdigital.service.autenticazione.util.PersonaAutenticata;
 import it.unisa.beingdigital.service.profilo.ModificaProfiloService;
-import it.unisa.beingdigital.storage.entity.*;
-import it.unisa.beingdigital.storage.entity.util.Livello;
+import it.unisa.beingdigital.storage.entity.Persona;
+import it.unisa.beingdigital.storage.entity.Utente;
+import it.unisa.beingdigital.storage.entity.AmministratoreCittadini;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,12 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
- * Questa classe rappresenta il controller per la modifica di un account.
+ * Controller per la modifica del profilo della persona autenticata.
  */
-
 @Controller
 @RequestMapping("/auth/modificaProfilo")
 public class ModificaProfiloController {
@@ -38,16 +37,9 @@ public class ModificaProfiloController {
   @Autowired
   private CheckPasswordService checkPasswordService;
 
-  /**
-   * Implementa il get per la modifica dell'account dell'persona autenticata.
-   *
-   * @param modificaProfiloForm Form contenente i dati della persona autenticata.
-   * @return Stringa rappresentante il path della view da rappresentare.
-   */
   @GetMapping
   public String get(@ModelAttribute ModificaProfiloForm modificaProfiloForm, Model model) {
     Persona persona = personaAutenticata.getPersona().get();
-
     modificaProfiloForm.setNome(persona.getNome());
     modificaProfiloForm.setCognome(persona.getCognome());
     modificaProfiloForm.setEmail(persona.getEmail());
@@ -59,24 +51,11 @@ public class ModificaProfiloController {
     return "profilo/modificaProfilo";
   }
 
-  /**
-   * Implementa il post per la modifica dell'account dell'persona autenticata.
-   *
-   * @param modificaProfiloForm Form contenente i dati della persona autenticata.
-   * @param bindingResult       Risultato della validazione del form.
-   * @return Stringa rappresentante il path della view da rappresentare.
-   * @throws ResponseStatusException se il form non risulta valido.
-   */
   @PostMapping
   public String post(@ModelAttribute @Valid ModificaProfiloForm modificaProfiloForm,
                      BindingResult bindingResult, Model model) throws IOException {
 
     if (bindingResult.hasErrors()) {
-      bindingResult.getAllErrors().forEach(error -> {
-        System.out.println("Errore nel binding: " + error.getDefaultMessage());
-        System.out.println("Codice errore: " + error.getCode());
-        System.out.println("Oggetto con errore: " + error.getObjectName());
-      });
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
 
@@ -85,6 +64,7 @@ public class ModificaProfiloController {
 
     if (persona instanceof Utente) {
       Utente utente = (Utente) persona;
+
       if (!modificaProfiloForm.getPasswordAttuale().isEmpty()) {
         if (!checkPasswordService.checkPassword(utente, modificaProfiloForm.getPasswordAttuale())) {
           throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -109,6 +89,7 @@ public class ModificaProfiloController {
 
     } else if (persona instanceof AmministratoreCittadini) {
       AmministratoreCittadini amministratoreCittadini = (AmministratoreCittadini) persona;
+
       if (!modificaProfiloForm.getPasswordAttuale().isEmpty()) {
         if (!checkPasswordService.checkPassword(amministratoreCittadini, modificaProfiloForm.getPasswordAttuale())) {
           throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -131,16 +112,15 @@ public class ModificaProfiloController {
 
       return caricaDatiPersonali(model, amministratoreCittadini);
     }
+
     return caricaDatiPersonali(model, persona);
   }
 
   private String caricaDatiPersonali(Model model, Persona persona) {
-    if (persona instanceof Admin) {
-      model.addAttribute("admin", persona);
+    if (persona instanceof Utente) {
+      model.addAttribute("utente", persona);
     } else if (persona instanceof AmministratoreCittadini) {
       model.addAttribute("amministratoreCittadini", persona);
-    } else if (persona instanceof Utente) {
-      model.addAttribute("utente", persona);
     }
     return "profilo/profilo";
   }

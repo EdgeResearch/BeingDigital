@@ -20,7 +20,7 @@
 
 
 .input {
-    width: 100%;
+    max-width: 100%;
     margin-bottom: 33px;
     padding: 10px;
     outline: none;
@@ -101,16 +101,27 @@ label#label_gruppo {
     color: var(--notify-color);
 }
 
-input#confirmTeam {
-    border: 3px solid var(--notify-color);
-    color: var(--white-color);
+#confirmTeam:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    border: 1px solid #ccc;
+}
+
+#confirmTeam {
+    background-color: #007bff;
+    color: #fff;
     cursor: pointer;
-    background: var(--notify-color);
-    padding: 10px;
-    font-size: 13px;
-    font-weight: 600;
-    margin-top: 16px;
-    transition: all 150ms linear;
+    border: 1px solid #007bff;
+    transition: background-color 0.3s ease;
+}
+
+#confirmTeam:hover {
+    background-color: #0056b3;
+}
+
+#confirmTeam.hidden {
+    display: none;
 }
 
 @media (max-width: 1046px) {
@@ -187,12 +198,40 @@ input#confirmTeam {
 
 #Group{
     display: none;
+    flex-direction: column;
 }
 
 #Classe{
     display: none;
+    flex-direction: column;
 }
 
 #confirmTeam{
     display: none;
+}
+
+#tipoTeamForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}
+
+.btnUtente {
+    width: 150px;
+    text-decoration: none;
+    margin: 10px 20px;
+    padding: 6px 0;
+    color: var(--white-color);
+    background-color: #5b6ed9;
+    border: 3px solid #5b6ed9;
+    position: relative;
+    transition: 0.5s;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 12px;
 }

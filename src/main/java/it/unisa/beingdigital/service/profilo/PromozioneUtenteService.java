@@ -54,7 +54,7 @@ public class PromozioneUtenteService {
     cancellazioneAccountService.cancellazioneUtente(id);
     utenteRepository.flush();
     Admin admin = new Admin(utente.getNome(), utente.getCognome(), utente.getEmail(),
-        utente.getPassword(), utente.getFotoprofilo());
+        utente.getPassword(), utente.getFotoprofilo(), utente.getBiografia());
     adminRepository.save(admin);
     return true;
   }
@@ -68,7 +68,7 @@ public class PromozioneUtenteService {
     Utente utente = optional.get();
     cancellazioneAccountService.cancellazioneUtente(id);
     utenteRepository.flush();
-    AmministratoreCittadini amministratoreCittadini = new AmministratoreCittadini(utente.getNome(), utente.getCognome(), utente.getEmail(), utente.getPassword(), utente.getFotoprofilo());
+    AmministratoreCittadini amministratoreCittadini = new AmministratoreCittadini(utente.getNome(), utente.getCognome(), utente.getEmail(), utente.getPassword(), utente.getFotoprofilo(), utente.getBiografia());
     amministratoreCittadiniRepository.save(amministratoreCittadini);
     return true;
   }

@@ -2,11 +2,12 @@ package it.unisa.beingdigital.control.gestionerisorse;
 
 import it.unisa.beingdigital.control.gestionerisorse.form.MetaInfoForm;
 import it.unisa.beingdigital.control.gestionerisorse.form.TeamForm;
+import it.unisa.beingdigital.service.autenticazione.util.PersonaAutenticata;
 import it.unisa.beingdigital.service.gestionerisorse.ModificaRisorsaService;
 import it.unisa.beingdigital.service.presentazionerisorse.PrelievoMetaInfoService;
 import it.unisa.beingdigital.service.presentazionerisorse.PrelievoTeamService;
-import it.unisa.beingdigital.storage.entity.MetaInfo;
-import it.unisa.beingdigital.storage.entity.Team;
+import it.unisa.beingdigital.storage.entity.*;
+import it.unisa.beingdigital.storage.repository.PersonaRepository;
 import jakarta.validation.Valid;
 import java.io.IOException;
 import java.util.Optional;
@@ -35,6 +36,10 @@ public class ModificaTeamUtenteController {
 
     @Autowired
     private PrelievoTeamService prelievoTeamService;
+    @Autowired
+    private PersonaAutenticata personaAutenticata;
+    @Autowired
+    private PersonaRepository personaRepository;
 
     /**
      * Implementa il get per la modifica di un Team.
@@ -89,9 +94,20 @@ public class ModificaTeamUtenteController {
 
         Team team = optionalTeam.get();
 
-        boolean espulsioneSuccesso = modificaRisorsaService.espelliUtententeDalTeam(team, Long.valueOf(idUtente));
-        if (!espulsioneSuccesso) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Espulsione fallita");
+        Optional<Persona> persona = personaRepository.findById(Long.valueOf(idUtente));
+
+        Persona persona1 = persona.get();
+
+        if (persona1 instanceof Utente) {
+            boolean espulsioneSuccesso = modificaRisorsaService.espelliUtententeDalTeam(team, Long.valueOf(idUtente));
+            if (!espulsioneSuccesso) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Espulsione fallita");
+            }
+        }else if (persona1 instanceof AmministratoreCittadini){
+            boolean espulsioneSuccesso = modificaRisorsaService.espelliAmministratoreDalTeam(team, Long.valueOf(idUtente));
+            if (!espulsioneSuccesso) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Espulsione fallita");
+            }
         }
 
         return "redirect:/team";

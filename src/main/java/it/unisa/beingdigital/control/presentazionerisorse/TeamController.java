@@ -39,9 +39,6 @@ public class TeamController {
     @Autowired
     private AmministratoreCittadiniRepository amministratoreCittadiniRepository;
 
-    @Autowired
-    private DatiUtentiService datiUtentiService;
-
 
     /**
      * Metodo che gestisce la visualizzazione di un team.
@@ -57,6 +54,28 @@ public class TeamController {
     @PostMapping
     public String selezionaTeamPost(Model model) {
         return caricaTeam(model);
+    }
+
+    @GetMapping("/dettagli")
+    public String getTeamDettagli(@RequestParam("codice") String codice, Model model) {
+        Persona persona = personaAutenticata.getPersona().get();
+
+        if (persona instanceof AmministratoreCittadini) {
+            model.addAttribute("AmministratoreCittadini", persona);
+        } else if (persona instanceof Utente) {
+            model.addAttribute("Utente", persona);
+        }
+
+        Optional<Team> teamOptional = teamRepository.findByCodice(codice);
+
+        if (teamOptional.isPresent()) {
+            Team team = teamOptional.get();
+            model.addAttribute("team", team);
+            return "presentazionerisorse/dettagli";
+        } else {
+            model.addAttribute("error", "Team non trovato");
+            return "error";
+        }
     }
 
     private String caricaTeam(Model model) {
@@ -88,30 +107,37 @@ public class TeamController {
         Persona persona = personaAutenticata.getPersona().get();
 
         Optional<Team> teamOpt = teamRepository.findByCodice(codiceTeam);
+
         if (teamOpt.isPresent()) {
             Team team = teamOpt.get();
+
             if (persona instanceof Utente) {
                 Utente utente = (Utente) persona;
-                if (!team.getUtenti().stream().anyMatch(u -> u.getId().equals(utente.getId()))) {
+                if (team.getUtenti().stream().anyMatch(u -> u.getId().equals(utente.getId()))) {
+                    model.addAttribute("messageTeam", "Sei già membro di questo team.");
+                } else {
                     team.getUtenti().add(utente);
                     teamRepository.save(team);
                     utenteRepository.save(utente);
-                }else{
-                    model.addAttribute("messageTeam", "Sei già membro di questo team.");
                 }
-            }else if(persona instanceof AmministratoreCittadini){
+            } else if (persona instanceof AmministratoreCittadini) {
                 AmministratoreCittadini amministratoreCittadini = (AmministratoreCittadini) persona;
-                if (!team.getAmministratoriCittadini().stream().anyMatch(a -> a.getId().equals(amministratoreCittadini.getId()))) {
+                if (team.getAmministratoriCittadini().stream().anyMatch(a -> a.getId().equals(amministratoreCittadini.getId()))) {
+                    model.addAttribute("messageTeam", "Sei già membro di questo team.");
+                } else {
                     team.getAmministratoriCittadini().add(amministratoreCittadini);
                     teamRepository.save(team);
                     amministratoreCittadiniRepository.save(amministratoreCittadini);
-                }else{
-                    model.addAttribute("messageTeam", "Sei già membro di questo team.");
                 }
             }
+        } else {
+            model.addAttribute("messageTeam", "Il codice inserito non è valido.");
         }
-        return"redirect:/team";
+
+        return caricaTeam(model);
     }
+
+    /*
     private String caricaDatiPersonali(Model model, Persona persona) {
         if (persona instanceof Admin) {
             model.addAttribute("admin", persona);
@@ -136,5 +162,5 @@ public class TeamController {
             model.addAttribute("message", teams.isEmpty() ? "non sei in nessun team" : null);
         }
         return "/presentazionerisorse/team";
-    }
+    }*/
 }

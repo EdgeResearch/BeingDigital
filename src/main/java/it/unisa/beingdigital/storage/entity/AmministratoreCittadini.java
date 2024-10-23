@@ -23,8 +23,8 @@ public class AmministratoreCittadini extends Persona {
     @Lob
     private byte[] fotoprofilo;
 
-    public AmministratoreCittadini(String nome, String cognome, String email, String password, byte[] fotoprofilo) {
-        super(nome, cognome, email, password, fotoprofilo);
+    public AmministratoreCittadini(String nome, String cognome, String email, String password, byte[] fotoprofilo, String biografia) {
+        super(nome, cognome, email, password, fotoprofilo, biografia);
         this.fotoprofilo = fotoprofilo;
     }
 

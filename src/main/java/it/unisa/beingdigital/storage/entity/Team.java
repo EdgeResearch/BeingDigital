@@ -65,6 +65,18 @@ public class Team{
         return false;
     }
 
+    public boolean espelliAmministratore(Long idUtente) {
+        Iterator<AmministratoreCittadini> iterator = amministratoriCittadini.iterator();
+        while (iterator.hasNext()) {
+            AmministratoreCittadini amministratoreCittadini = iterator.next();
+            if (amministratoreCittadini.getId().equals(idUtente)) {
+                iterator.remove();
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Team(String codice, String nome, List<Utente> utenti, List<AmministratoreCittadini> amministratoreCittadini, String email) {
         this.codice = codice;
         this.nome = nome;

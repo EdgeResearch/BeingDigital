@@ -27,7 +27,8 @@ public class CreaTeamController {
     private InserimentoRisorsaService inserimentoRisorsaService;
 
     @GetMapping
-    public String get(@ModelAttribute TeamForm teamForm){
+    public String get(@ModelAttribute TeamForm teamForm, Model model){
+        model.addAttribute("isEditing", false);
         return "gestionerisorse/modificaTeam";
     }
 

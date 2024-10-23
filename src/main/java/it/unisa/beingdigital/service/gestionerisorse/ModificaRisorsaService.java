@@ -322,4 +322,21 @@ public class ModificaRisorsaService {
 
     return true;
   }
+
+  /**
+   * Implementa la funzionalità di espulsione di un utente dal team.
+   * Si assume che la corretta formulazione dei parametri sia stata controllata prima
+   * di effettuare la chiamata.
+   *
+   * @param team       Team da modificare.
+   * @param idUtente   id dell'Utente da espellere.
+   * @return true se l'espulsione è andata a buon fine, false altrimenti.
+   * @throws jakarta.validation.ConstraintViolationException se il codice risulta null.
+   */
+  public boolean espelliAmministratoreDalTeam(Team team, @NotNull Long idUtente) {
+
+    team.espelliAmministratore(idUtente);
+
+    return true;
+  }
 }

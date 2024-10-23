@@ -22,12 +22,12 @@
   </div>
 
   <nav id="menu">
-    <div class="team-header" th:if="${@personaAutenticata.persona.isPresent()}">
-      <a class="bottoni-header" href="#">Diario di bordo</a>
+    <div class="team-header" th:if="${utente != null}">
+      <a class="bottoni-header" href="/auth/diariodibordo">Diario di bordo</a>
     </div>
 
-    <div class="team-header" th:if="${teams != null}">
-      <a class="bottoni-header" href="#">Team</a>
+    <div class="team-header" th:if="${@personaAutenticata.persona.isPresent()}">
+      <a class="bottoni-header" href="/team">Team</a>
     </div>
 
     <div>

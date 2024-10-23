@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Diario di Bordo</title>
+  <link rel="stylesheet" th:href="@{/stylesheet/diariodibordo.css}" type="text/css"/>
+  <link href="/img/Logo.png" rel="shortcut icon"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<th:block th:insert="~{fragments/header}"></th:block>
+
+<div class="Lobby" id="diariodibordo" th:data-livello="${livelloUtente}">
+  <div class="scritte">
+    <!-- Messaggio di benvenuto -->
+    <h1 th:if="${isTeam}">Benvenuto sul diario di bordo del team: <span th:text="${team.nome}"></span></h1>
+    <h1 th:if="${!isTeam}">Benvenuto sul tuo diario di bordo</h1>
+    <p th:if="${classe != null}">Qui troverai tutti i progressi della classe</p>
+    <p th:if="${gruppo != null}">Qui troverai tutti i progressi del gruppo</p>
+    <p th:if="${!isTeam}">Qui troverai tutti i tuoi progressi</p>
+  </div>
+
+  <div class="diariodibordo-container">
+    <!-- Colonna sinistra: Categorie -->
+    <div class="categorie">
+      <h3>Categorie</h3>
+      <div class="category-btn-container">
+        <button class="category-btn" id="btnPrivacy">Privacy e Sicurezza Online</button>
+        <button class="category-btn" id="btnIA">Intelligenza Artificiale</button>
+      </div>
+    </div>
+
+    <div class="risultati-categoria" id="risultatiCategoria">
+      <!-- Titolo dinamico -->
+      <h2 id="titoloCategoria"></h2>
+
+      <!-- Sezione percentuali che deve essere mostrata/nascosta -->
+      <div class="percentuali" id="percentualiPrivacy" style="display: none;">
+        <div th:class="${percentualeBase <= 50}? 'progress less': 'progress'"
+             th:style="'--i:' + ${percentualeBase} + '; --clr:#FF0000FF'">
+          <h3><span th:text="${percentualeBase}"></span>%</h3>
+          <h4>BASE</h4>
+        </div>
+
+        <div th:class="${percentualeIntermedio <= 50}? 'progress less': 'progress'"
+             th:style="'--i:' + ${percentualeIntermedio} + '; --clr:#3cff46'">
+          <h3><span th:text="${percentualeIntermedio}"></span>%</h3>
+          <h4>INTERMEDIO</h4>
+        </div>
+
+        <div th:class="${percentualeAvanzato <= 50}? 'progress less': 'progress'"
+             th:style="'--i:' + ${percentualeAvanzato} + '; --clr:#ffa900'">
+          <h3><span th:text="${percentualeAvanzato}"></span>%</h3>
+          <h4>AVANZATO</h4>
+        </div>
+
+        <div th:class="${percentualeMaster <= 50}? 'progress less': 'progress'"
+             th:style="'--i:' + ${percentualeMaster} + '; --clr:#b700ff'">
+          <h3><span th:text="${percentualeMaster}"></span>%</h3>
+          <h4>MASTER</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<th:block th:insert="~{fragments/footer}"></th:block>
+<script th:src="@{/js/diariodibordo.js}"></script>
+</body>
+</html>

@@ -24,8 +24,8 @@ public class Utente extends Persona {
   @Enumerated(EnumType.STRING)
   private Livello livello;
 
-  public Utente(String nome, String cognome, String email, String password, Livello livello, byte[] fotoprofilo) {
-    super(nome, cognome, email, password, fotoprofilo);
+  public Utente(String nome, String cognome, String email, String password, Livello livello, byte[] fotoprofilo, String biografia) {
+    super(nome, cognome, email, password, fotoprofilo, biografia);
     this.livello = livello;
   }
 

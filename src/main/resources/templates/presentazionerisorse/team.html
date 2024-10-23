@@ -25,18 +25,18 @@
                 <div class="areabtn">
                     <button type="submit" class="btnUtente">Entra</button>
                 </div>
-                <div th:if="${messageTeam != null}">
-                    <p th:text="${messageTeam}"></p>
-                </div>
                 <div th:if="${AmministratoreCittadini != null}">
                     <a id="creaTeam" class="btnUtente" href="/amministratoreCittadini/creazioneTeam">Crea Team</a>
+                </div>
+                <div th:if="${messageTeam != null}">
+                    <p th:text="${messageTeam}"></p>
                 </div>
             </div>
         </form>
     </div>
 
     <!-- Mostra tutti i team con i partecipanti -->
-    <div class="box" id="boxTeam">
+    <div class="box" id="boxTeam" th:if="${teams != null and !teams.isEmpty()}">
         <th:block th:each="team : ${teams}">
             <div class="team-box">
                 <!-- Nome del team -->
@@ -46,7 +46,14 @@
                             <i class="fa-solid fa-pencil"></i>
                         </a>
                     </div>
-                    <h2 th:text="${team.nome}"></h2>
+
+                    <h2>
+                        <a th:href="@{'/team/dettagli?codice=' + ${team.codice}}"
+                           th:text="${team.nome}"
+                           class="team-name-link">
+                        </a>
+                    </h2>
+
                     <div th:if="${Utente != null}">
                         <a th:data-id-utente-loggato="${Utente.id}" onclick="showConferma1(this)" class="exit-team-icon">
                             <i class="fa-solid fa-door-open"></i>
@@ -66,17 +73,22 @@
                     <!-- Amministratori -->
                     <th:block th:each="amministratoreCittadini : ${team.amministratoriCittadini}">
                         <div class="box-utente">
-                            <img th:src="@{'/fotoprofilo/' + ${amministratoreCittadini.id}}" alt="Immagine di profilo" class="profile-image">
+                            <a th:href="@{'/auth/Profilo?personaId=' + ${amministratoreCittadini.id}}">
+                                <img th:src="@{'/fotoprofilo/' + ${amministratoreCittadini.id}}" alt="Immagine di profilo" class="profile-image">
+                            </a>
                             <h5 th:text="${amministratoreCittadini.nome} + ' ' + ${amministratoreCittadini.cognome}"></h5>
                             <div th:if="${AmministratoreCittadini != null}">
                                 <i class="fa-solid fa-trash" th:data-id-utente="${amministratoreCittadini.id}" onclick="showConferma(this)"></i>
                             </div>
                         </div>
                     </th:block>
+
                     <!-- Utenti -->
                     <th:block th:each="utente : ${team.utenti}">
                         <div class="box-utente">
-                            <img th:src="@{'/fotoprofilo/' + ${utente.id}}" alt="Immagine di profilo" class="profile-image">
+                            <a th:href="@{'/auth/Profilo?personaId=' + ${utente.id}}">
+                                <img th:src="@{'/fotoprofilo/' + ${utente.id}}" alt="Immagine di profilo" class="profile-image">
+                            </a>
                             <h5 th:text="${utente.nome} + ' ' + ${utente.cognome}"></h5>
                             <div th:if="${AmministratoreCittadini != null}">
                                 <i class="fa-solid fa-trash" th:data-id-utente="${utente.id}" onclick="showConferma(this)"></i>
@@ -87,7 +99,6 @@
             </div>
         </th:block>
     </div>
-
 </div>
 
 <!-- Conferma eliminazione -->

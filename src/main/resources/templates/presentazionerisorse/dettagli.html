@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0">
+  <title>Dettagli Team</title>
+  <link rel="stylesheet" th:href="@{/stylesheet/utente.css}" type="text/css"/>
+  <link rel="stylesheet" th:href="@{/stylesheet/dettagli.css}" type="text/css"/>
+  <link rel="stylesheet" th:href="@{/stylesheet/cancellazione.css}" type="text/css"/>
+  <link href="/img/Logo.png" rel="shortcut icon"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Inserisce l'intestazione del sito -->
+<th:block th:insert="~{fragments/header}"></th:block>
+
+<div class="container">
+  <!-- Header con nome del team e pulsante per tornare alla pagina principale del team -->
+  <div class="header">
+    <h1 th:text="${team.nome}">Nome del Team</h1>
+    <div class="bottoni-dettagli">
+      <div th:if="${AmministratoreCittadini != null}">
+        <a th:href="@{'/auth/diariodibordo?codice=' + ${team.codice}}" class="btnBack">Diario di Bordo</a>
+      </div>
+      <a href="/team" class="btnBack">Torna indietro</a>
+    </div>
+  </div>
+
+  <!-- Dettagli generali del team -->
+  <div class="details-section">
+    <h2>Informazioni sul Team</h2>
+    <p><strong>Codice del Team:</strong> <span th:text="${team.codice}">123ABC</span></p>
+    <input type="hidden" id="codice" name="codice" th:value="${team.codice}">
+  </div>
+
+  <!-- Lista dei membri del team -->
+  <div class="details-section">
+    <h2>Membri del Team</h2>
+    <div class="member-list">
+      <!-- Amministratori -->
+      <th:block th:each="admin : ${team.amministratoriCittadini}">
+        <div class="member-card">
+          <a th:href="@{'/auth/Profilo?personaId=' + ${admin.id}}">
+            <img th:src="@{'/fotoprofilo/' + ${admin.id}}" alt="Foto profilo">
+          </a>
+          <h3 th:text="${admin.nome + ' ' + admin.cognome}">Nome Cognome</h3>
+          <span class="role" style="color: #ffa900;">Amministratore</span>
+        </div>
+      </th:block>
+
+      <!-- Utenti -->
+      <th:block th:each="utente : ${team.utenti}">
+        <div class="member-card">
+          <a th:href="@{'/auth/Profilo?personaId=' + ${utente.id}}">
+            <img th:src="@{'/fotoprofilo/' + ${utente.id}}" alt="Foto profilo">
+          </a>
+          <h3 th:text="${utente.nome + ' ' + utente.cognome}">Nome Cognome</h3>
+          <span class="role" style="color: #273a73;">Membro</span>
+          <div th:if="${AmministratoreCittadini != null}">
+            <i class="fa-solid fa-trash btnRemove" th:data-id-utente="${utente.id}" onclick="showConferma(this)"></i>
+          </div>
+        </div>
+      </th:block>
+    </div>
+  </div>
+</div>
+
+<!-- Conferma eliminazione -->
+<div id="conf" class="all-canc" style="display: none;">
+  <div class="cancella">
+    <div class="textcancella">
+      <h1>ATTENZIONE</h1>
+      <p id="testo-espulsione">Sicuro di voler procedere all'espulsione di questo utente?</p>
+      <form action="/amministratoreCittadini/modificaTeam/espelliUtente" name="confForm" method="post" id="confForm">
+        <input type="hidden" name="codiceTeam" id="codiceTeam">
+        <input type="hidden" name="idUtente" id="idUtente">
+        <div class="btn-canc">
+          <button class="elimina" type="submit">SI</button>
+          <a class="elimina" onclick="hideConferma()">NO</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Script per la gestione della conferma di espulsione -->
+<script th:src="@{/js/amministratoreCittadini.js}"></script>
+
+<!-- Inserisce il footer del sito -->
+<th:block th:insert="~{fragments/footer}"></th:block>
+
+</body>
+</html>

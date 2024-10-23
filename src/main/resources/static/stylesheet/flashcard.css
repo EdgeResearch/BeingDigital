@@ -5,10 +5,17 @@
 
 .flip-card {
     background-color: transparent;
-    width: 280px;
-    height: 320px;
+    width: 250px;
+    height: 290px;
     position: relative;
     margin: 10px;
+}
+.flip-card p {
+    word-wrap: initial;
+    hyphens: none; /* Nessuna divisione delle sillabe */
+    letter-spacing: 0;
+    word-spacing: normal;
+    font-size: 15px;
 }
 
 .flip-card-inner {
@@ -41,9 +48,8 @@
     hyphens: auto;
     letter-spacing: 0;
     word-spacing: normal;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bolder;
-    color: white;
 }
 
 .card-title {

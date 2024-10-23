@@ -17,6 +17,10 @@
     --aggiuntivo4: #b700ff;
 }
 
+p {
+    font-size: 18px;
+}
+
 .racconto {
     min-height: 200vh;
     background-color: #edecec63;
@@ -40,11 +44,6 @@
 /* progress tracker */
 
 
-.racconto .raccontoText p {
-    /*text-align: justify;*/
-    color: var(--bg-color);
-}
-
 .raccontoText {
     justify-items: center;
     align-items: center;
@@ -53,13 +52,13 @@
     padding: 0 10%; /*quello al lato */
     font-size: 22px;
     letter-spacing: 1px;
-    padding-bottom: 210px;
     color: white;
 }
 
 .box-bottoni {
     display: flex;
-    margin-top: 60px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     justify-content: center;
 }
 
@@ -103,6 +102,13 @@ h3 {
     padding-bottom: 10px;
 }
 
+h4 {
+    color: #efb90e;
+    padding-top: 10px;
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+
 h5 {
     color: #33df3c;
     padding-top: 10px;
@@ -111,13 +117,13 @@ h5 {
 table {
     overflow: auto;
     width: 100%;
-    font-size: 18px;
+    font-size: 16px;
     border: 1px none #dededf;
     height: 100%;
     table-layout: auto;
     border-collapse: collapse;
-    border-spacing: 1px;
-    text-align: center;
+    border-spacing: 0; /* Cambiato da 1px a 0 per evitare spazi tra le righe */
+    text-align: center; /* Allinea il testo al centro per la tabella */
     margin-top: 25px;
 }
 
@@ -130,13 +136,20 @@ th {
     border: 1px none #dededf;
     background-color: #30478c;
     color: #ffffff;
-    padding: 5px;
+    padding: 15px;
+    text-align: left;
 }
 
 td {
-    border: 1px none #dededf;
-    padding: 5px;
+    border: 1px solid #dededf;
+    padding: 15px;
+    text-align: left;
 }
+
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Colore di sfondo alternato per righe pari */
+}
+
 
 pre {
     color: black;
@@ -155,14 +168,11 @@ tr:nth-child(odd) td {
     color: #000000;
 }
 
-p {
-    padding-top: 10px;
-    font-size: 18px;
-}
 
 .card-container {
-    width: 100%;
+    width: 92%;
     height: auto;
+    justify-content: center;
 }
 
 .card {
@@ -186,6 +196,10 @@ p {
     flex-direction: row;
     max-width: 100vw;
     gap: 40px;
+}
+
+.racconto .raccontoText p {
+    color: var(--bg-color);
 }
 
 @media (max-width: 1285px) {

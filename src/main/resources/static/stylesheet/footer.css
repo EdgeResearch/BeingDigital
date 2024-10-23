@@ -17,29 +17,28 @@
     --aggiuntivo4: #b700ff;
 }
 
-
 footer {
     background-color: #414141;
     text-align: left;
     font-weight: bold;
     font-size: 16px;
-    padding: 50px;
+    padding: 20px;
     overflow-x: hidden;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .footer .footer-left,
 .footer .footer-center,
 .footer .footer-right {
-    display: inline-block;
-    vertical-align: top;
+    flex: 1;
+    padding: 0 15px;
+    box-sizing: border-box;
 }
 
-
-/* footer left*/
-
 .footer .footer-left {
-    width: 33%;
-    padding-right: 15px;
+    min-width: 250px;
 }
 
 .footer .about {
@@ -53,9 +52,9 @@ footer {
 .footer .about span {
     display: block;
     color: #ffffff;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .footer .icons {
@@ -67,23 +66,17 @@ footer {
     width: 42px;
     height: 42px;
     cursor: pointer;
-    /* background-color: #33383b; */
     border-radius: 2px;
     font-size: 20px;
     color: #ffffff;
     text-align: center;
     justify-content: center;
     align-items: center;
-    /* line-height: 38px; */
     margin-right: 3px;
-    /* margin-bottom: 5px; */
 }
 
-
-/* footer center*/
-
 .footer .footer-center {
-    width: 30%;
+    min-width: 200px;
 }
 
 .footer .footer-center i {
@@ -91,7 +84,6 @@ footer {
     color: #ffffff;
     font-size: 25px;
     width: 40px;
-    /* height: 38px; */
     border-radius: 50%;
     text-align: center;
     line-height: 42px;
@@ -123,11 +115,8 @@ footer {
     text-decoration: none;
 }
 
-
-/* footer right*/
-
 .footer .footer-right {
-    width: 35%;
+    min-width: 200px;
 }
 
 .footer h2 {
@@ -166,17 +155,16 @@ footer {
 }
 
 @media (max-width: 767px) {
-    .footer {
-        font-size: 14px;
+    footer {
+        flex-direction: column;
+        text-align: center;
     }
 
     .footer .footer-left,
     .footer .footer-center,
     .footer .footer-right {
-        display: block;
         width: 100%;
         margin-bottom: 40px;
-        text-align: center;
     }
 
     .footer .footer-center i {

@@ -58,6 +58,6 @@ public class LoginController {
         return "redirect:" + risorsa;
     }
 
-    return "redirect:/auth/areaPersonale";
+    return "redirect:/";
   }
 }

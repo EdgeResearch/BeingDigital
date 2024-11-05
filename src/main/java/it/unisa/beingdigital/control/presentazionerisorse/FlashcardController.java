@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -42,7 +41,7 @@ public class FlashcardController {
         }
 
         model.addAttribute("flashCard", optionalFlashCard.get());
-        return "presentazionerisorse/flashcard";  // Ritorna alla pagina HTML flashcard.html
+        return "presentazionerisorse/flashcard";
     }
 
     /**
@@ -64,6 +63,6 @@ public class FlashcardController {
         model.addAttribute("flashCards", flashCards);
         model.addAttribute("argomento", optionalArgomento.get());
 
-        return "presentazionerisorse/flashcards";  // Ritorna alla pagina HTML flashcards.html
+        return "presentazionerisorse/flashcards";
     }
 }

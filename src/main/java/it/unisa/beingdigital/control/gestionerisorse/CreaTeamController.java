@@ -37,12 +37,11 @@ public class CreaTeamController {
      *
      * @param teamForm      form rappresentante il team da inserire.
      * @param bindingResult risultato della validazione di teamForm.
-     * @param model         model da passare alla view
      * @return Stringa rappresentante il path della view da rappresentare.
      * @throws ResponseStatusException se teamForm è mal formato o l'inserimento non va a buon fine.
      */
     @PostMapping
-    public String post(@ModelAttribute @Valid TeamForm teamForm, BindingResult bindingResult, Model model){
+    public String post(@ModelAttribute @Valid TeamForm teamForm, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }

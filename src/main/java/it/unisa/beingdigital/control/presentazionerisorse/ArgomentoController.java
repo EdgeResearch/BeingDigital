@@ -2,10 +2,8 @@ package it.unisa.beingdigital.control.presentazionerisorse;
 
 import it.unisa.beingdigital.service.presentazionerisorse.PrelievoArgomentoService;
 import it.unisa.beingdigital.storage.entity.Argomento;
-
 import java.util.List;
 import java.util.Optional;
-
 import it.unisa.beingdigital.storage.entity.Flashcard;
 import it.unisa.beingdigital.storage.repository.FlashcardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,8 +56,6 @@ public class ArgomentoController {
     model.addAttribute("lastId", lastArgomento.isPresent() ? id - 1 : null);
 
     List<Flashcard> flashcards = flashcardRepository.findByArgomentoId(argomento.getId());
-
-    System.out.println(flashcards);
 
     model.addAttribute("flashCards", flashcards);
 

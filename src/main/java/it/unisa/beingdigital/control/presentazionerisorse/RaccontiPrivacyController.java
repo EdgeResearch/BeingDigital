@@ -1,8 +1,6 @@
 package it.unisa.beingdigital.control.presentazionerisorse;
 
-import it.unisa.beingdigital.service.autenticazione.util.PersonaAutenticata;
 import it.unisa.beingdigital.service.presentazionerisorse.PrelievoArgomentoService;
-import it.unisa.beingdigital.storage.entity.Utente;
 import it.unisa.beingdigital.storage.entity.util.Livello;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,9 +19,6 @@ public class RaccontiPrivacyController {
   @Autowired
   private PrelievoArgomentoService prelievoArgomentoService;
 
-  @Autowired
-  private PersonaAutenticata personaAutenticata;
-
   /**
    * Implementa il get per la visualizzazione di racconti di privacy.
    *
@@ -32,7 +27,6 @@ public class RaccontiPrivacyController {
    */
   @GetMapping
   public String get(Model model) {
-    Utente utente = (Utente) personaAutenticata.getPersona().get();
 
     model.addAttribute("racconti",
         prelievoArgomentoService.getRaccontiSortedByTitolo(Livello.MASTER));

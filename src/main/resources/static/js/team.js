@@ -1,5 +1,5 @@
 function cambiaStile(tipo) {
-    console.log("Tipo selezionato:", tipo);
+
     var classeDiv = document.getElementById("Classe");
     var gruppoDiv = document.getElementById("Group");
 
@@ -7,11 +7,9 @@ function cambiaStile(tipo) {
         if (tipo === "classe") {
             classeDiv.style.display = "flex";
             gruppoDiv.style.display = "none";
-            console.log("Mostra classe, nascondi gruppo");
         } else if (tipo === "gruppo") {
             classeDiv.style.display = "none";
             gruppoDiv.style.display = "flex";
-            console.log("Nascondi classe, mostra gruppo");
         }
     } else {
         console.warn("Uno o entrambi i div non sono stati trovati:", { classeDiv, gruppoDiv });
@@ -19,7 +17,6 @@ function cambiaStile(tipo) {
 
     localStorage.setItem("tipoTeam", tipo);
 
-    // Aggiorna il campo hidden tipoTeam
     const hiddenTipoTeam = document.getElementById("hiddenTipoTeam");
     if (hiddenTipoTeam) {
         hiddenTipoTeam.value = tipo;
@@ -41,24 +38,13 @@ function validateForm() {
     let tipo = null;
     if (selectedRadio) {
         tipo = selectedRadio.value;
-        console.log("Tipo selezionato tramite radio button:", tipo);
     } else if (tipoTeamInput) {
         tipo = tipoTeamInput.value;
-        console.log("Tipo precompilato:", tipo);
     } else {
         console.warn("Nessun tipo di team selezionato");
     }
 
-    console.log("Valori correnti:");
-    console.log("Nome:", nome);
-    console.log("Email:", email);
-    console.log("Tipo Team:", tipo);
-    console.log("Città:", città);
-    console.log("Classe:", classe);
-    console.log("Scuola:", scuola);
-
     if (!tipo) {
-        console.log("Nessun tipo di team selezionato, pulsante disabilitato");
         disabilitaPulsanteSubmit();
         return;
     }
@@ -78,7 +64,6 @@ function validateForm() {
         submitButton.style.backgroundColor = '#5b6ed9';
         submitButton.style.color = '#fff';
         submitButton.style.cursor = 'pointer';
-        console.log("Pulsante abilitato");
     } else {
         disabilitaPulsanteSubmit();
     }
@@ -91,7 +76,6 @@ function disabilitaPulsanteSubmit() {
     submitButton.style.backgroundColor = '#ccc';
     submitButton.style.color = '#666';
     submitButton.style.cursor = 'not-allowed';
-    console.log("Pulsante disabilitato");
 }
 
 window.onload = function() {
@@ -101,7 +85,7 @@ window.onload = function() {
         const radioButton = document.querySelector(`input[name="selezione"][value="${tipoSelezionato}"]`);
         if (radioButton) {
             radioButton.checked = true;
-            cambiaStile(tipoSelezionato); // Chiamata per impostare il corretto stile
+            cambiaStile(tipoSelezionato);
         } else {
             console.warn("Radio button con valore " + tipoSelezionato + " non trovato.");
         }
@@ -115,9 +99,9 @@ window.onload = function() {
 
     document.querySelectorAll('input[name="selezione"]').forEach(radio => {
         radio.addEventListener('change', (event) => {
-            cambiaStile(event.target.value); // Cambia stile e validazione
+            cambiaStile(event.target.value);
         });
     });
 
-    validateForm(); // Chiamata iniziale per la validazione
+    validateForm();
 };

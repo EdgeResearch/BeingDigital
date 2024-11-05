@@ -52,7 +52,7 @@ function updateProgressbar() {
 
 function toggleNextButton() {
   const nextButton = nextBtns[formStepsNum];
-  if (!nextButton) return; //
+  if (!nextButton) return;
 
   if (formStepsNum === 1) {
     const allAnswered = allQuestionsAnswered();

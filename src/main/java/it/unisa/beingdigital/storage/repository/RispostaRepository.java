@@ -1,13 +1,12 @@
 package it.unisa.beingdigital.storage.repository;
 
-import it.unisa.beingdigital.storage.entity.Domanda;
-import it.unisa.beingdigital.storage.entity.MetaInfo;
-import it.unisa.beingdigital.storage.entity.Risposta;
-import it.unisa.beingdigital.storage.entity.Utente;
+import it.unisa.beingdigital.storage.entity.*;
 import it.unisa.beingdigital.storage.entity.util.RispostaId;
 import java.util.List;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 /**
  * Questa interfaccia rappresenta la repository di una risposta.
@@ -21,8 +20,6 @@ public interface RispostaRepository extends JpaRepository<Risposta, RispostaId> 
 
   List<Risposta> findByUtente(Utente utente, Sort sort);
 
-  List<Risposta> findByDomanda(Domanda domanda);
-
   long countByUtenteAndIndiceSelezione(Utente utente, int indiceSelezione);
 
   void deleteByUtente(Utente utente);
@@ -30,4 +27,11 @@ public interface RispostaRepository extends JpaRepository<Risposta, RispostaId> 
   void deleteByDomandaMetaInfo(MetaInfo metaInfo);
 
   void deleteByDomanda(Domanda domanda);
+
+  @Query("SELECT COUNT(r) FROM Risposta r JOIN r.domanda d JOIN d.metaInfo m JOIN m.argomenti a " +
+          "WHERE r.utente = :utente AND r.indiceSelezione = :indiceSelezione AND a.sottoArgomento = :sottoArgomento")
+  long countByUtenteAndIndiceSelezioneAndDomanda_MetaInfo_Argomento_SottoArgomento(
+          @Param("utente") Utente utente,
+          @Param("indiceSelezione") int indiceSelezione,
+          @Param("sottoArgomento") String sottoArgomento);
 }

@@ -5,7 +5,6 @@ import it.unisa.beingdigital.storage.entity.*;
 import it.unisa.beingdigital.storage.entity.util.Livello;
 import it.unisa.beingdigital.storage.repository.*;
 import jakarta.validation.constraints.NotNull;
-
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
@@ -179,7 +178,7 @@ public class InserimentoRisorsaService {
    * metodo per generare il codice del team
    */
   private String generateShortCode(int length) {
-    String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // Puoi includere anche lettere minuscole se vuoi
+    String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     SecureRandom random = new SecureRandom();
     StringBuilder code = new StringBuilder(length);
 

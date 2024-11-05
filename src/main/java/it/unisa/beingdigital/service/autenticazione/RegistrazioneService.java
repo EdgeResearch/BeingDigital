@@ -4,6 +4,7 @@ import it.unisa.beingdigital.storage.entity.Utente;
 import it.unisa.beingdigital.storage.entity.util.Livello;
 import it.unisa.beingdigital.storage.repository.PersonaRepository;
 import it.unisa.beingdigital.storage.repository.UtenteRepository;
+import it.unisa.beingdigital.service.presentazionerisorse.ProgressoUtenteService;
 import jakarta.validation.constraints.NotNull;
 import org.jasypt.util.password.PasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -30,6 +30,9 @@ public class RegistrazioneService {
 
   @Autowired
   private UtenteRepository utenteRepository;
+
+  @Autowired
+  private ProgressoUtenteService progressoUtenteService;
 
   @Autowired
   private PasswordEncryptor passwordEncryptor;
@@ -58,9 +61,12 @@ public class RegistrazioneService {
     byte[] immagineDefault = loadStockImage();
 
     Utente utente =
-        new Utente(nome, cognome, email, passwordEncryptor.encryptPassword(password), Livello.BASE, immagineDefault, "");
+            new Utente(nome, cognome, email, passwordEncryptor.encryptPassword(password), Livello.BASE, immagineDefault, "");
 
     utenteRepository.save(utente);
+
+    progressoUtenteService.inizializzaProgressiPerUtente(utente);
+
     return true;
   }
 
@@ -72,7 +78,6 @@ public class RegistrazioneService {
   private byte[] loadStockImage() {
     try {
       ClassPathResource resource = new ClassPathResource(STOCK_IMAGE_PATH);
-      InputStream inputStream = resource.getInputStream();
       return Files.readAllBytes(resource.getFile().toPath());
     } catch (IOException e) {
       e.printStackTrace();

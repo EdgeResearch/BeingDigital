@@ -1,10 +1,8 @@
 package it.unisa.beingdigital.storage.entity;
 
 import jakarta.persistence.*;
-
 import java.util.Iterator;
 import java.util.List;
-
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

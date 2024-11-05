@@ -8,7 +8,6 @@ var promAdmin = document.getElementById("promAdmin");
 
 
 function showConferma(campo) {
-    console.log(campo.id)
     lista.style.display = "none";
     per.style.display = "none";
 
@@ -44,7 +43,6 @@ function hideConferma2() {
 
 function showConferma3(campo) {
 
-    console.log(campo.id)
     lista.style.display = "none";
     per.style.display = "none";
 
@@ -64,7 +62,6 @@ function hideConferma3() {
 
 function showConferma4(campo) {
 
-    console.log(campo.id)
     lista.style.display = "none";
     per.style.display = "none";
 

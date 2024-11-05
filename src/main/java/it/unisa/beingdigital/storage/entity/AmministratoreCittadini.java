@@ -4,7 +4,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Lob;  // Importa questa annotazione
+import jakarta.persistence.Lob;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 

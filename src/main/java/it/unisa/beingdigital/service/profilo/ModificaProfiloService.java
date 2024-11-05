@@ -1,7 +1,6 @@
 package it.unisa.beingdigital.service.profilo;
 
 import it.unisa.beingdigital.storage.entity.Persona;
-import it.unisa.beingdigital.storage.entity.Utente;
 import it.unisa.beingdigital.storage.repository.PersonaRepository;
 import jakarta.validation.constraints.NotNull;
 import java.util.Optional;

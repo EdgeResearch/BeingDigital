@@ -2,7 +2,6 @@ package it.unisa.beingdigital.storage.repository;
 
 import it.unisa.beingdigital.storage.entity.AmministratoreCittadini;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
 
 /**

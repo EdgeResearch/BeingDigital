@@ -1,20 +1,15 @@
 package it.unisa.beingdigital.control.gestionerisorse;
 
-import it.unisa.beingdigital.control.gestionerisorse.form.MetaInfoForm;
 import it.unisa.beingdigital.control.gestionerisorse.form.TeamForm;
-import it.unisa.beingdigital.service.autenticazione.util.PersonaAutenticata;
 import it.unisa.beingdigital.service.gestionerisorse.ModificaRisorsaService;
-import it.unisa.beingdigital.service.presentazionerisorse.PrelievoMetaInfoService;
 import it.unisa.beingdigital.service.presentazionerisorse.PrelievoTeamService;
 import it.unisa.beingdigital.storage.entity.*;
 import it.unisa.beingdigital.storage.repository.PersonaRepository;
 import jakarta.validation.Valid;
-import java.io.IOException;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -36,8 +31,7 @@ public class ModificaTeamUtenteController {
 
     @Autowired
     private PrelievoTeamService prelievoTeamService;
-    @Autowired
-    private PersonaAutenticata personaAutenticata;
+
     @Autowired
     private PersonaRepository personaRepository;
 
@@ -55,8 +49,6 @@ public class ModificaTeamUtenteController {
         if (optional.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-
-        Team team = optional.get();
         return "gestionerisorse/modificaTeam";
     }
 
@@ -66,19 +58,18 @@ public class ModificaTeamUtenteController {
      * @param codice        codice del team da modificare.
      * @param teamForm      form contenente i nuovi dati.
      * @param bindingResult risultato della validazione del form.
-     * @param model         model da passare alla view.
      * @return Stringa rappresentante il path della view da rappresentare.
      * @throws ResponseStatusException se il codice risulta nullo, se il form non è ben formato.
      */
     @PostMapping
     public String post(@RequestParam String codice,
                        @ModelAttribute @Valid TeamForm teamForm,
-                       BindingResult bindingResult, Model model) {
+                       BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
 
-        if (!modificaRisorsaService.modificaTeam(codice, teamForm.getNome(), teamForm.getEmail())) {
+        if (!modificaRisorsaService.modificaTeam(codice)) {
             return "gestionerisorse/modificaTeam";
         }
         return "redirect:/auth/areaPersonale";

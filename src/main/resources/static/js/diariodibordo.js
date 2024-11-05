@@ -1,25 +1,66 @@
 document.addEventListener("DOMContentLoaded", function() {
-    var titoloCategoria = document.getElementById("titoloCategoria");
-    var btnPrivacy = document.getElementById("btnPrivacy");
-    var btnIA = document.getElementById("btnIA");
-    var percentualiPrivacy = document.getElementById("percentualiPrivacy");
+    const titoloCategoria = document.getElementById("titoloCategoria");
+    const btnPrivacy = document.getElementById("btnPrivacy");
+    const btnIA = document.getElementById("btnIA");
+    const isTeam = document.querySelector("#diariodibordo").getAttribute("data-is-team") === 'true';
+    const codice = document.querySelector("#diariodibordo").getAttribute("data-codice");
 
-    var livelloUtente = document.getElementById("diariodibordo").getAttribute("data-livello");
-
-    function mostraCategoria(titolo, mostraPercentuali) {
-        titoloCategoria.textContent = titolo;
-        percentualiPrivacy.style.display = mostraPercentuali ? "grid" : "none";
+    function setProgressColor(progressElement, percentage, color) {
+        if (percentage === 0) {
+            progressElement.setAttribute('data-percent', '0');
+            progressElement.style.background = "#ddd";
+        } else {
+            progressElement.setAttribute('data-percent', percentage);
+            progressElement.style.background = `conic-gradient(${color} ${percentage}%, #ddd ${percentage}%)`;
+        }
     }
 
-    impostaPercentuali(livelloUtente);
+    function mostraCategoria(titolo, categoria) {
+        titoloCategoria.textContent = `Risultati relativi a ${titolo}`;
+        document.querySelector(".percentuali").style.display = "grid";
 
-    // Event listener per il pulsante Privacy
-    btnPrivacy.addEventListener("click", function() {
-        mostraCategoria("Risultati su Privacy e Sicurezza Online", true);
-    });
+        const progressElements = [
+            { element: document.getElementById("percentualeBase"), color: "red", percentage: 0 },
+            { element: document.getElementById("percentualeIntermedio"), color: "green", percentage: 0 },
+            { element: document.getElementById("percentualeAvanzato"), color: "orange", percentage: 0 },
+            { element: document.getElementById("percentualeMaster"), color: "purple", percentage: 0 }
+        ];
 
-    // Event listener per il pulsante IA
-    btnIA.addEventListener("click", function() {
-        mostraCategoria("Risultati su Intelligenza Artificiale", false);
-    });
+        progressElements.forEach(item => {
+            item.element.textContent = "0%";
+            item.element.classList.remove("visible");
+            const progressElement = document.getElementById(item.element.id.replace("percentuale", "progress"));
+            progressElement.classList.remove("visible");
+            setProgressColor(progressElement, 0, item.color);
+        });
+
+        const url = isTeam
+            ? `/auth/diariodibordo/percentuali/team/${codice}?categoria=${categoria}`
+            : `/auth/diariodibordo/percentuali/utente?categoria=${categoria}`;
+        
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const levels = ["base", "intermedio", "avanzato", "master"];
+                levels.forEach((level, index) => {
+                    const percentage = data[level];
+                    const element = document.getElementById(`percentuale${level.charAt(0).toUpperCase() + level.slice(1)}`);
+                    const progressElement = document.getElementById(`progress${level.charAt(0).toUpperCase() + level.slice(1)}`);
+                    element.textContent = percentage + "%";
+                    setProgressColor(progressElement, percentage, progressElements[index].color);
+                });
+
+                progressElements.forEach(item => {
+                    item.element.classList.add("visible");
+                    const progressElement = document.getElementById(item.element.id.replace("percentuale", "progress"));
+                    progressElement.classList.add("visible");
+                });
+            })
+            .catch(error => {
+                console.error("Si è verificato un errore:", error);
+            });
+    }
+
+    btnPrivacy.addEventListener("click", () => mostraCategoria("Privacy", "Privacy"));
+    btnIA.addEventListener("click", () => mostraCategoria("Intelligenza Artificiale", "Intelligenza Artificiale"));
 });

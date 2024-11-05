@@ -77,9 +77,6 @@
                                 <img th:src="@{'/fotoprofilo/' + ${amministratoreCittadini.id}}" alt="Immagine di profilo" class="profile-image">
                             </a>
                             <h5 th:text="${amministratoreCittadini.nome} + ' ' + ${amministratoreCittadini.cognome}"></h5>
-                            <div th:if="${AmministratoreCittadini != null}">
-                                <i class="fa-solid fa-trash" th:data-id-utente="${amministratoreCittadini.id}" onclick="showConferma(this)"></i>
-                            </div>
                         </div>
                     </th:block>
 
@@ -90,9 +87,6 @@
                                 <img th:src="@{'/fotoprofilo/' + ${utente.id}}" alt="Immagine di profilo" class="profile-image">
                             </a>
                             <h5 th:text="${utente.nome} + ' ' + ${utente.cognome}"></h5>
-                            <div th:if="${AmministratoreCittadini != null}">
-                                <i class="fa-solid fa-trash" th:data-id-utente="${utente.id}" onclick="showConferma(this)"></i>
-                            </div>
                         </div>
                     </th:block>
                 </div>

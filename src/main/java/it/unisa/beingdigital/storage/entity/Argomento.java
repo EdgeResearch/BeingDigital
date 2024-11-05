@@ -7,15 +7,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.List;
-
 /**
  * Questa classe rappresenta un argomento.
  * Un argomento può essere un racconto o una lezione.
  */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Getter
 @Setter
 @ToString
@@ -48,7 +46,7 @@ public class Argomento {
   @Column(nullable = true)
   private String mappa;
 
-  protected Argomento(String sottoArgomento,String titolo, String corpo, byte[] copertina, MetaInfo metaInfo, String mappa) {
+  protected Argomento(String sottoArgomento, String titolo, String corpo, byte[] copertina, MetaInfo metaInfo, String mappa) {
     this.sottoArgomento = sottoArgomento;
     this.titolo = titolo;
     this.corpo = corpo;

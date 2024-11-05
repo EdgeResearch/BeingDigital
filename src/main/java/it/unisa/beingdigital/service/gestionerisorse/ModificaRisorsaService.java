@@ -4,7 +4,6 @@ import it.unisa.beingdigital.storage.entity.*;
 import it.unisa.beingdigital.storage.entity.util.Livello;
 import it.unisa.beingdigital.storage.repository.*;
 import jakarta.validation.constraints.NotNull;
-
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -250,19 +249,15 @@ public class ModificaRisorsaService {
    * Tutti i parametri, tranne codice, possono essere nulli, se non si vuole modificare quel dato.
    *
    * @param codice codice del Team.
-   * @param nome   nome del Team.
-   * @param email  tipo di email che bisogna possedere per poter partecipare al team.
    * @return true se la modifica è andata a buon fine, false altrimenti.
    * @throws jakarta.validation.ConstraintViolationException se il codice risulta null.
    */
-  public boolean modificaTeam(@NotNull String codice, @NotNull String nome, @NotNull String email) {
+  public boolean modificaTeam(@NotNull String codice) {
 
     Optional<Team> optional = teamRepository.findByCodice(codice);
     if (optional.isEmpty()) {
       return false;
     }
-
-    Team team = optional.get();
 
     return true;
   }

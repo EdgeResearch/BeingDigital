@@ -80,8 +80,6 @@ public class ModificaTeamController {
 
     @PostMapping("/espelliUtente")
     public String espelliUtente(@RequestParam String codiceTeam, @RequestParam String idUtente) {
-        System.out.println(codiceTeam);
-        System.out.println(idUtente);
 
         Optional<Team> optionalTeam = prelievoTeamService.getTeam(codiceTeam);
 

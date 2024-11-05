@@ -2,8 +2,6 @@ package it.unisa.beingdigital.control.presentazionerisorse;
 
 import it.unisa.beingdigital.service.autenticazione.util.PersonaAutenticata;
 import it.unisa.beingdigital.service.presentazionerisorse.PrelievoArgomentoService;
-import it.unisa.beingdigital.storage.entity.Lezione;
-import it.unisa.beingdigital.storage.entity.Utente;
 import it.unisa.beingdigital.storage.entity.util.Livello;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,7 +33,6 @@ public class LezioniPrivacyController {
    */
   @GetMapping
   public String get(@RequestParam("sottoArgomento") String sottoArgomento, Model model) {
-    Utente utente = (Utente) personaAutenticata.getPersona().get();
 
     if ("Privacy".equalsIgnoreCase(sottoArgomento)) {
       model.addAttribute("lezioniPerMetaInfo", prelievoArgomentoService.getLezioniPerMetaInfoSortedByLivelloKeywordIdAndSottoArgomento(Livello.MASTER, "Privacy"));
@@ -44,8 +41,6 @@ public class LezioniPrivacyController {
       model.addAttribute("lezioniPerMetaInfo", prelievoArgomentoService.getLezioniPerMetaInfoSortedByLivelloKeywordIdAndSottoArgomento(Livello.MASTER, "IntelligenzaArtificiale"));
       model.addAttribute("tipo", "lezioniIntelligenza");
     }
-
-
 
     return "presentazionerisorse/listaLezioni";
   }

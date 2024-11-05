@@ -4,8 +4,6 @@ import jakarta.persistence.Entity;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.List;
-
 /**
  * Questa classe rappresenta un racconto.
  * Un racconto è un tipo di argomento che può essere letto da un utente.

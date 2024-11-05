@@ -4,8 +4,6 @@ import jakarta.persistence.Entity;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.List;
-
 /**
  * Questa classe rappresenta una lezione.
  * Una lezione è un tipo di argomento che può essere studiato da un utente.

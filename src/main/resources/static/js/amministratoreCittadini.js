@@ -13,9 +13,6 @@ function showConferma(campo) {
     var idUtente = campo.getAttribute('data-id-utente');
     var codiceTeam = codiceDettagli.value;
 
-    console.log("ID Utente: ", idUtente);
-    console.log("Codice Team: ", codiceTeam);
-
     corpo.style.display = "none";
     conf.style.display = "flex";
 
@@ -35,8 +32,6 @@ function showConferma1(campo){
     var idUtente = campo.getAttribute('data-id-utente-loggato');
     var codiceTeam = campo.closest('.team-box').querySelector("input[name='codiceTeam']").value;
 
-    console.log("ID Utente: ", idUtente);
-    console.log("Codice Team: ", codiceTeam);
 
     lista.style.display = "none";
     team.style.display = "none";

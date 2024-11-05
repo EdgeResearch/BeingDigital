@@ -6,14 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
 import java.util.List;
 
 /**
  * Questa classe rappresenta un utente.
  * Un utente può usufruire di tutte le risorse del sito.
  */
-
 @Entity
 @NoArgsConstructor
 @Getter
@@ -23,6 +21,9 @@ public class Utente extends Persona {
 
   @Enumerated(EnumType.STRING)
   private Livello livello;
+
+  @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  private List<ProgressoUtente> progressi;
 
   public Utente(String nome, String cognome, String email, String password, Livello livello, byte[] fotoprofilo, String biografia) {
     super(nome, cognome, email, password, fotoprofilo, biografia);

@@ -6,13 +6,13 @@
     flex-direction: column;
 }
 
-.scritte{
+.scritte {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.diariodibordo-container{
+.diariodibordo-container {
     display: flex;
     width: 100%;
     align-items: center;
@@ -20,7 +20,7 @@
     justify-content: center;
 }
 
-.categorie h3{
+.categorie h3 {
     text-align: center;
     color: var(--white-color);
     background-color: var(--second-color);
@@ -32,7 +32,7 @@
     border-radius: 10px 10px 0 0;
 }
 
-.risultati-categoria h2{
+.risultati-categoria h2 {
     text-align: center;
     color: var(--white-color);
     background-color: var(--second-color);
@@ -57,7 +57,7 @@
     border-radius: 25px;
 }
 
-.category-btn-container{
+.category-btn-container {
     margin: 50px 0px;
     height: 100%;
     display: flex;
@@ -65,7 +65,7 @@
     justify-content: space-evenly;
 }
 
-.category-btn{
+.category-btn {
     width: 150px;
     text-decoration: none;
     display: inline-block;
@@ -96,7 +96,7 @@
 }
 
 .percentuali {
-    display: grid;
+    display: none;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 40px;
@@ -107,11 +107,8 @@
 
 .progress {
     --i: 0;
-    --clr: #FF0000FF;
+    --clr: #273a73;
     background: conic-gradient(var(--clr) calc(var(--i) * 1%), #ddd calc(var(--i) * 1%));
-}
-
-.percentuali .progress {
     position: relative;
     width: 15vw;
     height: 15vw;
@@ -120,12 +117,12 @@
     min-width: 100px;
     min-height: 100px;
     border-radius: 50%;
-    color: var(--white-color);
-    background: var(--notify-color) linear-gradient(to right, transparent 50%, var(--clr) 0);
     margin: 0 40px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
 }
 
-.percentuali .progress h3 {
+.progress h3 {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -135,12 +132,12 @@
     font-weight: 500;
 }
 
-.percentuali .progress h3 span {
+.progress h3 span {
     font-size: 18px;
     font-weight: 400;
 }
 
-.percentuali .progress h4 {
+.progress h4 {
     position: absolute;
     top: 58%;
     left: 50%;
@@ -148,31 +145,34 @@
     z-index: 1;
     font-weight: 500;
     text-transform: uppercase;
-    font-size: 1.2vw;
+    font-size: 1.1vw;
 }
 
-.percentuali .progress::before {
+.progress::before {
     content: '';
     display: block;
     height: 100%;
     margin-left: 50%;
     transform-origin: left;
     border-radius: 0 100% 100% 0/50%;
-    background-color: var(--clr);
     transform: rotate(calc(((var(--i) - 50) * 0.01turn)));
+    transition: background-color 0.5s ease;
 }
 
-.percentuali .progress.less::before {
-    background-color: var(--notify-color);
-    transform: rotate(calc(((var(--i) - 0) * 0.01turn)));
-}
-
-.percentuali .progress::after {
+.progress::after {
     content: '';
     position: absolute;
-    inset: 15%; /* Riduce la dimensione del cerchio interno */
+    inset: 15%;
     background: var(--main-color);
     border-radius: 50%;
+}
+
+.progress[data-percent="0"] {
+    background: #ddd;
+}
+
+.progress.visible {
+    opacity: 1;
 }
 
 @media (max-width: 900px) {

@@ -2,9 +2,7 @@ package it.unisa.beingdigital.control.presentazionerisorse;
 
 import it.unisa.beingdigital.service.autenticazione.util.PersonaAutenticata;
 import it.unisa.beingdigital.service.presentazionerisorse.PrelievoTeamService;
-import it.unisa.beingdigital.service.profilo.DatiUtentiService;
 import it.unisa.beingdigital.storage.entity.*;
-import it.unisa.beingdigital.storage.entity.util.Livello;
 import it.unisa.beingdigital.storage.repository.AmministratoreCittadiniRepository;
 import it.unisa.beingdigital.storage.repository.TeamRepository;
 import it.unisa.beingdigital.storage.repository.UtenteRepository;
@@ -15,8 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 

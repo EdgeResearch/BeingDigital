@@ -4,15 +4,9 @@ import it.unisa.beingdigital.storage.entity.*;
 import it.unisa.beingdigital.storage.entity.util.Livello;
 import it.unisa.beingdigital.storage.repository.*;
 import jakarta.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -33,9 +27,9 @@ public class PrelievoTeamService {
     private AmministratoreCittadiniRepository amministratoreCittadiniRepository;
 
     @Autowired
-    private UtenteRepository utenteRepository;
+    private ProgressoUtenteRepository progressoUtenteRepository;
     @Autowired
-    private PersonaRepository personaRepository;
+    private UtenteRepository utenteRepository;
 
     public Optional<Team> getTeam(@NotNull String codice) {
         return teamRepository.findById(codice);
@@ -67,5 +61,22 @@ public class PrelievoTeamService {
 
     public List<AmministratoreCittadini> getAmministratoriForTeam(String codice) {
         return amministratoreCittadiniRepository.findByTeamsCodice(codice);
+    }
+
+    public double calcolaPercentualeUtentiConLivello(@NotNull Team team, @NotNull Livello livello, @NotNull String sottoArgomento) {
+        List<Utente> utentiTeam = team.getUtenti();
+
+        if (utentiTeam == null || utentiTeam.isEmpty()) {
+            return 0;
+        }
+
+        long count = utentiTeam.stream()
+                .filter(utente -> {
+                    Optional<ProgressoUtente> progresso = progressoUtenteRepository.findByUtenteAndSottoArgomento(utente, sottoArgomento);
+                    return progresso.isPresent() && progresso.get().getLivello().equals(livello);
+                })
+                .count();
+
+        return (int) ((count / (double) utentiTeam.size()) * 100);
     }
 }

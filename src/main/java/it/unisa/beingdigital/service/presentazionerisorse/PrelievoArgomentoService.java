@@ -95,7 +95,7 @@ public class PrelievoArgomentoService {
     return lezioneRepository.findAll().stream()
             .sorted(Comparator.comparing((Lezione lezione) -> lezione.getMetaInfo().getLivello())
                     .thenComparing(lezione -> lezione.getMetaInfo().getKeyword())
-                    .thenComparing(Lezione::getId)) // Cambiato da getTitolo a getId
+                    .thenComparing(Lezione::getId))
             .toList();
   }
 
@@ -170,7 +170,7 @@ public class PrelievoArgomentoService {
   private List<Map.Entry<MetaInfo, List<Lezione>>> getLezioniPerMetaInfoSortedById(@NotNull List<MetaInfo> metaInfo) {
     List<Map.Entry<MetaInfo, List<Lezione>>> lezioniPerMetaInfo = new ArrayList<>();
     for (MetaInfo metaInfo1 : metaInfo) {
-      List<Lezione> lezioni = lezioneRepository.findByMetaInfo(metaInfo1, Sort.by("id")); // Cambiato da "titolo" a "id"
+      List<Lezione> lezioni = lezioneRepository.findByMetaInfo(metaInfo1, Sort.by("id"));
       if (!lezioni.isEmpty()) {
         lezioniPerMetaInfo.add(new AbstractMap.SimpleEntry<>(metaInfo1, lezioni));
       }
@@ -204,7 +204,7 @@ public class PrelievoArgomentoService {
             .map(metaInfo -> Map.entry(
                     metaInfo,
                     lezioneRepository.findByMetaInfoAndSottoArgomento(metaInfo, sottoArgomento).stream()
-                            .sorted(Comparator.comparing(Lezione::getId)) // Cambiato da getTitolo a getId
+                            .sorted(Comparator.comparing(Lezione::getId))
                             .toList()
             ))
             .filter(entry -> !entry.getValue().isEmpty())

@@ -1,6 +1,5 @@
 package it.unisa.beingdigital.storage.repository;
 
-import it.unisa.beingdigital.storage.entity.Admin;
 import it.unisa.beingdigital.storage.entity.AmministratoreCittadini;
 import it.unisa.beingdigital.storage.entity.Team;
 

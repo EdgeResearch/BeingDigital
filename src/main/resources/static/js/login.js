@@ -115,7 +115,6 @@ function validation_password(input) {
     if (input.match(pattern)) {
         return true;
     } else {
-        console.log("P sbagliata")
         toast("La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola, almeno una minuscola, almeno un numero e almeno un carattere speciale")
         return false;
     }
@@ -129,11 +128,9 @@ function validate(obj) {
     var txt_p = document.getElementById("passwordLog");
 
     if (validation_email(email) && validation_password(password)) {
-        console.log("entra1");
 
         return true;
     } else {
-        console.log("entra2");
         txt_em.style.color = "#FF0000FF";
         txt_p.style.color = "#FF0000FF";
 
@@ -156,11 +153,9 @@ function validateAll(obj) {
     var txt_c = document.getElementById("RegCognome");
 
     if (validation_email(email) && validation_password(password) && validation_name(nome) && validation_surname(cognome) && validEmail) {
-        console.log("entra1");
 
         return true;
     } else {
-        console.log("entra2");
         if (!validation_email(email))
             txt_em.style.color = "#FF0000FF";
         if (!validation_password(password))
@@ -180,7 +175,6 @@ function validateAll(obj) {
 let validEmail = false;
 $('#RegEmail').on("change", function () {
     validEmail = false;
-    console.log(this.value);
 
     if (!validation_email(this.value)) {
         return;

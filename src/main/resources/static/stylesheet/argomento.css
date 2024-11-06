@@ -49,10 +49,18 @@ p {
     align-items: center;
     justify-content: center;
     margin-top: 40px;
-    padding: 0 10%; /*quello al lato */
+    padding: 0 5%; /*quello al lato */
     font-size: 22px;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     color: white;
+}
+
+#mapDiv{
+    width: 1000px;
+    height: 500px;
+    position: relative;
+    border: solid darkgray 1px;
+    background-color: white;
 }
 
 .box-bottoni {
@@ -170,17 +178,16 @@ tr:nth-child(odd) td {
 
 
 .card-container {
-    width: 92%;
+    width: 100%;
     height: auto;
     justify-content: center;
 }
 
 .card {
-    width: 100%;
     margin-bottom: 20px;
     padding: 35px;
     background-color: white;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 

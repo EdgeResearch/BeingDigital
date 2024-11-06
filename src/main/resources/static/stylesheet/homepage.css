@@ -291,7 +291,7 @@
 }
 
 .lobby .alltext h1 {
-    font-size: 25px;
+    font-size: 35px;
     text-transform: uppercase;
     font-weight: 900;
     color: #121b37;
@@ -308,8 +308,7 @@
 .alltext p {
     font-size: 18px;
     color: #30478c;
-    font-weight: bold;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .intro {
@@ -422,7 +421,6 @@ button#scrollButton:hover span {
     .alltext p {
         font-size: 18px;
         color: var(--second-color);
-        font-weight: bold;
         margin-top: 15px;
     }
 

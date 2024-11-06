@@ -1,22 +1,12 @@
-# Being Digital
+# BeDigital
 
 <p align = "center">
-  <img src = "src/main/resources/static/img/BeingDigital2.png" width="577" alt="Logo">
-</p>
-
-<p align = "center">
-  Spring Boot Web App for privacy literacy
-  <br>
-  internship project for
-  <br>
-  Bachelor Degree in computer science 
-  <br>
-  at University of Salerno.
+  <img src = "src/main/resources/static/img/Logo2.png" width="600" alt="Logo">
 </p>
 
 # Project description and introduction
 
-In this section we introduce context information for the project.
+BeDigital promotes the skills needed to become responsible digital citizens. It provides various educational resources (stories, lessons, tests and games) with the goal of creating a well-informed community prepared to face the challenges and seize the opportunities offered by the digital society.
 
 ## Ownership
 EDGE LAB - https://www.di.unisa.it/en/department/structures?id=682
@@ -25,6 +15,8 @@ EDGE LAB - https://www.di.unisa.it/en/department/structures?id=682
 
 * **Michela Faella**  - [MichelaFaella](https://github.com/MichelaFaella)
 * **Lorenzo Sorrentino**  - [losor2002](https://github.com/losor2002)
+* **Simona Grieco** - [simonagrieco](https://github.com/simonagrieco)
+* **Marco Tortoriello** - [markot0164](https://github.com/markot0164)
 
 ## Documentation
 
@@ -56,4 +48,5 @@ Follow these steps:
 * [Maven](https://maven.apache.org/) - Dependency Management.
 * [HTML5](https://www.w3schools.com/html/default.asp) - The programming language used for the front-end development.
 * [Thymeleaf](https://www.thymeleaf.org/) - Java template to render static pages into dynamic.
+* [Unity](https://unity.com/) - Platform for creating 2D, 3D, VR, and AR experiences, widely used in game development and interactive media across industries.
 

@@ -54,7 +54,7 @@
       <div th:if="${isOwner}" style="width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;">
         <div th:if="${Utente != null}" class="bio-inner-box">
           <!-- Se il profilo è di un utente -->
-          <label class="text">Biografia:</label>
+          <label class="text">Biografia</label>
           <p th:text="${Utente.biografia}" th:unless="${Utente.biografia == null || Utente.biografia.isEmpty()}"></p>
           <div th:if="${Utente.biografia == null || Utente.biografia.isEmpty()}" class="bio-edit">
             <label class="text">Aggiungi la tua biografia:</label>
@@ -72,7 +72,7 @@
 
         <div th:if="${AmministratoreCittadini != null}" class="bio-inner-box">
           <!-- Se il profilo è di un amministratore di cittadini -->
-          <label class="text">Biografia:</label>
+          <label class="text">Biografia</label>
           <p th:text="${AmministratoreCittadini.biografia}" th:unless="${AmministratoreCittadini.biografia == null || AmministratoreCittadini.biografia.isEmpty()}"></p>
           <div th:if="${AmministratoreCittadini.biografia == null || AmministratoreCittadini.biografia.isEmpty()}" class="bio-edit">
             <label class="text">Aggiungi la tua biografia:</label>
@@ -93,7 +93,7 @@
       <div th:if="${!isOwner}" style="width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;">
         <div th:if="${Utente != null}" class="bio-inner-box">
           <!-- Profilo di un utente -->
-          <label class="text">Biografia dell'utente:</label>
+          <label class="text">Biografia dell'utente</label>
           <p th:text="${Utente.biografia}" th:unless="${Utente.biografia == null || Utente.biografia.isEmpty()}"></p>
           <div th:if="${Utente.biografia == null || Utente.biografia.isEmpty()}">
             <label class="text">L'utente non ha una biografia.</label>
@@ -101,7 +101,7 @@
         </div>
         <div th:if="${AmministratoreCittadini != null}" class="bio-inner-box">
           <!-- Profilo di un amministratore di cittadini -->
-          <label class="text">Biografia dell'amministratore:</label>
+          <label class="text">Biografia dell'amministratore</label>
           <p th:text="${AmministratoreCittadini.biografia}" th:unless="${AmministratoreCittadini.biografia == null || AmministratoreCittadini.biografia.isEmpty()}"></p>
           <div th:if="${AmministratoreCittadini.biografia == null || AmministratoreCittadini.biografia.isEmpty()}">
             <label class="text">L'amministratore non ha una biografia.</label>

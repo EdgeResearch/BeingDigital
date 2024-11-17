@@ -1,75 +1,96 @@
+// JavaScript file for creating a GoJS diagram
+
 function init() {
     var $ = go.GraphObject.make;
-
-    var myDiagram = $(go.Diagram, "mapDiv", {
+    var myDiagram = $(go.Diagram, "myDiagramDiv", {
         "undoManager.isEnabled": true,
-        layout: $(go.TreeLayout, { angle: 90, layerSpacing: 30, nodeSpacing: 20 })  // Riduzione dello spazio tra i livelli e i nodi
+        initialAutoScale: go.Diagram.UniformToFill, // Automatically scale the diagram to fill the viewport
+        initialViewportSpot: go.Spot.Center, // Start the diagram centered in the viewport
+        initialDocumentSpot: go.Spot.Center, // Center the diagram at the root node
+        layout: $(go.TreeLayout, { angle: 90, layerSpacing: 40 })
     });
 
-    // Funzione per ottenere un colore in base al livello del nodo
-    function getColorForLayer(layer) {
-        var colors = ["#f7b7a3", "#f7dda3", "#a3f7b7", "#a3d4f7", "#d0a3f7"];
-        return colors[layer % colors.length];  // Usa un colore diverso in base al livello
+    function getColor(level) {
+        switch (level) {
+            case 0: return "#f4e58f"; // Gold for root level
+            case 1: return "#a9d8ec"; // SkyBlue for first level
+            case 2: return "#a7f3a7"; // LightGreen for second level
+            case 3: return "#ffc8d0"; // LightPink for third level
+            default: return "#e8e7e7"; // LightGray for deeper levels
+        }
     }
 
-    // Definisci il template per i nodi
-    myDiagram.nodeTemplate =
-        $(go.Node, "Auto",
-            $(go.Shape, "RoundedRectangle", { strokeWidth: 0, fill: "lightblue", width: 250, height: 50 }, // Ridimensionamento
-                new go.Binding("fill", "color")),
-            $(go.TextBlock,
-                { margin: 5, font: "bold 8pt sans-serif", stroke: '#333', wrap: go.TextBlock.WrapFit, textAlign: "center" }, // Ridimensionamento del testo
-                new go.Binding("text", "key"))
-        );
+    myDiagram.nodeTemplate = $(
+        go.Node,
+        "Auto",
+        $(go.Shape, "RoundedRectangle",
+            { stroke: null }, // Remove border
+            new go.Binding("fill", "level", getColor)
+        ),
+        $(
+            go.TextBlock,
+            {
+                margin: 8,
+                font: "8pt Montserrat, sans-serif",
+                textAlign: "center",
+                wrap: go.TextBlock.WrapFit, // Wrap text if it's too long
+                maxSize: new go.Size(150, NaN) // Limit the width of the text block
+            },
+            new go.Binding("text", "key")
+        )
+    );
 
-    // Assegna i colori dinamicamente in base alla profondità (layer)
-    myDiagram.addDiagramListener("InitialLayoutCompleted", function(e) {
-        e.diagram.nodes.each(function(node) {
-            var layer = node.findTreeLevel(); // Trova il livello del nodo nell'albero
-            node.data.color = getColorForLayer(layer); // Assegna il colore in base al livello
-        });
-        myDiagram.updateAllTargetBindings(); // Aggiorna il diagramma per riflettere i colori
-    });
+    myDiagram.linkTemplate = $(
+        go.Link,
+        { routing: go.Link.Orthogonal, curve: go.Link.None, corner: 0 }, // Orthogonal routing for straight lines
+        $(go.Shape, { strokeWidth: 1, stroke: "#555" }), // Link shape with thinner lines
+        $(go.Shape, { toArrow: "Standard", stroke: null, fill: "#555" }) // Arrowhead
+    );
 
-    // Modello dati della mappa concettuale
-    myDiagram.model = new go.TreeModel([
-        { key: "Definizione di Intelligenza Artificiale", color: "lightcoral" },
-        { key: "Introduzione all'IA", parent: "Definizione di Intelligenza Artificiale" },
-        { key: "Definizione", parent: "Introduzione all'IA" },
-        { key: "Apprendimento", parent: "Introduzione all'IA" },
-        { key: "Tecnologia per attività umane", parent: "Definizione" },
-        { key: "Insegnare alle macchine", parent: "Definizione" },
-        { key: "Apprendimento dai dati", parent: "Apprendimento" },
-        { key: "Miglioramento delle performance", parent: "Apprendimento" },
-        { key: "Decisoni accurate", parent: "Apprendimento" },
-        { key: "L'IA e l'intelligenza umana", parent: "Definizione di Intelligenza Artificiale" },
-        { key: "Confronto", parent: "L'IA e l'intelligenza umana" },
-        { key: "Osservazione: Alta vs Limitata", parent: "Confronto" },
-        { key: "Apprendimento: Intuitivo vs Algoritmi", parent: "Confronto" },
-        { key: "Adattamento: Flessibile vs Limitato", parent: "Confronto" },
-        { key: "Tipi di Intelligenza Artificiale", parent: "Definizione di Intelligenza Artificiale" },
-        { key: "IA Debole", parent: "Tipi di Intelligenza Artificiale" },
-        { key: "Compiti specifici", parent: "IA Debole" },
-        { key: "Esempi: riconoscimento facciale", parent: "IA Debole" },
-        { key: "IA Forte", parent: "Tipi di Intelligenza Artificiale" },
-        { key: "Concetto teorico", parent: "IA Forte" },
-        { key: "Capacità cognitive umane", parent: "IA Forte" },
-        { key: "Non realizzata", parent: "IA Forte" },
-        { key: "IA Debole vs IA Forte", parent: "Definizione di Intelligenza Artificiale" },
-        { key: "IA Debole: potente nei dati", parent: "IA Debole vs IA Forte" },
-        { key: "IA Forte: versatilità non raggiunta", parent: "IA Debole vs IA Forte" },
-        { key: "Limitazioni e futuro dell'IA", parent: "Definizione di Intelligenza Artificiale" },
-        { key: "Limitazioni", parent: "Limitazioni e futuro dell'IA" },
-        { key: "Mancanza di coscienza", parent: "Limitazioni" },
-        { key: "Dipendenza dai dati", parent: "Limitazioni" },
-        { key: "Futuro", parent: "Limitazioni e futuro dell'IA" },
-        { key: "Deep Learning", parent: "Futuro" },
-        { key: "Maggiore autonomia", parent: "Futuro" },
-        { key: "Conclusione", parent: "Definizione di Intelligenza Artificiale" },
-        { key: "Tecnologia trasformativa", parent: "Conclusione" },
-        { key: "Potenziale immenso", parent: "Conclusione" },
-        { key: "Importanza comprensione umana", parent: "Conclusione" }
+    myDiagram.model = new go.GraphLinksModel([
+        { key: "Intelligenza Artificiale (IA)", level: 0 },
+        { key: "Introduzione all'IA", level: 1 },
+        { key: "Capacità di pensare autonomamente", level: 2 },
+        { key: "Apprendimento dai dati e miglioramento", level: 2 },
+        { key: "IA vs Intelligenza Umana", level: 1 },
+        { key: "Osservazione: Alta per umani, limitata per IA", level: 2 },
+        { key: "Apprendimento: Intuitivo per umani, algoritmico per IA", level: 2 },
+        { key: "Adattamento: Flessibile per umani, limitato per IA", level: 2 },
+        { key: "Tipi di IA", level: 1 },
+        { key: "IA Debole", level: 2 },
+        { key: "Compiti specifici come riconoscimento facciale e Deep Blue", level: 3 },
+        { key: "IA Forte", level: 2 },
+        { key: "Concetto teorico di capacità cognitive umane", level: 3 },
+        { key: "IA Debole vs IA Forte", level: 1 },
+        { key: "IA Debole elabora grandi quantità di dati velocemente", level: 2 },
+        { key: "Limitazioni e Futuro dell'IA", level: 1 },
+        { key: "Mancanza di coscienza", level: 2 },
+        { key: "Dipendenza dai dati", level: 2 },
+        { key: "Deep Learning e maggiore autonomia", level: 2 },
+        { key: "Conclusione", level: 1 },
+        { key: "Potenziale di crescita e limitazioni attuali", level: 2 }
+    ], [
+        { from: "Intelligenza Artificiale (IA)", to: "Introduzione all'IA" },
+        { from: "Introduzione all'IA", to: "Capacità di pensare autonomamente" },
+        { from: "Introduzione all'IA", to: "Apprendimento dai dati e miglioramento" },
+        { from: "Intelligenza Artificiale (IA)", to: "IA vs Intelligenza Umana" },
+        { from: "IA vs Intelligenza Umana", to: "Osservazione: Alta per umani, limitata per IA" },
+        { from: "IA vs Intelligenza Umana", to: "Apprendimento: Intuitivo per umani, algoritmico per IA" },
+        { from: "IA vs Intelligenza Umana", to: "Adattamento: Flessibile per umani, limitato per IA" },
+        { from: "Intelligenza Artificiale (IA)", to: "Tipi di IA" },
+        { from: "Tipi di IA", to: "IA Debole" },
+        { from: "IA Debole", to: "Compiti specifici come riconoscimento facciale e Deep Blue" },
+        { from: "Tipi di IA", to: "IA Forte" },
+        { from: "IA Forte", to: "Concetto teorico di capacità cognitive umane" },
+        { from: "Intelligenza Artificiale (IA)", to: "IA Debole vs IA Forte" },
+        { from: "IA Debole vs IA Forte", to: "IA Debole elabora grandi quantità di dati velocemente" },
+        { from: "Intelligenza Artificiale (IA)", to: "Limitazioni e Futuro dell'IA" },
+        { from: "Limitazioni e Futuro dell'IA", to: "Mancanza di coscienza" },
+        { from: "Limitazioni e Futuro dell'IA", to: "Dipendenza dai dati" },
+        { from: "Limitazioni e Futuro dell'IA", to: "Deep Learning e maggiore autonomia" },
+        { from: "Intelligenza Artificiale (IA)", to: "Conclusione" },
+        { from: "Conclusione", to: "Potenziale di crescita e limitazioni attuali" }
     ]);
 }
 
-window.addEventListener('DOMContentLoaded', init);
+window.addEventListener("DOMContentLoaded", init);

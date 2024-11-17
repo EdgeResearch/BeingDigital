@@ -41,9 +41,6 @@ p {
     font-size: 120px;
 }
 
-/* progress tracker */
-
-
 .raccontoText {
     justify-items: center;
     align-items: center;
@@ -55,13 +52,15 @@ p {
     color: white;
 }
 
-#mapDiv{
-    width: 1000px;
-    height: 500px;
+#myDiagramDiv {
+    width: 200vh;
+    height: 70vh;
     position: relative;
-    border: solid darkgray 1px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    /*border: solid darkgray 1px;*/
     background-color: white;
 }
+
 
 .box-bottoni {
     display: flex;
@@ -158,7 +157,6 @@ tr:nth-child(even) {
     background-color: #f9f9f9; /* Colore di sfondo alternato per righe pari */
 }
 
-
 pre {
     color: black;
     justify-content: center;
@@ -176,7 +174,6 @@ tr:nth-child(odd) td {
     color: #000000;
 }
 
-
 .card-container {
     width: 100%;
     height: auto;
@@ -190,6 +187,13 @@ tr:nth-child(odd) td {
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+
+/*p:has(> img) {
+    position: relative;
+    z-index: 10;
+    margin-left: 5px;
+    float: right;
+} */
 
 .linea {
     border: none;

@@ -38,7 +38,7 @@
 
         <div th:if="${argomento.mappa != null}">
             <hr class="linea">
-            <div id="mapDiv"></div>
+            <div id="myDiagramDiv"></div>
              <!--<svg width="800" height="800" style="position: relative;"></svg> -->
             <script th:src="@{${argomento.mappa}}" defer></script>
 
@@ -54,7 +54,7 @@
 
         <div class="box-bottoni">
             <a class="btnUtente" th:if="${lastId != null}" th:href="@{/argomento(id=${lastId})}">Lezione precedente</a>
-            <a class="btnUtente" href="/utente/lezioniPrivacy">Lista Lezioni</a>
+            <a class="btnUtente" href="/utente/lezioniCittadinanza">Lista Lezioni</a>
             <a class="btnUtente" th:if="${nextId != null}" th:href="@{/argomento(id=${nextId})}">Lezione successiva</a>
         </div>
     </div>
@@ -66,8 +66,6 @@
 
 <!-- librerie per mappe -->
 <script src="https://unpkg.com/gojs/release/go-debug.js"></script>
-<script src="https://d3js.org/d3.v6.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jsmind/0.4.3/jsmind.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -77,15 +75,26 @@
             var parser = new DOMParser();
             var doc = parser.parseFromString(content, 'text/html');
 
-            var divs = doc.querySelectorAll('div');
+            var headings = doc.querySelectorAll('h3');
             var cardContainer = document.getElementById('cardContainer');
 
-            var totalCards = divs.length; // Ottieni il numero totale di div
+            var totalCards = headings.length; // Ottieni il numero totale di h3
 
-            divs.forEach(function (div, index) {
+            headings.forEach(function (heading, index) {
                 var card = document.createElement('div');
                 card.classList.add('card');
-                card.innerHTML = div.innerHTML;
+
+                // Trova il contenuto tra l'h3 corrente e il prossimo h3
+                var contentFragment = document.createDocumentFragment();
+                var currentElement = heading.nextElementSibling;
+                while (currentElement && currentElement.tagName !== 'H3') {
+                    contentFragment.appendChild(currentElement.cloneNode(true));
+                    currentElement = currentElement.nextElementSibling;
+                }
+
+                // Aggiungi l'h3 e il contenuto alla card
+                card.appendChild(heading.cloneNode(true));
+                card.appendChild(contentFragment);
 
                 // Aggiungi un elemento per il numero della card
                 var cardNumber = document.createElement('div');
@@ -110,5 +119,100 @@
     });
 </script>
 
+<!-- per un posizionamento delle <img> fra il testo (beta) -->
+<!--<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function populateCards() {
+            var content = document.getElementById('argomentoContent').innerHTML;
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(content, 'text/html');
+            var headings = doc.querySelectorAll('h3');
+            var cardContainer = document.getElementById('cardContainer');
+            var totalCards = headings.length;
+
+            headings.forEach(function (heading, index) {
+                var card = document.createElement('div');
+                card.classList.add('card');
+
+                // Trova il contenuto tra l'h3 corrente e il prossimo h3
+                var contentFragment = document.createDocumentFragment();
+                var currentElement = heading.nextElementSibling;
+                while (currentElement && currentElement.tagName !== 'H3') {
+                    contentFragment.appendChild(currentElement.cloneNode(true));
+                    currentElement = currentElement.nextElementSibling;
+                }
+
+                // Aggiungi l'h3 e il contenuto alla card
+                card.appendChild(heading.cloneNode(true));
+                card.appendChild(contentFragment);
+
+                // Sposta le immagini dalla fine del contenuto al centro della card e fai uscire l'immagine dalla card
+                var images = card.querySelectorAll('img');
+                if (images.length <= 2) {
+                    images.forEach(function (img) {
+                        img.style.zIndex = '10';
+                        img.style.margin = '15px 5px'; // Aggiungi margine superiore per evitare sovrapposizione al titolo
+                        img.style.display = 'block';
+                        img.style.float = 'right';
+                        img.style.position = 'relative';
+                        img.style.top = '50%'
+
+                        // Controlla se l'immagine esce dalla card
+                        setTimeout(function () {
+                            var cardRect = card.getBoundingClientRect();
+                            var imgRect = img.getBoundingClientRect();
+
+                            if (imgRect.bottom > cardRect.bottom) {
+                                img.style.top = '-30px'; // Sposta l'immagine fuori dalla card verso l'alto
+                                img.style.transform = 'translateY(-50%)'; // Sposta l'immagine ulteriormente verso l'alto per creare un effetto fuoriuscita
+                                img.style.width = '30%'; // Riduci la dimensione per garantire che l'immagine non esca troppo dai bordi della card
+                                img.style.maxHeight = '180px';
+                                img.style.margin = '15px 5px';
+                            } else {
+                                img.style.top = '0'; // Mantieni l'immagine all'interno della card se non esce
+                                img.style.transform = 'none';
+                            }
+                        }, 100);
+
+                        card.insertBefore(img, card.children[1]); // Inserisci l'immagine subito dopo l'heading
+                    });
+                } else {
+                    images.forEach(function (img) {
+                        img.style.margin = '15px 5px'; // Mantieni le immagini sotto il testo
+                        img.style.display = 'block';
+                        img.style.position = 'relative';
+                        img.style.float = 'none';
+                        img.style.left = '50%'; // Centra orizzontalmente l'immagine nella card
+                        img.style.transform = 'translateX(-50%)'; // Centra correttamente l'immagine
+                    });
+                }
+
+                // Aumenta leggermente la dimensione della card
+                card.style.marginBottom = '40px';
+                card.style.padding = '60px'; // Aumenta il padding per dare più spazio all'interno della card
+                card.style.overflow = 'visible';
+
+                // Aggiungi un elemento per il numero della card
+                var cardNumber = document.createElement('div');
+                cardNumber.classList.add('card-number');
+                cardNumber.textContent = (index + 1) + ' / ' + totalCards;
+
+                // Stile per posizionare il numero in basso a destra
+                cardNumber.style.position = 'absolute';
+                cardNumber.style.bottom = '10px';
+                cardNumber.style.right = '10px';
+                cardNumber.style.fontSize = '12px';
+                cardNumber.style.color = '#888';
+
+                card.style.position = 'relative';
+                card.appendChild(cardNumber);
+
+                cardContainer.appendChild(card);
+            });
+        }
+
+        populateCards();
+    });
+</script> -->
 
 </html>

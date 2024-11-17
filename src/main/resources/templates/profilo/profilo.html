@@ -12,8 +12,8 @@
 <body>
 <th:block th:include="fragments/header"></th:block>
 
-<div class="profile-container" style="display: flex; justify-content: space-between; background: #f2f2f2">
-  <div class="utente" style="width: 48%;">
+<div class="profile-container" style="display: flex; justify-content: center; background: #f2f2f2">
+  <div class="utente">
     <div class="daticard">
       <span></span>
       <div class="profile-image-container">
@@ -39,14 +39,14 @@
           <p th:text="${AmministratoreCittadini.email}"></p>
         </div>
       </div>
-      <div class="areabtn1">
+      <div th:if="${isOwner}" class="areabtn1">
         <a class="btnUtente" href="/auth/modificaProfilo">Modifica</a>
         <button class="btnUtente" onclick="showConferma()">Elimina Account</button>
       </div>
     </div>
   </div>
 
-  <div class="bio-box" style="width: 48%;">
+  <div class="bio-box">
     <div class="biocard">
       <span></span>
 

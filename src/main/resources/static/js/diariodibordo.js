@@ -2,8 +2,13 @@ document.addEventListener("DOMContentLoaded", function() {
     const titoloCategoria = document.getElementById("titoloCategoria");
     const btnPrivacy = document.getElementById("btnPrivacy");
     const btnIA = document.getElementById("btnIA");
+    const messaggio = document.getElementById("messaggio");
+    const percentualiContainer = document.querySelector(".percentuali");
     const isTeam = document.querySelector("#diariodibordo").getAttribute("data-is-team") === 'true';
     const codice = document.querySelector("#diariodibordo").getAttribute("data-codice");
+
+    percentualiContainer.style.display = "none";
+    titoloCategoria.style.display = "none";
 
     function setProgressColor(progressElement, percentage, color) {
         if (percentage === 0) {
@@ -16,8 +21,11 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function mostraCategoria(titolo, categoria) {
+        messaggio.style.display = "none";
+        titoloCategoria.style.display = "block";
+        percentualiContainer.style.display = "grid";
+
         titoloCategoria.textContent = `Risultati relativi a ${titolo}`;
-        document.querySelector(".percentuali").style.display = "grid";
 
         const progressElements = [
             { element: document.getElementById("percentualeBase"), color: "red", percentage: 0 },
@@ -37,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const url = isTeam
             ? `/auth/diariodibordo/percentuali/team/${codice}?categoria=${categoria}`
             : `/auth/diariodibordo/percentuali/utente?categoria=${categoria}`;
-        
+
         fetch(url)
             .then(response => response.json())
             .then(data => {

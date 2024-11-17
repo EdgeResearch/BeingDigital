@@ -54,7 +54,7 @@
 
         <div class="box-bottoni">
             <a class="btnUtente" th:if="${lastId != null}" th:href="@{/argomento(id=${lastId})}">Lezione precedente</a>
-            <a class="btnUtente" href="/utente/lezioniCittadinanza">Lista Lezioni</a>
+            <a class="btnUtente" th:href="@{/utente/lezioniPrivacy(sottoArgomento=${sottoargomento})}">Lista Lezioni</a>
             <a class="btnUtente" th:if="${nextId != null}" th:href="@{/argomento(id=${nextId})}">Lezione successiva</a>
         </div>
     </div>

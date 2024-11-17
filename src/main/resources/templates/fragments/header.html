@@ -21,18 +21,22 @@
     </div>
 
     <nav id="menu">
-        <div class="team-header" th:if="${Utente != null}">
+        <div class="team-header" th:if="${admin != null}">
+            <a class="bottoni-header" href="/auth/areaPersonale">Area admin</a>
+        </div>
+
+        <div class="team-header" th:if="${Utente != null && admin == null}">
             <a class="bottoni-header" href="/auth/diariodibordo">Diario di bordo</a>
         </div>
 
-        <div class="team-header" th:if="${@personaAutenticata.persona.isPresent()}">
+        <div class="team-header" th:if="${@personaAutenticata.persona.isPresent() && admin == null}">
             <a class="bottoni-header" href="/team">Team</a>
         </div>
 
         <div>
             <th:block th:with="accesso = ${@personaAutenticata.persona.isPresent()}">
                 <a class="bottoni-header" href="/login" th:if="${!accesso}">Accesso</a>
-                <a class="bottoni-header" href="/auth/Profilo" th:if="${accesso}">Profilo</a>
+                <a class="bottoni-header" href="/auth/Profilo" th:if="${accesso && admin == null}">Profilo</a>
             </th:block>
         </div>
 

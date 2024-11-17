@@ -65,7 +65,8 @@
 }
 
 .livello-box{
-    width: 250px;
+    max-width: 120px;
+    margin: 0px 20px;
 }
 
 .lezioni .box h2 {
@@ -184,6 +185,10 @@ h4.livello-lezione{
     color: var(--text-color);
     font-weight: 600;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+.num-title{
+    display: flex;
 }
 
 @media (max-width: 420px) {

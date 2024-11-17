@@ -382,7 +382,7 @@ label {
     position: absolute;
     width: 145%;
     height: 34px;
-    background-color: var(--aggiuntivo1);
+    background-color: #ffa900;
     transform: rotate(-36deg) translateY(-20px);
     display: flex;
     justify-content: center;
@@ -497,14 +497,6 @@ textarea{
         padding: 20px;
 
     }
-
-    .daticard {
-        margin-bottom: 35px;
-        width: 500px;
-        height: 450px;
-
-    }
-
     .areabtn1 {
         display: flex;
         flex-direction: row;
@@ -515,19 +507,20 @@ textarea{
     }
 }
 
+@media (max-width: 800px) {
+    .profile-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 @media (max-width: 500px) {
 
     .utente {
         display: flex;
         flex-direction: column;
         padding: 25px;
-
-    }
-
-    .daticard {
-        margin-bottom: 35px;
-        width: 300px;
-        height: 500px;
 
     }
 

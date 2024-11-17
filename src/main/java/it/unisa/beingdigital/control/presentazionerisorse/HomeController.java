@@ -1,6 +1,7 @@
 package it.unisa.beingdigital.control.presentazionerisorse;
 
 import it.unisa.beingdigital.service.autenticazione.util.PersonaAutenticata;
+import it.unisa.beingdigital.storage.entity.Admin;
 import it.unisa.beingdigital.storage.entity.Persona;
 import it.unisa.beingdigital.storage.entity.Team;
 import it.unisa.beingdigital.storage.entity.Utente;
@@ -33,7 +34,11 @@ public class HomeController {
     if (personaAutenticata.getPersona().isPresent()) {
       Persona persona = personaAutenticata.getPersona().get();
 
-      if (persona instanceof Utente) {
+      if (persona instanceof Admin){
+        Admin admin = (Admin) persona;
+        model.addAttribute("admin", admin);
+
+      }else if (persona instanceof Utente) {
         Utente utente = (Utente) persona;
 
         List<Team> teamList = teamRepository.findByUtentiContains(utente);

@@ -190,6 +190,16 @@ h1 {
     opacity: 1;
 }
 
+#messaggio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #555;
+    font-size: 18px;
+    text-align: center;
+}
+
 @media (max-width: 900px) {
     .diariodibordo-container {
         flex-direction: column;

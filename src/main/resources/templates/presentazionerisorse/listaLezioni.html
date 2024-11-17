@@ -36,7 +36,7 @@
                 <th:block th:each="arg, istat: ${instance.value}">
                     <li>
                         <div class="box-lezione">
-                            <div>
+                            <div class="num-title">
                                 <span th:text="${istat.count}"></span>
                                 <a th:href="@{/argomento(id=${arg.id})}"
                                    th:text="${arg.titolo}">

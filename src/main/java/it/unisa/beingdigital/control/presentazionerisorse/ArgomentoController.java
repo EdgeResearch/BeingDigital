@@ -52,6 +52,8 @@ public class ArgomentoController {
     Argomento argomento = optional.get();
     model.addAttribute("argomento", argomento);
 
+    model.addAttribute("sottoargomento", argomento.getSottoArgomento());
+
     model.addAttribute("nextId", nextArgomento.isPresent() ? id + 1 : null);
     model.addAttribute("lastId", lastArgomento.isPresent() ? id - 1 : null);
 

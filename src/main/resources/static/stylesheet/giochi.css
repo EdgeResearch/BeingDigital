@@ -24,7 +24,7 @@
     align-items: center;
     min-height: 100vh;
     max-height: 100vh;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .box {
@@ -139,10 +139,39 @@
     background-size: contain;
 }
 
-.giocoPos h2 {
-    color: var(--white-color);
-    text-transform: uppercase;
-    margin-bottom: 20px;
+.giocoPos h4 {
+    color: #33df3c;
+    margin-bottom: 25px;
+    padding-top: 30px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+}
+
+.placeholder h2 {
+    color: #121b37;
+    padding-top: 100px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+}
+
+.placeholder p{
+    font-size: 18px;
+    color: #30478c;
+    margin-top: 5px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
 }
 
 .giocoPos canvas {

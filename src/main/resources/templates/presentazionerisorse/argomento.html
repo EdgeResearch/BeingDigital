@@ -39,9 +39,7 @@
         <div th:if="${argomento.mappa != null}">
             <hr class="linea">
             <div id="myDiagramDiv"></div>
-             <!--<svg width="800" height="800" style="position: relative;"></svg> -->
             <script th:src="@{${argomento.mappa}}" defer></script>
-
         </div>
 
         <hr class="linea">
@@ -53,9 +51,9 @@
         <hr class="linea">
 
         <div class="box-bottoni">
-            <a class="btnUtente" th:if="${lastId != null}" th:href="@{/argomento(id=${lastId})}">Lezione precedente</a>
+            <a class="btnUtente" th:if="${lastId != null}" th:href="@{/argomento(id=${lastId})}"><img class="arrow" src = "/img/arrow-left.png" width="25" alt="arrow-left"> Lezione precedente</a>
             <a class="btnUtente" th:href="@{/utente/lezioniPrivacy(sottoArgomento=${sottoargomento})}">Lista Lezioni</a>
-            <a class="btnUtente" th:if="${nextId != null}" th:href="@{/argomento(id=${nextId})}">Lezione successiva</a>
+            <a class="btnUtente" th:if="${nextId != null}" th:href="@{/argomento(id=${nextId})}">Lezione successiva <img class="arrow" src = "/img/arrow-right.png" width="25" alt="arrow-right"> </a>
         </div>
     </div>
 

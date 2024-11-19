@@ -76,7 +76,7 @@ a.btnUtente {
     text-decoration: none;
     font-size: 16px;
     margin: 10px 0;
-    padding: 12px 0;
+    padding: 12px 12px;
     color: var(--white-color);
     background-color: var(--notify-color);
     border: 3px solid var(--notify-color);
@@ -89,6 +89,10 @@ a.btnUtente {
     font-weight: 600;
     justify-content: center;
     align-items: center;
+}
+
+.arrow{
+    margin: 0;
 }
 
 img {

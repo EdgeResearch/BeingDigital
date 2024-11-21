@@ -60,6 +60,8 @@ public class TestController {
     Utente utente = (Utente) personaAutenticata.getPersona().orElseThrow(() ->
             new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Utente non autenticato"));
 
+    model.addAttribute("Utente", utente);
+
     ProgressoUtente progresso = utente.getProgressi().stream()
             .filter(p -> p.getId().getSottoArgomento().equalsIgnoreCase(sottoArgomento))
             .findFirst()
@@ -69,7 +71,7 @@ public class TestController {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "L'utente è già a livello MASTER");
     }
 
-    model.addAttribute("domande", prelievoDomandaService.getDomandeRandom(progresso.getLivello()));
+    model.addAttribute("domande", prelievoDomandaService.getDomandeRandom(sottoArgomento, progresso.getLivello()));
     model.addAttribute("livello", progresso.getLivello());
     model.addAttribute("sottoArgomento", sottoArgomento);
 

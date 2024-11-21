@@ -52,9 +52,29 @@ public class PrelievoDomandaService {
    * @return lista di domande.
    * @throws jakarta.validation.ConstraintViolationException se livello risulta null.
    */
+  /*
   public List<Domanda> getDomandeRandom(@NotNull Livello livello) {
     List<Domanda> domande = new ArrayList<>(domandaRepository.findByMetaInfoLivello(livello));
     Collections.shuffle(domande);
     return domande;
+  }*/
+
+
+  /**
+   * Implementa la funzionalità di prelievo di una domanda in modo casuale
+   * relative ad un Argomento.
+   * Si assume che la corretta formulazione del livello sia stata controllata prima
+   * di effettuare la chiamata.
+   *
+   * @param livello_argomento livello delle domande.
+   * @param sottoArgomento sottoArgomento a cui sono associate le domande
+   * @return lista di domande.
+   * @throws jakarta.validation.ConstraintViolationException se livello risulta null.
+   */
+  public List<Domanda> getDomandeRandom(@NotNull String sottoArgomento, Livello livello_argomento) {
+    List<Domanda> domande = new ArrayList<>(domandaRepository.findAllBySottoArgomentoAndLivello(sottoArgomento,livello_argomento));
+    Collections.shuffle(domande);
+    return domande;
   }
+
 }

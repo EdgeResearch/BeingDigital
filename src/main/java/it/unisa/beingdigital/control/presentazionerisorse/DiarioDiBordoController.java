@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -50,11 +51,9 @@ public class DiarioDiBordoController {
                 model.addAttribute("team", team);
 
                 if (team instanceof Gruppo) {
-                    Gruppo gruppo = (Gruppo) team;
-                    model.addAttribute("gruppo", gruppo);
+                    model.addAttribute("gruppo", team);
                 } else if (team instanceof Classe) {
-                    Classe classe = (Classe) team;
-                    model.addAttribute("classe", classe);
+                    model.addAttribute("classe", team);
                 }
 
                 model.addAttribute("percentualeBase", datiUtentiService.getPercentualeUtenti(Livello.BASE));
@@ -69,27 +68,9 @@ public class DiarioDiBordoController {
         } else if (persona instanceof Utente) {
             model.addAttribute("isTeam", false);
             Utente utente = (Utente) persona;
-            String sottoArgomento = "Privacy";
-
-            ProgressoUtente progressoUtente = progressoUtenteService.getProgressoUtenteBySottoArgomento(utente, sottoArgomento);
-            Livello livelloProgresso = (progressoUtente != null) ? progressoUtente.getLivello() : Livello.BASE;
 
             model.addAttribute("Utente", utente);
-            model.addAttribute("livelloUtente", livelloProgresso.toString().toLowerCase());
-
-            Map<Livello, Double> percentuali = new HashMap<>();
-            for (Livello livello : Livello.values()) {
-                if (livello.ordinal() <= livelloProgresso.ordinal()) {
-                    percentuali.put(livello, 100.0);
-                } else {
-                    percentuali.put(livello, datiUtentiService.calcolaPercentualeCompletamento(utente, sottoArgomento));
-                }
-            }
-
-            model.addAttribute("percentualeBase", percentuali.get(Livello.BASE));
-            model.addAttribute("percentualeIntermedio", percentuali.get(Livello.INTERMEDIO));
-            model.addAttribute("percentualeAvanzato", percentuali.get(Livello.AVANZATO));
-            model.addAttribute("percentualeMaster", percentuali.get(Livello.MASTER));
+            model.addAttribute("livelloUtente", Livello.BASE.toString().toLowerCase());
         }
 
         return "presentazionerisorse/diarioDiBordo";
@@ -112,10 +93,10 @@ public class DiarioDiBordoController {
 
         if (teamOptional.isPresent()) {
             Team team = teamOptional.get();
-            percentuali.put("base", prelievoTeamService.calcolaPercentualeUtentiConLivello(team, Livello.BASE, categoria));
-            percentuali.put("intermedio", prelievoTeamService.calcolaPercentualeUtentiConLivello(team, Livello.INTERMEDIO, categoria));
-            percentuali.put("avanzato", prelievoTeamService.calcolaPercentualeUtentiConLivello(team, Livello.AVANZATO, categoria));
-            percentuali.put("master", prelievoTeamService.calcolaPercentualeUtentiConLivello(team, Livello.MASTER, categoria));
+            for (Livello livello : Livello.values()) {
+                double percentuale = prelievoTeamService.calcolaPercentualeUtentiConLivello(team, livello, categoria);
+                percentuali.put(livello.toString().toLowerCase(), percentuale);
+            }
         }
 
         return ResponseEntity.ok(percentuali);
@@ -133,9 +114,8 @@ public class DiarioDiBordoController {
 
         Map<String, Double> percentuali = new HashMap<>();
         Utente utente = (Utente) persona;
-        String sottoArgomento = categoria;
 
-        ProgressoUtente progressoUtente = progressoUtenteService.getProgressoUtenteBySottoArgomento(utente, sottoArgomento);
+        ProgressoUtente progressoUtente = progressoUtenteService.getProgressoUtenteBySottoArgomento(utente, categoria);
         Livello livelloProgresso = (progressoUtente != null) ? progressoUtente.getLivello() : Livello.BASE;
 
         for (Livello livello : Livello.values()) {
@@ -143,7 +123,7 @@ public class DiarioDiBordoController {
                 percentuali.put(livello.toString().toLowerCase(), 100.0);
             } else if (livello == livelloProgresso) {
                 percentuali.put(livello.toString().toLowerCase(),
-                        datiUtentiService.calcolaPercentualeCompletamento(utente, sottoArgomento));
+                        datiUtentiService.calcolaPercentualeCompletamento(utente, categoria));
             } else {
                 percentuali.put(livello.toString().toLowerCase(), 0.0);
             }

@@ -70,5 +70,5 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     btnPrivacy.addEventListener("click", () => mostraCategoria("Privacy", "Privacy"));
-    btnIA.addEventListener("click", () => mostraCategoria("Intelligenza Artificiale", "Intelligenza Artificiale"));
+    btnIA.addEventListener("click", () => mostraCategoria("Intelligenza Artificiale", "IntelligenzaArtificiale"));
 });

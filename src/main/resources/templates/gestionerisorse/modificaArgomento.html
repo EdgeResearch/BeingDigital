@@ -72,7 +72,7 @@
                        onchange="img()" th:if="${param.id!=null}"
                        type="file">
                 <input accept="image/jpeg" class="drop-zone__input" id="copertina" name="copertina"
-                       onchange="img()" required
+                       onchange="img()"
                        th:if="${param.id==null} " type="file">
                 <div class="drop-zone__thumb" th:if="${param.id!=null}"
                      th:style="'background-image: url('+@{/copertina(idArgomento=${param.id})}+')'"></div>

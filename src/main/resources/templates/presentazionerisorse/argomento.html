@@ -22,15 +22,14 @@
         </div>
     </section>
 
-    <!-- caso in cui l'argomento è un racconto (fare controllo migliore) -->
-    <div th:if="${argomento.id == 500}">
+    <!-- caso in cui l'argomento è un racconto -->
+    <div th:if="${argomento.id >= 2000}">
         <iframe th:replace="presentazionerisorse/racconto :: racconto"></iframe>
     </div>
 
 
     <!-- caso in cui è una lezione -->
-    <div th:if="${argomento.id != 500}" class="raccontoText">
-
+    <div th:if="${argomento.id < 2000}" class="raccontoText">
 
         <div id="argomentoContent" th:utext="${argomento.corpo}" style="display: none;"></div>
 

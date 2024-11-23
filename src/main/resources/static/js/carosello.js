@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     $('.carousel-slide').slick({
-        infinite: false,
+        infinite: true,
         variableWidth:true,
         prevArrow:".prev",
         nextArrow:".next"

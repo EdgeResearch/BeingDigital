@@ -63,10 +63,6 @@ function init() {
         { key: "Concetto teorico di capacità cognitive umane", level: 3 },
         { key: "IA Debole vs IA Forte", level: 1 },
         { key: "IA Debole elabora grandi quantità di dati velocemente", level: 2 },
-        { key: "Limitazioni e Futuro dell'IA", level: 1 },
-        { key: "Mancanza di coscienza", level: 2 },
-        { key: "Dipendenza dai dati", level: 2 },
-        { key: "Deep Learning e maggiore autonomia", level: 2 },
         { key: "Conclusione", level: 1 },
         { key: "Potenziale di crescita e limitazioni attuali", level: 2 }
     ], [
@@ -84,10 +80,6 @@ function init() {
         { from: "IA Forte", to: "Concetto teorico di capacità cognitive umane" },
         { from: "Intelligenza Artificiale (IA)", to: "IA Debole vs IA Forte" },
         { from: "IA Debole vs IA Forte", to: "IA Debole elabora grandi quantità di dati velocemente" },
-        { from: "Intelligenza Artificiale (IA)", to: "Limitazioni e Futuro dell'IA" },
-        { from: "Limitazioni e Futuro dell'IA", to: "Mancanza di coscienza" },
-        { from: "Limitazioni e Futuro dell'IA", to: "Dipendenza dai dati" },
-        { from: "Limitazioni e Futuro dell'IA", to: "Deep Learning e maggiore autonomia" },
         { from: "Intelligenza Artificiale (IA)", to: "Conclusione" },
         { from: "Conclusione", to: "Potenziale di crescita e limitazioni attuali" }
     ]);

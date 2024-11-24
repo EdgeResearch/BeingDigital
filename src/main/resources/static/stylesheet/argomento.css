@@ -61,6 +61,13 @@ p {
     background-color: white;
 }
 
+.info{
+    font-size: 16px;
+    color: #30478c;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
 
 .box-bottoni {
     display: flex;
@@ -179,6 +186,11 @@ tr:nth-child(odd) td {
     color: #000000;
 }
 
+/* li > strong:first-child {
+    color: #5b6ed9;
+    font-size: 20px;
+} */
+
 .card-container {
     width: 100%;
     height: auto;
@@ -192,13 +204,6 @@ tr:nth-child(odd) td {
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-
-/*p:has(> img) {
-    position: relative;
-    z-index: 10;
-    margin-left: 5px;
-    float: right;
-} */
 
 .linea {
     border: none;

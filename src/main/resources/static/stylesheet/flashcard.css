@@ -113,3 +113,12 @@
     background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2) 1px, transparent 1px, transparent 10px);
     background-size: 10px 100%;
 }
+
+
+
+@media (max-width: 768px) {
+    .iframe-row {
+        flex-direction: column;
+        align-items: center;
+    }
+}

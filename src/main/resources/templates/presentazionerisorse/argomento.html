@@ -37,13 +37,16 @@
 
         <div th:if="${argomento.mappa != null}">
             <hr class="linea">
+            <!-- <p class="info"> Integarisci con la mappa </p> -->
             <div id="myDiagramDiv"></div>
             <script th:src="@{${argomento.mappa}}" defer></script>
         </div>
 
         <hr class="linea">
 
-        <div class="iframe-row" style="padding-bottom: 50px">
+        <span class="info"> Clicca o trascina il cursore sulla card per rilevare la risposta </span>
+
+        <div class="iframe-row" style="padding-top: 10px; padding-bottom: 50px">
             <iframe th:replace="presentazionerisorse/flashcard :: flashcardContent"></iframe>
         </div>
 
@@ -78,7 +81,7 @@
             var totalCards = headings.length; // Ottieni il numero totale di h3
 
             headings.forEach(function (heading, index) {
-                var card = document.createElement('div');
+                var card = document.createElement('div'); //sistemare !!!
                 card.classList.add('card');
 
                 // Trova il contenuto tra l'h3 corrente e il prossimo h3

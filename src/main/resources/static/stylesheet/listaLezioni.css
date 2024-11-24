@@ -65,7 +65,6 @@
 }
 
 .livello-box{
-    max-width: 120px;
     margin: 0px 20px;
 }
 
@@ -81,7 +80,7 @@
 }
 
 h4.livello-lezione{
-    font-size: 16px;
+    font-size: 14px;
     color: #5b6ed9;
     font-weight: bolder;
 }

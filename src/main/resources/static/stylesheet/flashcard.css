@@ -1,0 +1,124 @@
+.iframe-row {
+    display: flex;
+    justify-content: center;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 250px;
+    height: 290px;
+    position: relative;
+    margin: 10px;
+}
+.flip-card p {
+    word-wrap: initial;
+    hyphens: none; /* Nessuna divisione delle sillabe */
+    letter-spacing: 0;
+    word-spacing: normal;
+    font-size: 15px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-family: Montserrat, sans-serif;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    text-align: center;
+    word-wrap: initial;
+    hyphens: auto;
+    letter-spacing: 0;
+    word-spacing: normal;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+.card-title {
+    letter-spacing: 4px;
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.card-body-front {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    color: black;
+    padding-top: 60px;
+}
+
+.flip-card-back {
+    background-color: white;
+    transform: rotateY(180deg);
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    padding-top: 60px;
+}
+
+.pattern-1 {
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.2) 15%, transparent 16%);
+    background-size: 30px 30px;
+}
+
+.pattern-2 {
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%);
+    background-size: 50px 50px;
+}
+
+.pattern-3 {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+.pattern-4 {
+    background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2) 1px, transparent 1px, transparent 10px);
+    background-size: 10px 100%;
+}
+
+
+
+@media (max-width: 768px) {
+    .iframe-row {
+        flex-direction: column;
+        align-items: center;
+    }
+}

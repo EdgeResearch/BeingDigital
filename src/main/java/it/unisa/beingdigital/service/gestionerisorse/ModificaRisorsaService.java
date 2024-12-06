@@ -1,15 +1,8 @@
 package it.unisa.beingdigital.service.gestionerisorse;
 
-import it.unisa.beingdigital.storage.entity.Argomento;
-import it.unisa.beingdigital.storage.entity.Domanda;
-import it.unisa.beingdigital.storage.entity.Gioco;
-import it.unisa.beingdigital.storage.entity.MetaInfo;
+import it.unisa.beingdigital.storage.entity.*;
 import it.unisa.beingdigital.storage.entity.util.Livello;
-import it.unisa.beingdigital.storage.repository.ArgomentoRepository;
-import it.unisa.beingdigital.storage.repository.DomandaRepository;
-import it.unisa.beingdigital.storage.repository.GiocoRepository;
-import it.unisa.beingdigital.storage.repository.MetaInfoRepository;
-import it.unisa.beingdigital.storage.repository.RispostaRepository;
+import it.unisa.beingdigital.storage.repository.*;
 import jakarta.validation.constraints.NotNull;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +33,9 @@ public class ModificaRisorsaService {
 
   @Autowired
   private RispostaRepository rispostaRepository;
+
+  @Autowired
+  private TeamRepository teamRepository;
 
   /**
    * Implementa la funzionalità di modifica di un argomento.
@@ -242,6 +238,99 @@ public class ModificaRisorsaService {
     if (path != null) {
       gioco.setPath(path);
     }
+
+    return true;
+  }
+
+  /**
+   * Implementa la funzionalità di modifica di un team.
+   * Si assume che la corretta formulazione dei parametri sia stata controllata prima
+   * di effettuare la chiamata.
+   * Tutti i parametri, tranne codice, possono essere nulli, se non si vuole modificare quel dato.
+   *
+   * @param codice codice del Team.
+   * @return true se la modifica è andata a buon fine, false altrimenti.
+   * @throws jakarta.validation.ConstraintViolationException se il codice risulta null.
+   */
+  public boolean modificaTeam(@NotNull String codice) {
+
+    Optional<Team> optional = teamRepository.findByCodice(codice);
+    if (optional.isEmpty()) {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * Implementa la funzionalità di modifica di un team.
+   * Si assume che la corretta formulazione dei parametri sia stata controllata prima
+   * di effettuare la chiamata.
+   * Tutti i parametri, tranne codice, possono essere nulli, se non si vuole modificare quel dato.
+   *
+   * @param codice codice del Team.
+   * @param nuovoNome   nome del Team.
+   * @param nuovaEmail  tipo di email che bisogna possedere per poter partecipare al team.
+   * @return true se la modifica è andata a buon fine, false altrimenti.
+   * @throws jakarta.validation.ConstraintViolationException se il codice risulta null.
+   */
+  public boolean modificaTeamAmministratore(String tipoTeam, @NotNull String codice, @NotNull String nuovoNome,
+                                            @NotNull String nuovaEmail, String città, String scuola, String classe) {
+    Optional<Team> optional = teamRepository.findByCodice(codice);
+    if (optional.isEmpty()) {
+      return false;
+    }
+
+    Team team = optional.get();
+
+    team.setNome(nuovoNome);
+    team.setEmail(nuovaEmail);
+
+    if ("classe".equalsIgnoreCase(tipoTeam) && team instanceof Classe) {
+      Classe classeTeam = (Classe) team;
+      classeTeam.setScuola(scuola);
+      classeTeam.setClasse(classe);
+    } else if ("gruppo".equalsIgnoreCase(tipoTeam) && team instanceof Gruppo) {
+      Gruppo gruppoTeam = (Gruppo) team;
+      gruppoTeam.setCittà(città);
+    } else {
+      return false;
+    }
+
+    teamRepository.save(team);
+    return true;
+  }
+
+  /**
+   * Implementa la funzionalità di espulsione di un utente dal team.
+   * Si assume che la corretta formulazione dei parametri sia stata controllata prima
+   * di effettuare la chiamata.
+   *
+   * @param team       Team da modificare.
+   * @param idUtente   id dell'Utente da espellere.
+   * @return true se l'espulsione è andata a buon fine, false altrimenti.
+   * @throws jakarta.validation.ConstraintViolationException se il codice risulta null.
+   */
+  public boolean espelliUtententeDalTeam(Team team, @NotNull Long idUtente) {
+
+    team.espelliUtente(idUtente);
+
+    return true;
+  }
+
+  /**
+   * Implementa la funzionalità di espulsione di un utente dal team.
+   * Si assume che la corretta formulazione dei parametri sia stata controllata prima
+   * di effettuare la chiamata.
+   *
+   * @param team       Team da modificare.
+   * @param idUtente   id dell'Utente da espellere.
+   * @return true se l'espulsione è andata a buon fine, false altrimenti.
+   * @throws jakarta.validation.ConstraintViolationException se il codice risulta null.
+   */
+  public boolean espelliAmministratoreDalTeam(Team team, @NotNull Long idUtente) {
+
+    team.espelliAmministratore(idUtente);
 
     return true;
   }

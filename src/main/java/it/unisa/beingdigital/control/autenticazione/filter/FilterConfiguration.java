@@ -19,6 +19,9 @@ public class FilterConfiguration {
   private UtenteFilter utenteFilter;
 
   @Autowired
+  private AmministratoreCittadiniFilter amministratoreCittadiniFilter;
+
+  @Autowired
   private AdminFilter adminFilter;
 
   /**
@@ -45,6 +48,20 @@ public class FilterConfiguration {
 
     registrationBean.setFilter(utenteFilter);
     registrationBean.addUrlPatterns("/utente/*");
+
+    return registrationBean;
+  }
+
+  /**
+   * Crea e configura il bean per AmministratoreCittadiniFilter.
+   */
+  @Bean
+  public FilterRegistrationBean<AmministratoreCittadiniFilter> filterRegistrationBeanAmministratoreCittadiniFilter() {
+    FilterRegistrationBean<AmministratoreCittadiniFilter> registrationBean
+            = new FilterRegistrationBean<>();
+
+    registrationBean.setFilter(amministratoreCittadiniFilter);
+    registrationBean.addUrlPatterns("/amministratoreCittadini/*");
 
     return registrationBean;
   }

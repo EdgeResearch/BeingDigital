@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Area Personale</title>
+  <link rel="stylesheet" th:href="@{/stylesheet/utente.css}" type="text/css"/>
+  <link rel="stylesheet" th:href="@{/stylesheet/cancellazione.css}" type="text/css"/>
+  <link href="/img/Logo.png" rel="shortcut icon"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<th:block th:include="fragments/header"></th:block>
+
+<div class="profile-container" style="display: flex; justify-content: center; background: #f2f2f2">
+  <div class="utente">
+    <div class="daticard">
+      <span></span>
+      <div class="profile-image-container">
+        <img th:src="${Utente != null} ? '/fotoprofilo/' + ${Utente.id} : (${AmministratoreCittadini != null} ? '/fotoprofilo/' + ${AmministratoreCittadini.id} : '/img/user_stock.png')"
+             alt="Immagine di profilo"
+             class="profile-image">
+      </div>
+
+      <div th:if="${Utente != null}" class="textUtente">
+        <div class="line">
+          <p th:text="${Utente.nome}"></p><p th:text="${Utente.cognome}"></p>
+        </div>
+        <div class="line">
+          <p th:text="${Utente.email}"></p>
+        </div>
+      </div>
+
+      <div th:if="${AmministratoreCittadini != null}" class="textUtente">
+        <div class="line">
+          <p th:text="${AmministratoreCittadini.nome}"></p><p th:text="${AmministratoreCittadini.cognome}"></p>
+        </div>
+        <div class="line">
+          <p th:text="${AmministratoreCittadini.email}"></p>
+        </div>
+      </div>
+      <div th:if="${isOwner}" class="areabtn1">
+        <a class="btnUtente" href="/auth/modificaProfilo">Modifica</a>
+        <button class="btnUtente" onclick="showConferma()">Elimina Account</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="bio-box">
+    <div class="biocard">
+      <span></span>
+
+      <!-- Vista del profilo personale o amministratore -->
+      <div th:if="${isOwner}" style="width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;">
+        <div th:if="${Utente != null}" class="bio-inner-box">
+          <!-- Se il profilo è di un utente -->
+          <label class="text">Biografia</label>
+          <p th:text="${Utente.biografia}" th:unless="${Utente.biografia == null || Utente.biografia.isEmpty()}"></p>
+          <div th:if="${Utente.biografia == null || Utente.biografia.isEmpty()}" class="bio-edit">
+            <label class="text">Aggiungi la tua biografia:</label>
+            <form action="/auth/Profilo/salvaBio" method="post" class="bio-form">
+              <textarea name="bio" class="input" rows="5" th:text="${Utente.biografia}"></textarea>
+              <button type="submit" class="btnUtente">Salva</button>
+            </form>
+          </div>
+          <button class="btnUtente" onclick="toggleForm()">Modifica</button>
+          <form action="/auth/Profilo/salvaBio" method="post" class="bio-form" style="display:none;">
+            <textarea name="bio" class="input" rows="5" th:text="${Utente.biografia}"></textarea>
+            <button type="submit" class="btnUtente">Salva</button>
+          </form>
+        </div>
+
+        <div th:if="${AmministratoreCittadini != null}" class="bio-inner-box">
+          <!-- Se il profilo è di un amministratore di cittadini -->
+          <label class="text">Biografia</label>
+          <p th:text="${AmministratoreCittadini.biografia}" th:unless="${AmministratoreCittadini.biografia == null || AmministratoreCittadini.biografia.isEmpty()}"></p>
+          <div th:if="${AmministratoreCittadini.biografia == null || AmministratoreCittadini.biografia.isEmpty()}" class="bio-edit">
+            <label class="text">Aggiungi la tua biografia:</label>
+            <form action="/auth/Profilo/salvaBio" method="post" class="bio-form">
+              <textarea name="bio" class="input" rows="5" th:text="${AmministratoreCittadini.biografia}"></textarea>
+              <button type="submit" class="btnUtente">Salva</button>
+            </form>
+          </div>
+          <button class="btnUtente" onclick="toggleForm()">Modifica</button>
+          <form action="/auth/Profilo/salvaBio" method="post" class="bio-form" style="display:none;">
+            <textarea name="bio" class="input" rows="5" th:text="${AmministratoreCittadini.biografia}"></textarea>
+            <button type="submit" class="btnUtente">Salva</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Vista del profilo di un altro utente o amministratore -->
+      <div th:if="${!isOwner}" style="width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;">
+        <div th:if="${Utente != null}" class="bio-inner-box">
+          <!-- Profilo di un utente -->
+          <label class="text">Biografia dell'utente</label>
+          <p th:text="${Utente.biografia}" th:unless="${Utente.biografia == null || Utente.biografia.isEmpty()}"></p>
+          <div th:if="${Utente.biografia == null || Utente.biografia.isEmpty()}">
+            <label class="text">L'utente non ha una biografia.</label>
+          </div>
+        </div>
+        <div th:if="${AmministratoreCittadini != null}" class="bio-inner-box">
+          <!-- Profilo di un amministratore di cittadini -->
+          <label class="text">Biografia dell'amministratore</label>
+          <p th:text="${AmministratoreCittadini.biografia}" th:unless="${AmministratoreCittadini.biografia == null || AmministratoreCittadini.biografia.isEmpty()}"></p>
+          <div th:if="${AmministratoreCittadini.biografia == null || AmministratoreCittadini.biografia.isEmpty()}">
+            <label class="text">L'amministratore non ha una biografia.</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<form action="/auth/cancellazioneAccount" method="post">
+  <input name="account" style="display:none">
+  <div class="all-canc" id="conf">
+    <div class="cancella">
+      <div class="textcancella">
+        <h1>ATTENZIONE</h1>
+        <p> Sicuro di voler procedere alla cancellazione di questo account?</p>
+        <div class="btn-canc">
+          <button class="elimina" type="submit">SI</button>
+          <a class="elimina" onclick="hideConferma()">NO</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<th:block th:include="fragments/footer"></th:block>
+
+<script th:src="@{/js/utente.js}"></script>
+<script th:src="@{/js/biografia.js}"></script>
+</body>
+</html>

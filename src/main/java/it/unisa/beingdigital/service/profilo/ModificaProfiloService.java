@@ -31,17 +31,18 @@ public class ModificaProfiloService {
    * di effettuare la chiamata e che la persona sia presente nel database.
    * Tutti i parametri, tranne persona, possono essere nulli, se non si vuole modificare quel dato.
    *
-   * @param persona  La persona da modificare.
-   * @param nome     Il nome modificato.
-   * @param cognome  Il cognome modificato.
-   * @param email    L'email modificata.
-   * @param password La password modificata.
+   * @param persona        La persona da modificare.
+   * @param nome           Il nome modificato.
+   * @param cognome        Il cognome modificato.
+   * @param email          L'email modificata.
+   * @param password       La password modificata.
+   * @param fotoprofilo    foto del profilo modificata
    * @return true se la modifica è andata a buon fine, false altrimenti.
    * @throws jakarta.validation.ConstraintViolationException se la persona risulta null.
    */
 
   public boolean modificaProfilo(@NotNull Persona persona, String nome, String cognome,
-                                 String email, String password) {
+                                 String email, String password, byte[] fotoprofilo) {
     if (email != null) {
       Optional<Persona> optionalAltro = personaRepository.findByEmail(email);
       if (optionalAltro.isPresent() && !optionalAltro.get().getId().equals(persona.getId())) {
@@ -62,7 +63,12 @@ public class ModificaProfiloService {
       persona.setPassword(passwordEncryptor.encryptPassword(password));
     }
 
+    if (fotoprofilo != null) {
+      persona.setFotoprofilo(fotoprofilo);
+    }
+
     personaRepository.save(persona);
+
     return true;
   }
 }

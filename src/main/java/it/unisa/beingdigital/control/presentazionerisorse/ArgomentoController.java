@@ -2,7 +2,10 @@ package it.unisa.beingdigital.control.presentazionerisorse;
 
 import it.unisa.beingdigital.service.presentazionerisorse.PrelievoArgomentoService;
 import it.unisa.beingdigital.storage.entity.Argomento;
+import java.util.List;
 import java.util.Optional;
+import it.unisa.beingdigital.storage.entity.Flashcard;
+import it.unisa.beingdigital.storage.repository.FlashcardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -23,6 +26,9 @@ public class ArgomentoController {
   @Autowired
   private PrelievoArgomentoService prelievoArgomentoService;
 
+  @Autowired
+  private FlashcardRepository flashcardRepository;
+
   /**
    * Implementa il get per la visualizzazione di un argomento.
    *
@@ -33,12 +39,28 @@ public class ArgomentoController {
    */
   @GetMapping
   public String get(@RequestParam Long id, Model model) {
+
     Optional<Argomento> optional = prelievoArgomentoService.getArgomento(id);
+
+    Optional<Argomento> nextArgomento = prelievoArgomentoService.getArgomento(id + 1);
+    Optional<Argomento> lastArgomento = prelievoArgomentoService.getArgomento(id - 1);
+
     if (optional.isEmpty()) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
 
-    model.addAttribute("argomento", optional.get());
+    Argomento argomento = optional.get();
+    model.addAttribute("argomento", argomento);
+
+    model.addAttribute("sottoargomento", argomento.getSottoArgomento());
+
+    model.addAttribute("nextId", nextArgomento.isPresent() ? id + 1 : null);
+    model.addAttribute("lastId", lastArgomento.isPresent() ? id - 1 : null);
+
+    List<Flashcard> flashcards = flashcardRepository.findByArgomentoId(argomento.getId());
+
+    model.addAttribute("flashCards", flashcards);
+
     return "presentazionerisorse/argomento";
   }
 }

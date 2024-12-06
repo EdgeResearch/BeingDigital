@@ -1,0 +1,233 @@
+.Lobby {
+    display: flex;
+    align-items: center;
+    background: #f2f2f2;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 35px;
+    margin-top: 50px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--second-color);
+    padding: 0 5px;
+    text-align: center;
+}
+
+.scritte {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+    color: #30478c;
+    margin-top: 10px;
+}
+
+.diariodibordo-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin: 50px;
+    justify-content: center;
+}
+
+.categorie h3 {
+    text-align: center;
+    color: var(--white-color);
+    background-color: var(--second-color);
+    padding: 22px 0;
+    font-size: 24px;
+    font-weight: 700;
+    width: 100%;
+    height: 25px;
+    text-transform: uppercase;
+    border-radius: 10px 10px 0 0;
+}
+
+.risultati-categoria h2 {
+    text-align: center;
+    color: var(--white-color);
+    background-color: var(--second-color);
+    padding: 22px 0;
+    font-size: 24px;
+    font-weight: 700;
+    width: 100%;
+    text-transform: uppercase;
+    border-radius: 10px 10px 0 0;
+}
+
+.categorie {
+    display: flex;
+    position: relative;
+    width: 250px;
+    height: 500px;
+    margin: 0px 20px;
+    background-color: var(--white-color);
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.category-btn-container {
+    margin: 50px 0px;
+    /*height: 100%;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.category-btn {
+    width: 100%;
+    text-decoration: none;
+    display: inline-block;
+    margin: 15px 0px;
+    padding: 10px 10px;
+    color: var(--white-color);
+    background-color: var(--notify-color);
+    border: 3px solid var(--notify-color);
+    position: relative;
+    transition: 0.5s;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.risultati-categoria {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 500px;
+    position: relative;
+    background: var(--white-color);
+    border-radius: 10px;
+    margin: 0px 20px;
+    padding: 20px;
+}
+
+.percentuali {
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 40px;
+    justify-items: center;
+    align-items: center;
+    margin: 60px 0;
+}
+
+.progress {
+    --i: 0;
+    --clr: #273a73;
+    background: conic-gradient(var(--clr) calc(var(--i) * 1%), #ddd calc(var(--i) * 1%));
+    position: relative;
+    width: 15vw;
+    height: 15vw;
+    max-width: 165px;
+    max-height: 165px;
+    min-width: 100px;
+    min-height: 100px;
+    border-radius: 50%;
+    margin: 0 40px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.progress h3 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5vw;
+    z-index: 1;
+    font-weight: 500;
+    color: white;
+}
+
+.progress h3 span {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.progress h4 {
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 1;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 1.1vw;
+    color: white;
+}
+
+.progress::before {
+    content: '';
+    display: block;
+    height: 100%;
+    margin-left: 50%;
+    transform-origin: left;
+    border-radius: 0 100% 100% 0/50%;
+    transform: rotate(calc(((var(--i) - 50) * 0.01turn)));
+    transition: background-color 0.5s ease;
+}
+
+.progress::after {
+    content: '';
+    position: absolute;
+    inset: 15%;
+    background: var(--main-color);
+    border-radius: 50%;
+}
+
+.progress[data-percent="0"] {
+    background: #ddd;
+}
+
+.progress.visible {
+    opacity: 1;
+}
+
+#messaggio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #555;
+    font-size: 18px;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .diariodibordo-container {
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .risultati-categoria {
+        min-width: 500px;
+        margin: 30px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .percentuali {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .percentuali .progress {
+        width: 35vw;
+        height: 35vw;
+    }
+
+    .percentuali .progress h3 {
+        font-size: 4vw;
+    }
+
+    .percentuali .progress h4 {
+        font-size: 3vw;
+    }
+}

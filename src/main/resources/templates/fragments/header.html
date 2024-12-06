@@ -13,7 +13,7 @@
 </head>
 <body class>
 <header class="all-headerbody" id="header">
-    <a href="/"><img alt="" class="logo" src="/img/Logo2.png"></a>
+    <a href="/"><img alt="" class="logo" src="/img/Logo2.png" style="position: fixed; top: 10px; left: 10px; width: 150px"></a>
     <div class="hamburger">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -21,33 +21,31 @@
     </div>
 
     <nav id="menu">
-        <ul>
-            <li><a href="#">Cittadinanza digitale <b>+</b></a>
-                <ul>
-                    <li><a href="/raccontiCittadinanza">Racconti</a></li>
-                    <li><a href="/lezioniCittadinanza">Lezioni</a></li>
-                    <li><a href="/giochiCittadinanza">Giochi</a></li>
-                </ul>
-            </li>
+        <div class="team-header" th:if="${admin != null}">
+            <a class="bottoni-header" href="/auth/areaPersonale">Area admin</a>
+        </div>
+
+        <div class="team-header" th:if="${Utente != null && admin == null}">
+            <a class="bottoni-header" href="/auth/diariodibordo">Diario di bordo</a>
+        </div>
+
+        <div class="team-header" th:if="${@personaAutenticata.persona.isPresent() && admin == null}">
+            <a class="bottoni-header" href="/team">Team</a>
+        </div>
+
+        <div>
             <th:block th:with="accesso = ${@personaAutenticata.persona.isPresent()}">
-                <li th:if="${accesso
-                && !(@personaAutenticata.persona.get().getClass().getSimpleName().equals('Admin'))}">
-                    <a href="#">Privacy online
-                        <b>+</b></a>
-                    <ul>
-                        <li><a href="/utente/raccontiPrivacy">Racconti</a></li>
-                        <li><a href="/utente/lezioniPrivacy">Lezioni</a></li>
-                        <li><a href="/utente/giochiPrivacy">Giochi</a></li>
-                        <li th:if="${@personaAutenticata.persona.get().livello.name() != 'MASTER'}"><a
-                                href="/utente/test">Test</a>
-                        </li>
-                    </ul>
-                </li>
-                <li><a href="/login" th:if="${!accesso}">Accesso</a>
-                    <a href="/auth/areaPersonale" th:if="${accesso}">Area personale</a>
-                </li>
+                <a class="bottoni-header" href="/login" th:if="${!accesso}">Accesso</a>
+                <a class="bottoni-header" href="/auth/Profilo" th:if="${accesso && admin == null}">Profilo</a>
             </th:block>
-        </ul>
+        </div>
+
+        <div>
+            <th:block th:with="accesso = ${@personaAutenticata.persona.isPresent()}">
+                <a class="bottoni-header" href="/logout" th:if="${accesso}">Logout</a>
+            </th:block>
+        </div>
+
     </nav>
 </header>
 

@@ -1,17 +1,15 @@
 package it.unisa.beingdigital.service.gestionerisorse;
 
-import it.unisa.beingdigital.storage.entity.Domanda;
-import it.unisa.beingdigital.storage.entity.Gioco;
-import it.unisa.beingdigital.storage.entity.Lezione;
-import it.unisa.beingdigital.storage.entity.MetaInfo;
-import it.unisa.beingdigital.storage.entity.Racconto;
+import it.unisa.beingdigital.service.autenticazione.util.PersonaAutenticata;
+import it.unisa.beingdigital.storage.entity.*;
 import it.unisa.beingdigital.storage.entity.util.Livello;
-import it.unisa.beingdigital.storage.repository.ArgomentoRepository;
-import it.unisa.beingdigital.storage.repository.DomandaRepository;
-import it.unisa.beingdigital.storage.repository.GiocoRepository;
-import it.unisa.beingdigital.storage.repository.MetaInfoRepository;
+import it.unisa.beingdigital.storage.repository.*;
 import jakarta.validation.constraints.NotNull;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import org.hibernate.proxy.HibernateProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,6 +36,12 @@ public class InserimentoRisorsaService {
   @Autowired
   private GiocoRepository giocoRepository;
 
+  @Autowired
+  private TeamRepository teamRepository;
+
+  @Autowired
+  private PersonaAutenticata personaAutenticata;
+
   /**
    * Implementa la funzionalità d'inserimento di una lezione.
    * Si assume che la corretta formulazione dei parametri sia stata controllata prima
@@ -47,17 +51,19 @@ public class InserimentoRisorsaService {
    * @param corpo      Testo scritto che compone la lezione.
    * @param copertina  Copertina della lezione.
    * @param metaInfoId Id della meta-info associata alla lezione.
+   * @param mappa      Mappa associata alla lezione.
+   *
    * @return true se l'inserimento è andato a buon fine, false altrimenti.
    * @throws jakarta.validation.ConstraintViolationException se i parametri risultano null.
    */
-  public boolean inserimentoLezione(@NotNull String titolo, @NotNull String corpo,
-                                    @NotNull byte[] copertina, @NotNull Long metaInfoId) {
+  public boolean inserimentoLezione(@NotNull String sottoArgomento,@NotNull String titolo, @NotNull String corpo,
+                                    @NotNull byte[] copertina, @NotNull Long metaInfoId, String mappa) {
     Optional<MetaInfo> optional = metaInfoRepository.findById(metaInfoId);
     if (optional.isEmpty()) {
       return false;
     }
 
-    Lezione lezione = new Lezione(titolo, corpo, copertina, optional.get());
+    Lezione lezione = new Lezione(sottoArgomento,titolo, corpo, copertina, optional.get(), mappa);
     argomentoRepository.save(lezione);
     return true;
   }
@@ -74,14 +80,14 @@ public class InserimentoRisorsaService {
    * @return true se l'inserimento è andato a buon fine, false altrimenti.
    * @throws jakarta.validation.ConstraintViolationException se i parametri risultano null.
    */
-  public boolean inserimentoRacconto(@NotNull String titolo, @NotNull String corpo,
-                                     @NotNull byte[] copertina, @NotNull Long metaInfoId) {
+  public boolean inserimentoRacconto(@NotNull String sottoArgomento, @NotNull String titolo, @NotNull String corpo,
+                                     @NotNull byte[] copertina, @NotNull Long metaInfoId, String mappa){
     Optional<MetaInfo> optional = metaInfoRepository.findById(metaInfoId);
     if (optional.isEmpty()) {
       return false;
     }
 
-    Racconto racconto = new Racconto(titolo, corpo, copertina, optional.get());
+    Racconto racconto = new Racconto(sottoArgomento,titolo, corpo, copertina, optional.get(), mappa);
     argomentoRepository.save(racconto);
     return true;
   }
@@ -167,4 +173,71 @@ public class InserimentoRisorsaService {
     giocoRepository.save(gioco);
     return true;
   }
+
+  /**
+   * metodo per generare il codice del team
+   */
+  private String generateShortCode(int length) {
+    String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    SecureRandom random = new SecureRandom();
+    StringBuilder code = new StringBuilder(length);
+
+    for (int i = 0; i < length; i++) {
+      int index = random.nextInt(chars.length());
+      code.append(chars.charAt(index));
+    }
+
+    return code.toString();
+  }
+
+  /**
+   * Implementa la funzionalità di creazione di un Team.
+   * Si assume che la corretta formulazione dei parametri sia stata controllata prima
+   * di effettuare la chiamata.
+   * Tutti i parametri, tranne codice, possono essere nulli, se non si vuole modificare quel dato.
+   *
+   * @param nome      nome del Team.
+   * @param email     tipo di email che bisogna possedere per poter partecipare al team.
+   * @param tipoTeam  identifica se il team è un Gruppo o una Classe.
+   * @return true se la creazione è andata a buon fine, false altrimenti.
+   * @throws jakarta.validation.ConstraintViolationException se il codice risulta null.
+   */
+  public boolean inserimentoTeam(@NotNull String nome, @NotNull String email, String tipoTeam, String città, String classe1, String scuola){
+
+    String codice = generateShortCode(7);
+
+    List<AmministratoreCittadini> amministratoriCittadini = new ArrayList<>();
+
+    Optional<Persona> personaOpt = personaAutenticata.getPersona();
+
+    personaOpt.ifPresent(persona -> {
+
+      if (persona instanceof HibernateProxy) {
+        persona = (Persona) ((HibernateProxy) persona).getHibernateLazyInitializer().getImplementation();
+      }
+
+      if (persona instanceof AmministratoreCittadini) {
+        AmministratoreCittadini amministratoreCittadini = (AmministratoreCittadini) persona;
+        amministratoriCittadini.add(amministratoreCittadini);
+      }
+    });
+
+    if (tipoTeam.equals("gruppo")){
+      codice = "G-" + codice;
+      Gruppo gruppo = new Gruppo(codice, nome, null, amministratoriCittadini, email, città);
+      teamRepository.save(gruppo);
+    } else if (tipoTeam.equals("classe")){
+      codice = "C-" + codice;
+      Classe classe = new Classe(codice, nome, null, amministratoriCittadini, email, classe1, scuola);
+      teamRepository.save(classe);
+    }
+
+    Optional<Team> optional = teamRepository.findById(codice);
+
+    if (optional.isEmpty()){
+      return false;
+    }
+    return true;
+  }
+
 }

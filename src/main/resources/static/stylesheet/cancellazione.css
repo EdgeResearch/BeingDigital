@@ -24,7 +24,6 @@
     align-items: center;
     justify-content: center;
     justify-items: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url(/img/backgroundLogo.png);
     display: none;
 }
 
@@ -61,6 +60,7 @@
 }
 
 .btn-canc {
+    display: flex;
     margin-top: 10px;
 }
 

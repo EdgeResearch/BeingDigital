@@ -40,7 +40,7 @@ header .logo {
     position: absolute;
     width: 230px;
     top: 5px;
-    left: 5x;
+    left: 5px;
     margin-top: 0;
 }
 
@@ -65,7 +65,7 @@ header ul li b {
 
 header ul li a {
     color: var(--white-color);
-    font-size: 1.1em;
+    font-size: 15px;
     padding: 20px 25px;
     display: flex;
     text-decoration: none;
@@ -111,56 +111,43 @@ header ul li ul li {
     background-color: var(--text-color);
 }
 
+
+.bottoni-header{
+    color: var(--white-color);
+    font-size: 15px;
+    padding: 20px 25px;
+    display: flex;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+    justify-content: space-between;
+}
+
+@media (min-width: 971px) {
+    #menu {
+        display: flex;
+    }
+}
+
 @media (max-width: 971px) {
-    header {
-        padding: 10px 20px;
-    }
-
-    header .logo {
-        width: 220px;
-        top: 5px
-    }
-
-    header nav {
-        position: absolute;
-        width: 100%;
-        top: 75px;
-        left: 0;
-        background-color: var(--bg-color);
+    #menu {
         display: none;
-        box-shadow: 0px 7px 0px 0px rgba(0, 0, 0, 0.1);
-    }
-
-    header nav ul {
-        width: 100%;
-    }
-
-    header nav ul li {
-        width: 100%;
-    }
-
-    header nav ul li ul {
-        width: 100%;
-        position: relative;
-        left: 0;
-    }
-
-    header nav ul li:hover ul li {
+        flex-direction: column;
+        position: absolute;
+        top: 90px;
+        right: 0;
+        width: 30%;
         background-color: var(--bg-color);
-        opacity: 0.8;
     }
 
-    header nav ul li ul li:hover {
-        background-color: var(--notify-color);
-        opacity: 1;
-    }
-
-    header nav.active {
+    #menu.active {
         display: flex;
     }
 
     .hamburger {
         display: block;
+        cursor: pointer;
     }
 
     .hamburger.active .bar:nth-child(2) {
@@ -173,6 +160,19 @@ header ul li ul li {
 
     .hamburger.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .bottoni-header {
+        padding: 15px;
+        color: var(--white-color);
+        text-align: center;
+        text-decoration: none;
+        border-bottom: 1px solid var(--second-color);
+        width: 100%;
+    }
+
+    .bottoni-header:hover {
+        background-color: var(--notify-color);
     }
 }
 

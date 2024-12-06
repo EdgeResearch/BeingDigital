@@ -18,14 +18,13 @@
 }
 
 .utente {
-    display: grid;
-    grid-template-columns: repeat(2, 30rem);
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url(/img/backgroundLogo.png);
+    display: flex;
+    min-height: 88vh;
     background-size: contain;
     overflow-x: hidden;
+    justify-items: center;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 
@@ -53,11 +52,51 @@
     bottom: 30px;
 }
 
-
 #snackbar.show {
     visibility: visible;
 }
 
+.team {
+    display: flex;
+    position: relative;
+    width: 380px;
+    height: 470px;
+    margin: 50px 25px;
+    background-color: var(--white-color);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+}
+
+.team span {
+    position: absolute;
+    top: -6px;
+    left: -1px;
+    width: 120px;
+    height: 100px;
+    display: flex;
+    overflow: hidden;
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.team span::before {
+    content: 'Team';
+    position: absolute;
+    width: 151%;
+    height: 40px;
+    background-color: #e1d007;
+    transform: rotate(-36deg) translateY(-20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: var(--text-color);
+    font-weight: 600;
+    box-shadow: -4px 5px 6px rgba(0, 0, 0, 0.25);
+}
 
 .daticard {
     display: flex;
@@ -65,38 +104,11 @@
     align-items: center;
     position: relative;
     flex-direction: column;
-    width: 400px;
-    height: 530px;
+    width: 380px;
+    height: 470px;
+    margin: 50px 25px;
     background-color: var(--white-color);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-}
-
-.daticard span {
-    position: absolute;
-    top: -18px;
-    left: -10px;
-    width: 150px;
-    height: 150px;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-}
-
-.daticard span::before {
-    content: 'Dati personali';
-    position: absolute;
-    width: 150%;
-    height: 40px;
-    background-color: var(--aggiuntivo1);
-    transform: rotate(-45deg) translateY(-20px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
-    color: var(--text-color);
-    font-weight: 600;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
 }
 
 .plus {
@@ -105,6 +117,8 @@
     justify-content: center;
     display: flex;
     align-items: center;
+    height: 470px;
+    margin: 50px 30px;
 }
 
 .progcard {
@@ -113,22 +127,23 @@
     align-items: center;
     position: relative;
     flex-direction: column;
-    width: 500px;
-    height: 250px;
+    width: 380px;
+    height: 238px;
     background-color: var(--white-color);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
 }
 
 .progcard span {
     position: absolute;
-    top: -18px;
-    left: -10px;
-    width: 150px;
-    height: 150px;
-    justify-content: center;
+    top: -6px;
+    left: -1px;
+    width: 120px;
+    height: 100px;
     display: flex;
-    align-items: center;
     overflow: hidden;
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 .progcard span::before {
@@ -137,14 +152,14 @@
     width: 150%;
     height: 40px;
     background-color: var(--aggiuntivo2);
-    transform: rotate(-45deg) translateY(-20px);
+    transform: rotate(-36deg) translateY(-20px);
     display: flex;
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
     color: var(--text-color);
     font-weight: 600;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: -4px 5px 6px rgba(0, 0, 0, 0.25);
 }
 
 .lesscard {
@@ -154,22 +169,23 @@
     align-items: center;
     position: relative;
     flex-direction: column;
-    width: 500px;
-    height: 250px;
+    width: 380px;
+    height: 200px;
     background-color: var(--white-color);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
 }
 
 .lesscard span {
     position: absolute;
-    top: -18px;
-    left: -10px;
-    width: 150px;
-    height: 150px;
-    justify-content: center;
+    top: -6px;
+    left: -1px;
+    width: 120px;
+    height: 100px;
     display: flex;
-    align-items: center;
     overflow: hidden;
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 .lesscard span::before {
@@ -178,43 +194,46 @@
     width: 150%;
     height: 40px;
     background-color: var(--aggiuntivo4);
-    transform: rotate(-45deg) translateY(-20px);
+    transform: rotate(-36deg) translateY(-20px);
     display: flex;
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
     color: var(--text-color);
     font-weight: 600;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: -4px 5px 6px rgba(0, 0, 0, 0.25);
 }
 
 .textUtente {
-    margin-top: 55px;
-    width: 70%;
+    display: flex;
+    margin-top: 23px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .line {
-    margin-bottom: 30px;
+    display: flex;
+    margin-bottom: 10px;
 }
 
 .line h3 {
     color: var(--main-color);
-    font-size: 22px;
+    font-size: 15px;
 }
 
 .line p {
-    margin-left: 20px;
+    margin-left: 5px;
     margin-top: 5px;
     color: #121b37;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .btnUtente {
     width: 150px;
     text-decoration: none;
     display: inline-block;
-    margin: 10px 0;
-    padding: 12px 0;
+    margin: 10px 20px;
+    padding: 6px 0;
     color: var(--white-color);
     background-color: var(--notify-color);
     border: 3px solid var(--notify-color);
@@ -224,6 +243,57 @@
     text-align: center;
     text-transform: uppercase;
     font-weight: 600;
+    font-size: 12px;
+}
+
+.btnUtente.btnTeam{
+    max-width: 150px;
+    width: auto;
+}
+
+.box-team {
+    display: flex;
+    margin: 7px 0px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gestione_team {
+    display: flex;
+    margin: 7px 0px;
+    flex-direction: column;
+    align-items: center;;
+}
+
+a#creaTeam {
+    width: 150px;
+}
+
+p#scritta-team {
+    margin-bottom: 5px;
+}
+
+ul {
+    max-height: 107px;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    align-items: center;
+}
+
+div#box-crea-button {
+    margin-top: 12px;
+}
+
+.box-codice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
 }
 
 .btnUtente:hover {
@@ -240,6 +310,7 @@
 .areabtn1 {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .eliminaAcc {
@@ -261,6 +332,163 @@
     font-size: 1.3em;
 }
 
+label {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--notify-color);
+    margin: 22px 9px;
+}
+
+.input {
+    width: 100%;
+    margin-bottom: 9px;
+    padding: 10px;
+    outline: none;
+    font-size: 0.8em;
+    border: 1px solid #121b37;
+    letter-spacing: 0.1em;
+}
+
+.profile-image-container {
+    display: flex;
+    margin-top: 20px;
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--main-color);
+}
+
+.daticard span {
+    position: absolute;
+    top: -6px;
+    left: -1px;
+    width: 120px;
+    height: 100px;
+    display: flex;
+    overflow: hidden;
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.daticard span::before {
+    content: 'Dati personali';
+    position: absolute;
+    width: 145%;
+    height: 34px;
+    background-color: #ffa900;
+    transform: rotate(-36deg) translateY(-20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: var(--text-color);
+    font-weight: 600;
+    box-shadow: -4px 5px 6px rgba(0, 0, 0, 0.25);
+}
+
+button#cambiaImmagine {
+    z-index: 1;
+    height: 20px;
+    width: 20px;
+    border-radius: 30px;
+    position: relative;
+    bottom: 0px;
+    top: 100px;
+    right: 20px;
+}
+
+.input::placeholder {
+    text-align: center;
+}
+
+.bio-box {
+    display: flex;
+    min-height: 88vh;
+    background-size: contain;
+    overflow-x: hidden;
+    justify-items: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.biocard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    width: 380px;
+    height: 470px;
+    margin: 50px 25px;
+    background-color: var(--white-color);
+    border-radius: 25px;
+}
+
+.biocard span {
+    position: absolute;
+    top: -6px;
+    left: -1px;
+    width: 120px;
+    height: 100px;
+    display: flex;
+    overflow: hidden;
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.biocard span::before {
+    content: 'Bio';
+    position: absolute;
+    width: 145%;
+    height: 34px;
+    background-color: var(--aggiuntivo1);
+    transform: rotate(-36deg) translateY(-20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: var(--text-color);
+    font-weight: 600;
+    box-shadow: -4px 5px 6px rgba(0, 0, 0, 0.25);
+}
+
+.bio-form {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bio-inner-box{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+textarea{
+    resize: none;
+}
+
+.bio-inner-box p {
+    margin: 20px 2px;
+}
+
+.bio-edit {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 @media (max-width: 990px) {
 
     .utente {
@@ -269,14 +497,6 @@
         padding: 20px;
 
     }
-
-    .daticard {
-        margin-bottom: 35px;
-        width: 500px;
-        height: 450px;
-
-    }
-
     .areabtn1 {
         display: flex;
         flex-direction: row;
@@ -285,7 +505,14 @@
     .btnUtente {
         margin: 10px 5px;
     }
+}
 
+@media (max-width: 800px) {
+    .profile-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 @media (max-width: 500px) {
@@ -294,13 +521,6 @@
         display: flex;
         flex-direction: column;
         padding: 25px;
-
-    }
-
-    .daticard {
-        margin-bottom: 35px;
-        width: 300px;
-        height: 500px;
 
     }
 

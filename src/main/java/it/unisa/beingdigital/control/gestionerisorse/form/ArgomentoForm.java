@@ -10,6 +10,8 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 /**
  * Questa classe rappresenta il form per l'inserimento e la modifica di un Argomento.
  */
@@ -20,6 +22,10 @@ import org.springframework.web.multipart.MultipartFile;
 @Setter
 @ToString
 public class ArgomentoForm {
+
+  @NotBlank
+  @Size(max = 255)
+  private String sottoArgomento;
 
   @NotBlank
   @Size(max = 255)
@@ -34,4 +40,6 @@ public class ArgomentoForm {
 
   @NotNull
   private Long metaInfoId;
+
+  private  String mappa;
 }

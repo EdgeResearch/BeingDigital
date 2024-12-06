@@ -40,7 +40,7 @@ public class RisorseController {
   @GetMapping
   public String get(Model model) {
     model.addAttribute("lezioni",
-        prelievoArgomentoService.getAllLezioniSortedByLivelloKeywordTitolo());
+        prelievoArgomentoService.getAllLezioniSortedByLivelloKeywordId());
     model.addAttribute("racconti",
         prelievoArgomentoService.getAllRaccontiSortedByLivelloKeywordTitolo());
     model.addAttribute("metainfo",

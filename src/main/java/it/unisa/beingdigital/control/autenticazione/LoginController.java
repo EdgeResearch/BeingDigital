@@ -34,16 +34,17 @@ public class LoginController {
   /**
    * Implementa il post per il login.
    *
-   * @param loginForm     form di login.
-   * @param bindingResult risultato della validazione del loginForm.
-   * @param risorsa       risorsa alla quale ridirezionare l'utente una volta loggato
-   * @param model         model da passare alla view
+   * @param loginForm       form di login.
+   * @param bindingResult   risultato della validazione del loginForm.
+   * @param risorsa         risorsa alla quale ridirezionare l'utente una volta loggato
+   * @param model           model da passare alla view
    * @return Stringa rappresentante il path della view da rappresentare.
    * @throws ResponseStatusException se il loginForm è malformato
    */
   @PostMapping
   public String post(@ModelAttribute @Valid LoginForm loginForm, BindingResult bindingResult,
-                     @RequestParam(required = false) String risorsa, Model model) {
+                     @RequestParam(value = "risorsa", required = false) String risorsa,
+                     Model model) {
     if (bindingResult.hasErrors()) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
@@ -54,8 +55,9 @@ public class LoginController {
     }
 
     if (risorsa != null && !risorsa.isBlank()) {
-      return "redirect:" + risorsa;
+        return "redirect:" + risorsa;
     }
-    return "redirect:/auth/areaPersonale";
+
+    return "redirect:/";
   }
 }

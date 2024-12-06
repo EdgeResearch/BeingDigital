@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Link per Animate.css -->
+    <link rel="stylesheet" th:href="@{/stylesheet/flashcard.css}" type="text/css"/>
+</head>
+
+<body>
+
+<div th:fragment="flashcardContent">
+    <div th:with="colors=${'#ff6666,#66ff66,#6666ff,#ffcc66,#66ccff'.split(',')}, patterns=${'pattern-1,pattern-2,pattern-3,pattern-4,pattern-5'.split(',')}">
+        <div class="iframe-row">
+            <!-- Itera sulle flashCards e applica un pattern e colore a ciascuna card -->
+            <div th:each="flashCard, iterStat : ${flashCards}">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <!-- Imposta lo stile dinamicamente per ogni card, direttamente nella generazione -->
+                        <div class="flip-card-front"
+                             th:style="'background-color: ' + ${colors[iterStat.index % colors.length]} + '; '"
+                             th:classappend="${patterns[iterStat.index % patterns.length]}">
+                            <h2 class="card-title">Domanda</h2>
+                            <p th:text="${flashCard.domande}" class="card-body-front"></p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h2 class="card-title" style="color: darkgreen">Risposta</h2>
+                            <p th:utext="${flashCard.risposte}" class="card-body-back"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class Admin extends Persona {
 
-  public Admin(String nome, String cognome, String email, String password) {
-    super(nome, cognome, email, password);
+  public Admin(String nome, String cognome, String email, String password, byte[] fotoprofilo, String biografia) {
+    super(nome, cognome, email, password, fotoprofilo, biografia);
   }
 }

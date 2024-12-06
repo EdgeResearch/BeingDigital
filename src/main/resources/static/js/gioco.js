@@ -40,9 +40,16 @@ function addGame(gioco) {
         document.body.removeChild(_script);
     }
 
+    var placeholder = document.getElementById("placeholder");
+    if (placeholder) {
+        placeholder.style.display = "none";
+    }
+
+
     var titolo = document.getElementById('giocoTitolo');
     titolo.innerText = gioco.innerText;
     console.log("Ho fatto " + titolo.innerText);
+
     var buildUrl = gioco.id;
     var loaderUrl = buildUrl + "/Build.loader.js";
     var config = {

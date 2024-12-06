@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Area Personale</title>
+  <link rel="stylesheet" th:href="@{/stylesheet/utente.css}" type="text/css"/>
+  <link rel="stylesheet" th:href="@{/stylesheet/cancellazione.css}" type="text/css"/>
+  <link href="/img/Logo.png" rel="shortcut icon"/>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<th:block th:include="fragments/header"></th:block>
+
+<div class="utente" id="list">
+  <div class="daticard">
+    <span></span>
+    <div class="eliminaAcc"><i class="fa-solid fa-trash fa-xl" onclick="showConferma()"></i></div>
+    <div class="textUtente">
+      <div class="line"><h3>Email:</h3>
+        <p th:text="${amministratoreCittadini.email}"></p></div>
+      <div class="line"><h3>Nome:</h3>
+        <p th:text="${amministratoreCittadini.nome}"></p></div>
+      <div class="line"><h3>Cognome:</h3>
+        <p th:text="${amministratoreCittadini.cognome}"></p></div>
+    </div>
+    <div class="areabtn1">
+      <a class="btnUtente" href="/auth/modificaProfilo">Modifica</a>
+      <a class="btnUtente" href="/logout">Logout</a>
+    </div>
+  </div>
+
+  <div class="team">
+    <span></span>
+    <form action="/auth/areaPersonale/entraTeam" method="post">
+      <div class="box-codice">
+        <label class="text" for="codice">Entra in un team inserendo un codice</label>
+        <input class="input" id="codice" name="codice" required="" type="text" value="">
+        <div class="areabtn">
+          <button type="submit" class="btnUtente">Entra</button>
+        </div>
+        <div th:if="${messageTeam != null}">
+          <p th:text="${messageTeam}"></p>
+        </div>
+      </div>
+    </form>
+    <div class="box-team">
+      <div class="gestione_team">
+        <div th:if="${message != null}">
+          <p th:text="${message}"></p>
+        </div>
+      </div>
+      <div class="gestione_team" th:if="${teams != null}">
+        <p id="scritta-team">I tuoi team:</p>
+        <ul>
+          <li th:each="team : ${teams}">
+            <form action="/team" method="post">
+              <input type="hidden" name="codice" th:value="${team.codice}">
+              <button type="submit" class="btnUtente btnTeam" th:text="${team.nome}"></button>
+            </form>
+          </li>
+        </ul>
+      </div>
+      <div class="areabtn">
+        <a id="creaTeam" class="btnUtente" href="/amministratoreCittadini/creazioneTeam">Crea Team</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form action="/auth/cancellazioneAccount" method="post">
+  <input name="account" style="display:none">
+  <div class="all-canc" id="conf">
+    <div class="cancella">
+      <div class="textcancella">
+        <h1>ATTENZIONE</h1>
+        <p> Sicuro di voler procedere alla cancellazione di questo account?</p>
+        <div class="btn-canc">
+          <button class="elimina" type="submit">SI</button>
+          <a class="elimina" onclick="hideConferma()">NO</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<th:block th:include="fragments/footer"></th:block>
+<script th:src="@{/js/utente.js}"></script>
+
+</body>
+</html>

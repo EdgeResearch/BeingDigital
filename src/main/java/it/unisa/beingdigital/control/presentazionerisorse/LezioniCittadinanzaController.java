@@ -29,7 +29,7 @@ public class LezioniCittadinanzaController {
   @GetMapping
   public String get(Model model) {
     model.addAttribute("lezioniPerMetaInfo",
-        prelievoArgomentoService.getLezioniPerMetaInfoSortedByLivelloKeywordTitolo(
+        prelievoArgomentoService.getLezioniPerMetaInfoSortedByLivelloKeywordId(
             Livello.CITTADINANZA_DIGITALE));
     model.addAttribute("tipo", "lezioniCittadinanza");
     return "presentazionerisorse/listaLezioni";

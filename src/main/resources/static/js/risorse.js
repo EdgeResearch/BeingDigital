@@ -5,7 +5,6 @@ var gioco = document.getElementById("giocoRimosso");
 var dom = document.getElementById("domandaRimossa");
 
 function showConfermaDom(key) {
-    console.log("è stata chiamata la domanda con id: " + key.id);
     document.getElementById('id_dom').value = key.id;
     document.getElementById('dom').value = "domanda";
     lista.style.display = "none";
@@ -18,7 +17,6 @@ function hideConfermaDom() {
 }
 
 function showConfermaArg(key) {
-    console.log("è stata chiamata l'argomento con id: " + key.id);
     document.getElementById('id_arg').value = key.id;
     document.getElementById('arg').value = "argomento";
     lista.style.display = "none";
@@ -31,7 +29,6 @@ function hideConfermaArg() {
 }
 
 function showConfermaMeta(key) {
-    console.log("è stata chiamata la meta-info con id: " + key.id);
     document.getElementById('id_meta').value = key.id;
     document.getElementById('meta').value = "metainfo";
     lista.style.display = "none";
@@ -44,7 +41,6 @@ function hideConfermaMeta() {
 }
 
 function showConfermaGioco(key) {
-    console.log("è stata chiamata il gioco con id: " + key.id);
     document.getElementById('id_gioco').value = key.id;
     document.getElementById('gioco').value = "gioco";
     lista.style.display = "none";

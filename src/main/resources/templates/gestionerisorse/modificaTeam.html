@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team</title>
+    <link rel="stylesheet" th:href="@{/stylesheet/modificaTeam.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/stylesheet/drag_drop.css}" type="text/css"/>
+    <link href="/img/Logo.png" rel="shortcut icon"/>
+</head>
+<th:block th:include="fragments/header"></th:block>
+<body>
+<div class="modifica" id="modArg">
+    <div class="daticard">
+        <div class="team">
+            <span></span>
+            <form class="form"
+                  enctype="multipart/form-data" method="post"
+                  th:action="${param.codice == null ? '/amministratoreCittadini/creazioneTeam' : '/amministratoreCittadini/modificaTeam'}"
+                  th:object="${teamForm}">
+
+                <div class="radioButton" th:if="${isEditing == false}">
+                    <input type="hidden" id="hiddenTipoTeam" name="tipoTeam" />
+                    <input type="radio" id="classe1" name="selezione" value="classe" onchange="cambiaStile('classe'); validateForm();">
+                    <label id="label_classe" for="classe">Classe</label><br>
+                    <input type="radio" id="gruppo" name="selezione" value="gruppo" onchange="cambiaStile('gruppo'); validateForm();">
+                    <label id="label_gruppo" for="gruppo">Gruppo</label><br>
+                </div>
+
+                <div id="tipoTeamForm" th:if="${isEditing == true}">
+                    <label class="text" for="tipoTeam">Tipo Team:</label>
+                    <input class="input" id="tipoTeam" name="tipoTeam" th:field="*{tipoTeam}" type="text" th:readonly="true" th:value="${teamForm.tipoTeam}"/>
+                </div>
+
+                <input class="input" id="codice" name="codice" style="display: none" th:value="${codice}" type="text">
+
+                <label class="text" for="nome">Nome Team:</label>
+                <input class="input" id="nome" name="nome" required th:field="*{nome}" type="text" value="">
+
+                <label class="text" for="email">Email del team:</label>
+                <input class="input" id="email" name="email" required th:field="*{email}" type="text" value="">
+
+                <div id="Group" style="display: none;">
+                    <label class="text" for="città">Città:</label>
+                    <input class="input" id="città" name="città" th:field="*{città}" type="text" value="">
+                </div>
+
+                <div id="Classe" style="display: none;">
+                    <label class="text" for="classe">Classe:</label>
+                    <input class="input" id="classe2" name="classe" th:field="*{classe}" type="text" value="">
+                    <label class="text" for="scuola">Scuola:</label>
+                    <input class="input" id="scuola" name="scuola" th:field="*{scuola}" type="text" value="">
+                </div>
+
+                <input id="confirmTeam" type="submit" value="COMPLETATO" disabled class="hidden btnUtente">
+            </form>
+        </div>
+    </div>
+</div>
+<div class="contsnack">
+    <div id="snackbar"></div>
+</div>
+
+<script th:src="@{/js/team.js}"></script>
+<script th:src="@{/js/select.js}"></script>
+<script th:src="@{/js/modifica.js}"></script>
+<script th:src="@{/js/drag_drop.js}"></script>
+</body>
+<th:block th:include="fragments/footer"></th:block>
+</html>

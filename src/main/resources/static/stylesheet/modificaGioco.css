@@ -80,7 +80,7 @@
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url(/img/backgroundLogo.png);
+    background: #edecec63;
     background-size: contain;
     padding: 20px 0;
 }

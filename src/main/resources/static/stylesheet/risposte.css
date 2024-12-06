@@ -26,14 +26,19 @@
     min-height: 100vh;
     padding-top: 130px;
     padding-bottom: 50px;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url(/img/backgroundLogo.png);
     background-size: contain;
+    background: #edecec63;
 }
 
 .risposte .box {
-    width: 80%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 50px;
     position: relative;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    background: var(--white-color);
+    border-radius: 10px;
+    padding: 20px;
     margin-bottom: 120px;
 }
 
@@ -44,12 +49,12 @@
 .risposte .box h2 {
     text-align: center;
     background-color: var(--second-color);
-    padding: 20px 0;
-    font-size: 20px;
+    padding: 22px 0;
+    font-size: 24px;
     font-weight: 700;
     width: 100%;
-    font-size: 24px;
     text-transform: uppercase;
+    border-radius: 10px 10px 0 0;
 }
 
 .corrette {
@@ -66,7 +71,7 @@
     margin-bottom: 40px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: var(--white-color);
+    color: #121b37;
     padding: 0 5px;
 }
 
@@ -86,21 +91,20 @@
 
 .notspecial th {
     padding: 15px 0;
-    box-shadow: inset 0px -24px 15px 0px rgba(0, 0, 0, 0.1);
 }
 
 .special {
     background-color: white;
-    padding: 10px 0;
-    box-shadow: inset 0px -24px 15px 0px rgba(0, 0, 0, 0.1);
     color: var(--bg-color);
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
 }
 
 .special td {
     padding: 10px 10px;
     width: 300px;
     text-align: center;
-    box-shadow: inset 0px -24px 15px 0px rgba(0, 0, 0, 0.1);
 }
 
 .risposte p {

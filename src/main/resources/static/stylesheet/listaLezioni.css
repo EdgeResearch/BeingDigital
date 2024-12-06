@@ -17,13 +17,23 @@
     --aggiuntivo4: #b700ff;
 }
 
+.livello {
+    font-size: 35px;
+    margin: 50px 0 50px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--second-color);
+    padding: 0 5px;
+    text-align: center;
+}
+
 .lezioni {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 130vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), #282828c4), url(/img/backgroundLogo.png);
+    /*min-height: 130vh; */
+    background-color: #edecec63;
     background-size: contain;
 }
 
@@ -42,19 +52,26 @@
 }
 
 .lezioni .box {
-    width: 80%;
+    width: 100%;
     position: relative;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-    margin-bottom: 120px;
+    margin-bottom: 30px;
     overflow: hidden;
 }
 
+.box-lezione{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.livello-box{
+    margin: 0px 20px;
+}
 
 .lezioni .box h2 {
-    text-align: center;
     color: var(--white-color);
     background-color: var(--second-color);
-    padding: 20px 0;
+    padding: 20px 0 20px 20px;
     font-size: 20px;
     font-weight: 700;
     width: 100%;
@@ -62,6 +79,11 @@
     text-transform: uppercase;
 }
 
+h4.livello-lezione{
+    font-size: 14px;
+    color: #5b6ed9;
+    font-weight: bolder;
+}
 
 .lezioni .box ul {
     max-height: 200px;
@@ -73,7 +95,6 @@
     border: 1px solid;
 
 }
-
 
 .lezioni .box ul::-webkit-scrollbar {
     width: 10px;
@@ -103,7 +124,7 @@
     cursor: pointer;
     margin-top: 5px;
     font-weight: 500;
-    position: absolute;
+    position: relative;
     /* padding-bottom: 13px; */
     color: var(--bg-color);
 }
@@ -113,15 +134,6 @@
     font-weight: 700;
 }
 
-.livello {
-    font-size: 35px;
-    margin: 80px 0 5px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--white-color);
-    padding: 0 5px;
-    text-align: center;
-}
 
 .lezioni p {
     margin-bottom: 100px;
@@ -172,6 +184,10 @@
     color: var(--text-color);
     font-weight: 600;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+.num-title{
+    display: flex;
 }
 
 @media (max-width: 420px) {

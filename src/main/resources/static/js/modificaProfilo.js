@@ -27,7 +27,6 @@ function showHide(password) {
 }
 
 function validation_name(input) {
-    console.log("nome")
 
     var pattern = /^[A-Za-z]+$/;
 
@@ -45,7 +44,6 @@ function validation_name(input) {
 }
 
 function validation_surname(input) {
-    console.log("cognome")
     var pattern = /^[A-Za-z ,.']+$/i;
 
     if (input == null) {
@@ -65,7 +63,6 @@ function validation_surname(input) {
 function validation_email(input) {
 
     var pattern = /^[^ ]+@[^ ]+.[a-z]{2,3}$/;
-    console.log("email")
     if (input == null) {
         return false
     }
@@ -78,7 +75,6 @@ function validation_email(input) {
 }
 
 function validation_password(input) {
-    console.log("password")
     var pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\p{P})[A-Za-z\d\p{P}]{8,}$/u;
 
     if (input.value.length == 0) {
@@ -88,7 +84,6 @@ function validation_password(input) {
     if (input.match(pattern)) {
         return true;
     } else {
-        console.log("P sbagliata")
         toast("La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola, almeno una minuscola, almeno un numero e almeno un carattere speciale")
         return false;
     }
@@ -117,11 +112,9 @@ function validate(obj) {
     var txt_pn = document.getElementById("p_nuova");
 
     if (validation_email(email) && validation_name(nome) && validation_surname(cognome) && validation_password(password_v) && validation_password(password_n) && validEmail && validPassword) {
-        console.log("entra1");
 
         return true
     } else {
-        console.log("entra2: em" + validation_email(email) + " pv " + validation_password(password_v) + " pn " + validation_password(password_n) + " nome " + validation_name(nome) + " cognome " + validation_surname(cognome));
         if (!validation_email(email))
             txt_em.style.color = "#c80e00";
         if (!validation_password(password_v))
@@ -142,7 +135,6 @@ function validate(obj) {
 let validEmail = true;
 $('#email').on("change", function () {
     validEmail = false;
-    console.log(this.value);
     var txt_em = document.getElementById("email");
 
     var vecchia = document.getElementById('email_v').value
@@ -176,7 +168,6 @@ $('#email').on("change", function () {
 let validPassword = true;
 $('#p_vecchia').on("change", function () {
     validPassword = false;
-    console.log(this.value);
     var txt_p = document.getElementById("p_vecchia");
 
 

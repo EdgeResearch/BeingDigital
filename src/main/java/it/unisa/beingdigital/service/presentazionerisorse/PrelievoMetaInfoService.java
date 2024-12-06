@@ -56,7 +56,7 @@ public class PrelievoMetaInfoService {
    */
   public List<MetaInfo> getAllMetaInfoSortedByLivelloKeyword() {
     return metaInfoRepository.findAll().stream()
-        .sorted(Comparator.comparing(MetaInfo::getLivello).thenComparing(MetaInfo::getKeyword))
+        .sorted(Comparator.comparing(MetaInfo::getLivello).thenComparing(MetaInfo::getId))
         .toList();
   }
 

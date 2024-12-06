@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Diario di Bordo</title>
+  <link rel="stylesheet" th:href="@{/stylesheet/diariodibordo.css}" type="text/css"/>
+  <link href="/img/Logo.png" rel="shortcut icon"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<th:block th:insert="~{fragments/header}"></th:block>
+
+<div class="Lobby" id="diariodibordo" th:data-livello="${livelloUtente}" th:data-codice="${team?.codice}" th:data-is-team="${isTeam}">
+  <div class="scritte">
+    <h1 th:if="${isTeam}">Benvenuto sul diario di bordo del team: <span th:text="${team.nome}"></span></h1>
+    <h1 th:if="${!isTeam}">Benvenuto sul tuo diario di bordo</h1>
+    <p th:if="${classe != null}">Qui troverai tutti i progressi della classe</p>
+    <p th:if="${gruppo != null}">Qui troverai tutti i progressi del gruppo</p>
+    <p th:if="${!isTeam}">Qui troverai tutti i tuoi progressi</p>
+  </div>
+
+  <div class="diariodibordo-container">
+    <!-- Colonna sinistra: Categorie -->
+    <div class="categorie">
+      <h3>Categorie</h3>
+      <div class="category-btn-container">
+        <button class="category-btn" id="btnPrivacy">Privacy e Sicurezza Online</button>
+        <button class="category-btn" id="btnIA">Intelligenza Artificiale</button>
+      </div>
+    </div>
+
+    <div class="risultati-categoria" id="risultatiCategoria">
+      <!-- Messaggio di testo iniziale -->
+      <p id="messaggio">Seleziona una categoria per vedere i risultati</p>
+
+      <!-- Titolo dinamico -->
+      <h2 id="titoloCategoria"></h2>
+
+      <div class="percentuali">
+        <div class="progress" id="progressBase">
+          <h3 id="percentualeBase"></h3>
+          <h4>Base</h4>
+        </div>
+        <div class="progress" id="progressIntermedio">
+          <h3 id="percentualeIntermedio"></h3>
+          <h4>Intermedio</h4>
+        </div>
+        <div class="progress" id="progressAvanzato">
+          <h3 id="percentualeAvanzato"></h3>
+          <h4>Avanzato</h4>
+        </div>
+        <div class="progress" id="progressMaster">
+          <h3 id="percentualeMaster"></h3>
+          <h4>Master</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<th:block th:insert="~{fragments/footer}"></th:block>
+<script th:src="@{/js/diariodibordo.js}"></script>
+</body>
+</html>

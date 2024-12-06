@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link rel="stylesheet" th:href="@{/stylesheet/header_homepage.css}" type="text/css"/> <!-- style -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'> <!-- font -->
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
+        rel="stylesheet">
+</head>
+<body>
+<header class="header-logo-container" id="main-header">
+  <div class="logo-container">
+    <a href="/"><img id="header-logo" alt="BeDigital Logo" class="logo" src="/img/Logo2.png"></a>
+  </div>
+
+  <div class="hamburger">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </div>
+
+  <nav id="menu">
+    <div class="team-header" th:if="${admin != null}">
+      <a class="bottoni-header" href="/auth/areaPersonale">Area admin</a>
+    </div>
+
+    <div class="team-header" th:if="${utente != null && admin == null}">
+      <a class="bottoni-header" href="/auth/diariodibordo">Diario di bordo</a>
+    </div>
+
+    <div class="team-header" th:if="${@personaAutenticata.persona.isPresent() && admin == null}">
+      <a class="bottoni-header" href="/team">Team</a>
+    </div>
+
+    <div>
+      <th:block th:with="accesso = ${@personaAutenticata.persona.isPresent()}">
+        <a class="bottoni-header" href="/login" th:if="${!accesso}">Accesso</a>
+        <a class="bottoni-header" href="/auth/Profilo" th:if="${accesso && admin == null}">Profilo</a>
+      </th:block>
+    </div>
+
+    <div>
+      <th:block th:with="accesso = ${@personaAutenticata.persona.isPresent()}">
+        <a class="bottoni-header" href="/logout" th:if="${accesso}">Logout</a>
+      </th:block>
+    </div>
+
+  </nav>
+</header>
+
+<script th:src="@{/js/header.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</body>
+</html>

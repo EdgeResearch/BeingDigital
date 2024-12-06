@@ -14,49 +14,288 @@
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           referrerpolicy="no-referrer" rel="stylesheet"/>
 
+    <!-- Link per Slick Carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 </head>
 
-
-<th:block th:include="fragments/header"></th:block>
+<th:block th:insert="~{fragments/header_homepage}"></th:block>
 <body class="home">
-<section id="banner">
-    <img src="/img/BeingDigital.png">
-</section>
+<div class="intro">
+    <div class="intro-content">
+        <img id="logo" src="/img/Logo2.png" alt="BeDigital Logo" class="intro-logo">
+        <button id="scrollButton" class="scroll-button"><span>.</span></button>
 
-
-<div class="lobby">
-    <div class="alltext">
-        <h1>Scopri i nostri contenuti</h1>
-        <p>Impara con noi a prenderti cura della tua privacy usufruendo <br> delle nostre funzionalità! </p>
-    </div>
-    <div class="allcont">
-        <div class="cardhome">
-            <div class="card">
-                <img alt="racconti" src="/img/paper.png">
-                <h2 style="color:#28c02f">RACCONTI</h2>
-                <p>I racconti spiegano ai più piccoli <br> i concetti fondamentali della privacy online.</p>
-            </div>
-            <div class="card">
-                <img alt="lezioni" src="/img/shield.png">
-                <h2 style="color:#ffa900">LEZIONI</h2>
-                <p>Impara a proteggerti online <br>tramite le nostre lezioni.</p>
-            </div>
-            <div class="card">
-                <img alt="test" src="/img/search.png">
-                <h2 style="color:#FF0000FF">TEST</h2>
-                <p>I test ti permettono di verificare <br>le tue conoscenze.</p>
-            </div>
-            <div class="card">
-                <img alt="giochi" src="/img/cyber-security.png">
-                <h2 style="color:#b700ff">GIOCHI</h2>
-                <p>Utilizza i nostri lesson <br>games per affinare le tue conoscenze.</p>
-            </div>
-
-        </div>
     </div>
 </div>
+<div class="lobby" id="main">
 
-<th:block th:include="fragments/footer"></th:block>
+    <div class="alltext">
+        <h1>Scopri il mondo digitale</h1>
+        <p>Approfondisci i temi delle <a style="
+            text-decoration: underline;
+            color: #5b6ed9;
+            font-weight: 900;"
+                                         href="#">cittadinaza digitale</a> usufruendo <br> delle funzionalità di
+            BeDigital </p>
+    </div>
+
+    <div class="carousel-container">
+        <button class="prev">‹</button>
+        <div class="carousel-slide" style="max-width:100%; transform: translateX(0px);">
+            <div class="card-parent">
+                <div class="card" data-dropdown="dropdown-1">
+                    <img alt="privacy online" src="/img/icons8-privacy-100.png">
+                    <h2>1. PRIVACY ONLINE </h2>
+                    <p>Scopri qui i contenuti <br> sulla privacy online.</p>
+                    <div class="card-bottom">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-parent">
+                <div class="card" data-dropdown="dropdown-2">
+                    <img alt="artificial" src="/img/icons8-intelligenza-artificiale-100.png">
+                    <h2>2. INTELLIGENZA <br> ARTIFICIALE</h2>
+                    <p>Scopri qui i contenuti <br> sull'Intelligenza Artificiale.</p>
+                    <div class="card-bottom">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-parent">
+                <div class="card" data-dropdown="dropdown-3">
+                    <img alt="online-Content" src="/img/icons8-creation-100.png">
+                    <h2>3. CREAZIONE DEI <br> CONTENUTI <br> ONLINE </h2>
+                    <p>Scopri qui i contenuti <br> sulla creazione dei contenuti online.</p>
+                    <div class="card-bottom">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-parent">
+                <div class="card" data-dropdown="dropdown-4">
+                    <img alt="online-communication" src="/img/icons8-comunicazione-100.png">
+                    <h2>4. COMUNICAZIONE E <br> COLLABORAZIONE <br> ONLINE </h2>
+                    <p>Scopri qui i contenuti sulla<br> comunicazione online.</p>
+                    <div class="card-bottom">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-parent">
+                <div class="card" data-dropdown="dropdown-5">
+                    <img alt="privacy" src="/img/icons8-problem-solving-100.png">
+                    <h2>5. RISOLUZIONE DEI <br> PROBLEMI </h2>
+                    <p>Scopri qui i contenuti <br> sulla risoluzione di problemi.</p>
+                    <div class="card-bottom">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-parent">
+                <div class="card" data-dropdown="dropdown-6">
+                    <img alt="artificial" src="/img/icons8-web-100.png">
+                    <h2>6. ALFABETIZZAZIONE SU <br> INFORMAZIONI E <br> DATI ONLINE</h2>
+                    <p>Scopri qui i contenuti <br> sull'alfabetizzazione.</p>
+                    <div class="card-bottom">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="next">›</button>
+    </div>
+    <div id="dropdown-1" class="dropdown">
+        <div class="dropdown-card">
+            <a href="/utente/raccontiPrivacy">
+                <img alt="racconti" src="/img/paper.png">
+                <h2 style="color: #33df3c">RACCONTI</h2>
+            </a>
+        </div>
+        <div class="dropdown-card">
+            <a href="/utente/lezioniPrivacy?sottoArgomento=Privacy">
+                <img alt="lezioni" src="/img/shield.png">
+                <h2 style="color: #efb90e">LEZIONI</h2>
+            </a>
+        </div>
+        <div class="dropdown-card">
+            <a href="/utente/test?sottoArgomento=Privacy">
+                <img alt="test" src="/img/search.png">
+                <h2 style="color: red">TEST</h2>
+            </a>
+        </div>
+        <div class="dropdown-card">
+            <a href="/utente/giochiPrivacy">
+                <img alt="giochi" src="/img/cyber-security.png">
+                <h2 style="color: purple">GIOCHI</h2>
+            </a>
+        </div>
+    </div>
+
+    <div id="dropdown-2" class="dropdown">
+        <div class="dropdown-card">
+            <a href="/utente/raccontiPrivacy">
+                <img alt="racconti" src="/img/paper.png">
+                <h2 style="color: #33df3c">RACCONTI</h2>
+            </a>
+        </div>
+        <div class="dropdown-card">
+            <a href="/utente/lezioniPrivacy?sottoArgomento=IntelligenzaArtificiale">
+                <img alt="lezioni" src="/img/shield.png">
+                <h2 style="color: #efb90e">LEZIONI</h2>
+            </a>
+        </div>
+        <div class="dropdown-card">
+            <a href="/utente/test?sottoArgomento=IntelligenzaArtificiale">
+                <img alt="test" src="/img/search.png">
+                <h2 style="color: red">TEST</h2>
+            </a>
+        </div>
+        <div class="dropdown-card">
+            <a href="/utente/giochiPrivacy">
+                <img alt="giochi" src="/img/cyber-security.png">
+                <h2 style="color: purple">GIOCHI</h2>
+            </a>
+        </div>
+    </div>
+
+    <div id="dropdown-3" class="dropdown">
+        <div class="dropdown-card">
+            <a href="/utente/raccontiPrivacy">
+                <img alt="racconti" src="/img/paper.png">
+                <h2 style="color: #33df3c">RACCONTI</h2>
+            </a>
+        </div>
+        <div class="dropdown-card">
+            <a>
+                <img alt="lezioni" src="/img/shield.png">
+                <h2 style="color: #efb90e">LEZIONI</h2>
+            </a>
+        </div>
+        <div class="dropdown-card">
+            <a>
+                <img alt="test" src="/img/search.png">
+                <h2 style="color: red">TEST</h2>
+            </a>
+        </div>
+        <div class="dropdown-card">
+            <a href="/utente/giochiPrivacy">
+                <img alt="giochi" src="/img/cyber-security.png">
+                <h2 style="color: purple">GIOCHI</h2>
+            </a>
+        </div>
+    </div>
+
+    <div id="dropdown-4" class="dropdown">
+        <div class="dropdown-card">
+            <a href="/utente/raccontiPrivacy">
+                <img alt="racconti" src="/img/paper.png">
+                <h2 style="color: #33df3c">RACCONTI</h2>
+            </a>
+        </div>
+        <div class="dropdown-card">
+            <a>
+                <img alt="lezioni" src="/img/shield.png">
+                <h2 style="color: #efb90e">LEZIONI</h2>
+            </a>
+        </div>
+        <div class="dropdown-card">
+            <a>
+                <img alt="test" src="/img/search.png">
+                <h2 style="color: red">TEST</h2>
+            </a>
+        </div>
+        <div class="dropdown-card">
+            <a href="/utente/giochiPrivacy">
+                <img alt="giochi" src="/img/cyber-security.png">
+                <h2 style="color: purple">GIOCHI</h2>
+            </a>
+        </div>
+    </div>
+
+    <div id="dropdown-5" class="dropdown">
+        <div class="dropdown-card">
+            <a href="/utente/raccontiPrivacy">
+                <img alt="racconti" src="/img/paper.png">
+                <h2 style="color: #33df3c">RACCONTI</h2>
+            </a>
+        </div>
+        <div class="dropdown-card">
+            <a>
+                <img alt="lezioni" src="/img/shield.png">
+                <h2 style="color: #efb90e">LEZIONI</h2>
+            </a>
+        </div>
+        <div class="dropdown-card">
+            <a>
+                <img alt="test" src="/img/search.png">
+                <h2 style="color: red">TEST</h2>
+            </a>
+        </div>
+        <div class="dropdown-card">
+            <a href="/utente/giochiPrivacy">
+                <img alt="giochi" src="/img/cyber-security.png">
+                <h2 style="color: purple">GIOCHI</h2>
+            </a>
+        </div>
+    </div>
+
+    <div id="dropdown-6" class="dropdown">
+        <div class="dropdown-card">
+            <a href="/utente/raccontiPrivacy">
+                <img alt="racconti" src="/img/paper.png">
+                <h2 style="color: #33df3c">RACCONTI</h2>
+            </a>
+        </div>
+        <div class="dropdown-card">
+            <a>
+                <img alt="lezioni" src="/img/shield.png">
+                <h2 style="color: #efb90e">LEZIONI</h2>
+            </a>
+        </div>
+        <div class="dropdown-card">
+            <a>
+                <img alt="test" src="/img/search.png">
+                <h2 style="color: red">TEST</h2>
+            </a>
+        </div>
+        <div class="dropdown-card">
+            <a href="/utente/giochiPrivacy">
+                <img alt="giochi" src="/img/cyber-security.png">
+                <h2 style="color: purple">GIOCHI</h2>
+            </a>
+        </div>
+    </div>
+
+    <!-- <div id="dropdown-7" class="dropdown">
+        <div class="dropdown-card">Dropdown Card 1</div>
+        <div class="dropdown-card">Dropdown Card 2</div>
+        <div class="dropdown-card">Dropdown Card 3</div>
+        <div class="dropdown-card">Dropdown Card 4</div>
+    </div>
+
+    <div id="dropdown-8" class="dropdown">
+        <div class="dropdown-card">Dropdown Card 1</div>
+        <div class="dropdown-card">Dropdown Card 2</div>
+        <div class="dropdown-card">Dropdown Card 3</div>
+        <div class="dropdown-card">Dropdown Card 4</div>
+    </div> -->
+</div>
+
+<th:block th:insert="~{fragments/footer}"></th:block>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script th:src="@{/js/carosello.js}"></script>
+<script th:src="@{/js/dropdown-menu.js}"></script>
+<script th:src="@{/js/logo.js}"></script>
+
+<!-- Includi Slick Carousel -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </body>
 </html>

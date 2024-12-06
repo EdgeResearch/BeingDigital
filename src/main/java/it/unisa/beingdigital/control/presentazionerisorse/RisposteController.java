@@ -33,6 +33,8 @@ public class RisposteController {
   public String get(Model model) {
     Utente utente = (Utente) personaAutenticata.getPersona().get();
 
+    model.addAttribute("Utente", utente);
+
     model.addAttribute("risposte", prelievoRispostaService.getRisposteSortedByKeywordTesto(utente));
     return "presentazionerisorse/risposte";
   }

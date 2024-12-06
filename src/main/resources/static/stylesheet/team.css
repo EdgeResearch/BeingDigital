@@ -1,0 +1,291 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat";
+}
+
+:root {
+    --bg-color: #121b37;
+    --text-color: #f2f2f2;
+    --main-color: #30478c;
+    --second-color: #273a73;
+    --notify-color: #5b6ed9;
+    --white-color: white;
+    --aggiuntivo1: #33df3c;
+    --aggiuntivo2: #ffa900;
+    --aggiuntivo3: red;
+    --aggiuntivo4: #b700ff;
+}
+
+body {
+    background: #edecec63;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.Lobby {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.team {
+    display: flex;
+    position: relative;
+    width: 355px;
+    height: 500px;
+    margin: 0px 20px;
+    background-color: var(--white-color);
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 25px;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 500px;
+    position: relative;
+    background: var(--white-color);
+    border-radius: 10px;
+    margin: 0px 20px;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.box h2 {
+    text-align: center;
+    color: var(--white-color);
+    background-color: var(--second-color);
+    padding: 22px 0;
+    font-size: 24px;
+    font-weight: 700;
+    width: 100%;
+    text-transform: uppercase;
+    border-radius: 10px 10px 0 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.team-code {
+    text-align: center;
+    font-size: 20px;
+    margin: 20px;
+    color: var(--second-color);
+    font-weight: bold;
+}
+
+.notspecial {
+    background-color: var(--second-color);
+    color: white;
+    padding: 10px;
+    text-align: left;
+    font-size: 18px;
+}
+
+.notspecial th {
+    text-align: center;
+    padding: 15px;
+}
+
+.special {
+    background-color: white;
+    color: var(--bg-color);
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.special:hover {
+    background-color: var(--notify-color);
+    color: white;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+.special td {
+    padding: 15px 10px;
+    text-align: center;
+}
+
+i:hover {
+    color: var(--aggiuntivo3);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+body h1 {
+    font-size: 35px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--bg-color);
+    text-align: center;
+}
+
+body p {
+    font-size: 14px;
+    color: #121b37;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.banner-btn a {
+    width: 150px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px 0;
+    padding: 12px 0;
+    color: var(--white-color);
+    background-color: var(--notify-color);
+    border: 3px solid var(--notify-color);
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: 0.5s;
+}
+
+.banner-btn a:hover {
+    background-color: var(--white-color);
+    color: var(--notify-color);
+}
+
+.box-codice2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.profile-image {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--main-color);
+}
+
+.box-utente {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 5px;
+    min-width: 100px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+h5 {
+    font-size: 11px;
+}
+
+.team-box {
+    margin: 15px 0px;
+    border-bottom: 1px solid;
+}
+
+.box-nomeTeam {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--second-color);
+    border-radius: 10px 10px 0px 0px;
+}
+
+.exit-team-icon {
+    font-size: 1.5em;
+    color: #f2f2f2;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.edit-team-icon {
+    margin-left: 20px;
+    color: #f2f2f2;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.edit-team-icon i {
+    font-size: 18px;
+}
+
+.box-nomeTeam {
+    display: flex;
+    align-items: center;
+}
+
+.box-nomeTeam h2 {
+    margin-left: 10px;
+}
+
+input {
+    width: 80%;
+    margin-bottom: 9px;
+    padding: 10px;
+    outline: none;
+    font-size: 0.8em;
+    border: 1px solid #121b37;
+    letter-spacing: 0.1em;
+}
+
+.team a {
+    color: white;
+    text-decoration: none;
+}
+
+.edit-team-icon,
+.exit-team-icon,
+.team-name-link {
+    color: white;
+    text-decoration: none;
+}
+
+.team a:hover {
+    color: #cccccc;
+    text-decoration: none;
+}
+
+@media (max-width: 900px) {
+    .Lobby {
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .team{
+        margin: 40px 20px;
+    }
+
+    .box{
+        margin: 40px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .box {
+        width: 95%;
+    }
+
+    .special td {
+        font-size: 14px;
+        padding: 10px 5px;
+    }
+
+    .notspecial th {
+        font-size: 14px;
+        padding: 10px 5px;
+    }
+}
+

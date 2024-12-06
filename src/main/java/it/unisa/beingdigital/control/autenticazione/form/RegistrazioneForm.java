@@ -37,4 +37,6 @@ public class RegistrazioneForm {
   @NotBlank
   @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*\\p{Punct})[A-Za-z\\d\\p{Punct}]{8,}$")
   private String password;
+
+  private byte[] fotoprofilo;
 }

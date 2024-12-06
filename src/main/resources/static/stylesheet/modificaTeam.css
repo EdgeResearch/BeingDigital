@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat";
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #121b37;
+    --text-color: #f2f2f2;
+    --main-color: #30478c;
+    --second-color: #273a73;
+    --notify-color: #5b6ed9;
+    --white-color: white;
+    --aggiuntivo1: #33df3c;
+    --aggiuntivo2: #ffa900;
+    --aggiuntivo3: red;
+    --aggiuntivo4: #b700ff;
+}
+
+
+.input {
+    max-width: 100%;
+    margin-bottom: 33px;
+    padding: 10px;
+    outline: none;
+    font-size: 0.8em;
+    border: 1px solid #121b37;
+    letter-spacing: 0.1em;
+}
+
+.modifica {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: #edecec63;
+    background-size: contain;
+    padding: 20px 0 50px;
+}
+
+.daticard {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    width: 50%;
+    height: 579px;
+    background-color: var(--white-color);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    border-radius: 30px
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.radioButton{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.select-items::-webkit-scrollbar-track {
+    background: white;
+    border: 1px solid;
+
+}
+
+
+.select-items::-webkit-scrollbar {
+    width: 10px;
+}
+
+.select-items::-webkit-scrollbar-thumb {
+    background: var(--second-color);
+}
+
+label#label_classe {
+    font-size: 13px;
+    margin: 2px 16px 2px 6px;
+}
+
+label#label_gruppo {
+    font-size: 13px;
+    margin: 2px 5px 2px 6px;
+}
+
+.modifica form label {
+    text-align: left;
+    width: 80%;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-wrap: nowrap;
+    color: var(--notify-color);
+}
+
+#confirmTeam:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    border: 1px solid #ccc;
+}
+
+#confirmTeam {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid #007bff;
+    transition: background-color 0.3s ease;
+}
+
+#confirmTeam:hover {
+    background-color: #0056b3;
+}
+
+#confirmTeam.hidden {
+    display: none;
+}
+
+@media (max-width: 1046px) {
+
+    .daticard {
+        width: 514px;
+        /* height: 720px; */
+    }
+}
+
+.contsnack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+
+#snackbar {
+    visibility: hidden;
+    width: 400px;
+    margin-left: -125px;
+    background-color: #33383b;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    font-size: 14px;
+    z-index: 1;
+    left: 47%;
+    bottom: 30px;
+}
+
+
+#snackbar.show {
+    visibility: visible;
+}
+
+@media (max-width: 600px) {
+
+    .daticard {
+        min-width: 80%;
+    }
+}
+
+.team span {
+    position: absolute;
+    top: -18px;
+    left: -10px;
+    width: 150px;
+    height: 150px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.team span::before {
+    content: 'Team';
+    position: absolute;
+    width: 150%;
+    height: 40px;
+    background-color: #e1d007;
+    transform: rotate(-45deg) translateY(-20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: var(--text-color);
+    font-weight: 600;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+#Group{
+    display: none;
+    flex-direction: column;
+}
+
+#Classe{
+    display: none;
+    flex-direction: column;
+}
+
+#confirmTeam{
+    display: none;
+}
+
+#tipoTeamForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}
+
+.btnUtente {
+    width: 150px;
+    text-decoration: none;
+    margin: 10px 20px;
+    padding: 6px 0;
+    color: var(--white-color);
+    background-color: #5b6ed9;
+    border: 3px solid #5b6ed9;
+    position: relative;
+    transition: 0.5s;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 12px;
+}

@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: "Montserrat";
+    font-family: "Montserrat", sans-serif;
 }
 
 :root {
@@ -17,10 +17,13 @@
     --aggiuntivo4: #b700ff;
 }
 
+p {
+    font-size: 18px;
+}
 
 .racconto {
     min-height: 200vh;
-    background-color: var(--second-color);
+    background-color: #edecec63;
     overflow-x: hidden;
 }
 
@@ -35,32 +38,189 @@
 }
 
 .banner-text h1 {
-    font-size: 125px;
-}
-
-.racconto .raccontoText p {
-    /* justify-content: center; */
-    text-align: justify;
-    /* color: var(--bg-color); */
+    font-size: 120px;
 }
 
 .raccontoText {
-    /* display: flex; */
     justify-items: center;
     align-items: center;
     justify-content: center;
-    margin-top: 70px;
-    padding: 0 10%;
+    margin-top: 40px;
+    padding: 0 5%; /*quello al lato */
     font-size: 22px;
-    letter-spacing: 1px;
-    padding-bottom: 210px;
+    letter-spacing: 0.5px;
     color: white;
+}
+
+#myDiagramDiv {
+    width: 200vh;
+    height: 70vh;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    /*border: solid darkgray 1px;*/
+    background-color: white;
+}
+
+.info{
+    font-size: 16px;
+    color: #30478c;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-bottoni {
+    display: flex;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    justify-content: center;
+}
+
+a.btnUtente {
+    display: flex;
+    max-width: 200px;
+    max-height: 20px;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 10px 0;
+    padding: 12px 12px;
+    color: var(--white-color);
+    background-color: var(--notify-color);
+    border: 3px solid var(--notify-color);
+    position: relative;
+    margin: 0px 20px;
+    transition: 0.5s;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow{
+    margin: 0;
 }
 
 img {
     max-width: 100%;
     height: auto;
     margin: 22px;
+}
+
+ul, ol {
+    list-style-type: disc;
+    margin-left: 20px;
+    color: black;
+    padding-left: 30px;
+    font-size: 18px;
+}
+
+h3 {
+    color: #b700ff;
+    padding-bottom: 10px;
+}
+
+h4 {
+    color: #efb90e;
+    padding-top: 10px;
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+
+h5 {
+    color: #33df3c;
+    padding-top: 10px;
+}
+
+table {
+    overflow: auto;
+    width: 100%;
+    font-size: 16px;
+    border: 1px none #dededf;
+    height: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+    border-spacing: 0; /* Cambiato da 1px a 0 per evitare spazi tra le righe */
+    text-align: center; /* Allinea il testo al centro per la tabella */
+    margin-top: 25px;
+}
+
+caption {
+    caption-side: top;
+    text-align: left;
+}
+
+th {
+    border: 1px none #dededf;
+    background-color: #30478c;
+    color: #ffffff;
+    padding: 15px;
+    text-align: left;
+}
+
+td {
+    border: 1px solid #dededf;
+    padding: 15px;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Colore di sfondo alternato per righe pari */
+}
+
+pre {
+    color: black;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+tr:nth-child(even) td {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+tr:nth-child(odd) td {
+    background-color: #f0f0f0;
+    color: #000000;
+}
+
+/* li > strong:first-child {
+    color: #5b6ed9;
+    font-size: 20px;
+} */
+
+.card-container {
+    width: 100%;
+    height: auto;
+    justify-content: center;
+}
+
+.card {
+    margin-bottom: 20px;
+    padding: 35px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.linea {
+    border: none;
+    height: 1px;
+    background-color: #ccc;
+    margin-bottom: 40px;
+}
+
+.iframe-row {
+    display: flex;
+    flex-direction: row;
+    max-width: 100vw;
+    gap: 40px;
+}
+
+.racconto .raccontoText p {
+    color: var(--bg-color);
 }
 
 @media (max-width: 1285px) {

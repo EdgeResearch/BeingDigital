@@ -13,7 +13,13 @@
 <div class="modifica" id="mod">
     <div class="daticard">
         <span class="etichetta"></span>
-        <form action="/auth/modificaProfilo" method="post" th:object="${modificaProfiloForm}">
+        <div class="profile-image-container">
+            <img th:if="${utente != null}" th:src="@{'/fotoprofilo/' + ${utente.id}}" alt="Immagine di profilo" class="profile-image" id="profileImagePreview">
+            <p th:if="${utente == null}">Immagine non disponibile</p>
+            <button id="cambiaImmagine">+</button>
+        </div>
+        <form action="/auth/modificaProfilo" method="post" th:object="${modificaProfiloForm}" enctype="multipart/form-data">
+            <input type="file" id="profileImageInput" name="fotoprofilo" accept="image/*" style="display: none;" onchange="previewImage(event)">
             <label for="email">Email:</label>
             <input class="input" id="email" required th:field="*{email}" type="email">
             <input class="input" id="email_v" style="display:none" th:value="*{email}" type="text">
@@ -23,15 +29,9 @@
             <input class="input" id="cognome" required th:field="*{cognome}" type="text">
             <label for="nome">Password attuale:</label>
             <input class="input" id="p_vecchia" name="passwordAttuale" type="password">
-            <div class="occhio" onclick="showHide(true)"><img
-                    alt="" id="occhio_vecchio"
-                    src="/img/view.png"></div>
             <label for="nome">Password nuova:</label>
             <input class="input" id="p_nuova" name="passwordNuova" type="password">
-            <div class="occhio2" onclick="showHide(false)"><img
-                    alt="" id="occhio_nuovo"
-                    src="/img/view.png"></div>
-            <input onclick="return validate(this)" type="submit" value="COMPLETATO">
+            <input class="btnUtente" onclick="return validate(this)" type="submit" value="COMPLETATO">
         </form>
     </div>
 </div>
@@ -47,5 +47,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script th:src="@{/js/modificaProfilo.js}"></script>
+<script th:src="@{/js/utente.js}"></script>
 </body>
 </html>
